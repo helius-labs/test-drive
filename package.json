@@ -13,6 +13,7 @@
         "// Typescript": "-------------------------------------------------------------",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "// Lint": "-------------------------------------------------------------",
+        "test": "npm run lint",
         "lint": "eslint .",
         "format": "prettier --write '{public,src}/**/*.{css,html,js,svelte}'",
         "prepare": "husky install"
@@ -65,12 +66,6 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@sveltejs/kit": "^1.6.0",
-        "@tanstack/svelte-query": "^4.24.9",
-        "@trpc/client": "^10.12.0",
-        "@trpc/server": "^10.12.0",
-        "trpc-svelte-query-adapter": "^2.0.0",
-        "trpc-sveltekit": "^3.3.1",
-        "zod": "^3.20.6"
+        "@sveltejs/kit": "^1.6.0"
     }
 }

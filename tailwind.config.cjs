@@ -10,10 +10,6 @@ const config = {
         require("daisyui"),
         require("prettier-plugin-tailwindcss"),
     ],
-
-    theme: {
-        extend: {},
-    },
 };
 
 module.exports = config;
