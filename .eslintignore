@@ -1,0 +1,7 @@
+.eslint
+dist
+package.json
+*.cjs
+tsconfig.cjs.json
+tsconfig.esm.json
+tsconfig.json
