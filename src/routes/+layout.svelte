@@ -2,7 +2,7 @@
     @import "../app.postcss";
 </style>
 
-<main class="bg-white">
+<main>
     <nav
         class="sticky top-0 left-0 flex w-full items-center justify-between bg-zinc-100 p-3"
     >
