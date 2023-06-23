@@ -1,6 +1,14 @@
 const config = {
     content: ["./src/**/*.{html,js,svelte,ts}"],
 
+    theme: {
+        extend: {
+            colors: {
+                HeliusOrange: "#E47332",
+            },
+        },
+    },
+
     daisyui: {
         themes: "emerald",
     },
