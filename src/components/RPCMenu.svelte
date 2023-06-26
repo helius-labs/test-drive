@@ -7,7 +7,7 @@
 
     let selected;
 
-    let answer = "";
+    export let answer = "";
 
     function handleSubmit() {
         alert(`Chose RPC: ${selected.text} with "${answer}"`);
