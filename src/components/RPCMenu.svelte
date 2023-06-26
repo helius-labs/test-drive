@@ -15,13 +15,18 @@
 </script>
 
 <div class="flex justify-center">
-    <form on:submit|preventDefault={handleSubmit}>
-        <div class="flex items-center justify-center rounded bg-[#929498] p-3">
-            <div>
+    <form
+        on:submit|preventDefault={handleSubmit}
+        class="flex w-full justify-center"
+    >
+        <div
+            class="flex w-2/3 items-center justify-center rounded bg-[#929498] p-3"
+        >
+            <div class="m-1 w-1/3">
                 <select
                     bind:value={selected}
                     on:change={() => (answer = "")}
-                    class="m-2 rounded bg-white p-2 text-black"
+                    class=" w-full rounded bg-white p-2 text-black"
                 >
                     {#each questions as question}
                         <option value={question}>
@@ -30,14 +35,14 @@
                     {/each}
                 </select>
             </div>
-            <div class=" w-80">
+            <div class="m-1 w-2/3">
                 <input
                     bind:value={answer}
-                    class="m-1 w-full rounded bg-white p-2"
+                    class="w-full rounded bg-white p-2 text-[#D3D6DC]"
                     placeholder="Drop a Solana endpoint here"
                 />
             </div>
-            <div class="m-3">
+            <!-- <div class="m-3">
                 <button
                     disabled={!answer}
                     type="submit"
@@ -45,7 +50,7 @@
                 >
                     Submit
                 </button>
-            </div>
+            </div> -->
         </div>
     </form>
 </div>
