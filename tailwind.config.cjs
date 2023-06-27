@@ -10,7 +10,7 @@ const config = {
     },
 
     daisyui: {
-        themes: "emerald",
+        themes: "light",
     },
 
     plugins: [

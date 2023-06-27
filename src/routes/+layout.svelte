@@ -4,7 +4,7 @@
 
 <main>
     <nav
-        class="sticky top-0 left-0 flex w-full items-center justify-between bg-zinc-100 p-3"
+        class="sticky top-0 left-0 flex w-full items-center justify-between bg-zinc-100 p-2"
     >
         <div class="flex items-center">
             <svg
@@ -80,7 +80,7 @@
             class="flex items-center rounded border border-cyan-600 bg-HeliusOrange p-2 text-center font-semibold leading-normal text-white"
         >
             <a
-                href=""
+                href="test"
                 class="link no-underline"
             >
                 Launch Dev Portal
