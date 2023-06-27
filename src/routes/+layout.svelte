@@ -4,7 +4,7 @@
 
 <main>
     <nav
-        class="sticky top-0 left-0 flex w-full items-center justify-between bg-zinc-100 p-3"
+        class="sticky top-0 left-0 flex w-full items-center justify-between bg-zinc-100 p-2"
     >
         <div class="flex items-center">
             <svg

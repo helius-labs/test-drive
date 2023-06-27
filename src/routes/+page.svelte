@@ -8,7 +8,11 @@
 <div class="min-h-screen bg-white">
     <Header />
     <RPCMenu />
-    <Request />
+    <div class="flex justify-center">
+        <Request />
+        <Response />
+    </div>
+
     <div class="mx-auto max-w-xl">
         <!-- <p>This is a page</p>
         <button class="btn">Button</button>
