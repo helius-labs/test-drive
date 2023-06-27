@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <div class="m-3 w-5/12  p-2 text-black">
     <h1 class=" text-2xl font-semibold">Request</h1>
     <div class="rounded border">

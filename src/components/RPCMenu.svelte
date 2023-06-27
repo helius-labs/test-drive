@@ -1,16 +1,44 @@
 <script>
-    let questions = [
-        { id: 1, text: `getTransaction` },
-        { id: 2, text: `GetRecentBlockhash` },
-        { id: 3, text: `getAccountInfo` },
-    ];
+    import { methods } from "$lib/api/methods.js";
 
     let selected;
 
+    let questions = Object.keys(methods).map((method, index) => {
+        return { id: index + 1, text: method };
+    });
     export let answer = "";
 
-    function handleSubmit() {
-        alert(`Chose RPC: ${selected.text} with "${answer}"`);
+    async function handleSubmit() {
+        if (methods[selected.text]) {
+            const params = methods[selected.text].defaultParams;
+
+            if (answer) {
+                const paramName = Object.keys(params)[0];
+                params[paramName] = answer;
+            }
+
+            try {
+                const result = await callRPC(selected.text, [params]);
+            } catch (error) {}
+        } else {
+        }
+    }
+    async function callRPC(method, params) {
+        const response = await fetch(answer, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                jsonrpc: "2.0",
+                id: 1,
+                method,
+                params,
+            }),
+        });
+
+        const data = await response.json();
+        return data.result;
     }
 </script>
 
