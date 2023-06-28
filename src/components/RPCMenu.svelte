@@ -1,13 +1,12 @@
 <script>
-    let questions = [
-        { id: 1, text: `getTransaction` },
-        { id: 2, text: `GetRecentBlockhash` },
-        { id: 3, text: `getAccountInfo` },
-    ];
+    import { methods } from "$lib/api/methods.js";
 
     let selected;
 
-    let answer = "";
+    let questions = Object.keys(methods).map((method, index) => {
+        return { id: index + 1, text: method };
+    });
+    export let answer = "";
 
     function handleSubmit() {
         alert(`Chose RPC: ${selected.text} with "${answer}"`);
