@@ -1,4 +1,6 @@
 <script>
+    import RPCMenu from "./RPCMenu.svelte";
+    let selected;
 </script>
 
 <div class="flex justify-center">
@@ -11,6 +13,7 @@
                 <div class="w-1/2">
                     <div class="m-2">
                         <h1 class="font-semibold underline">Parameters:</h1>
+                        <p>{selected}</p>
                     </div>
                     <div class="m-2 ">
                         <h1 class="font-semibold underline">Code Sample:</h1>

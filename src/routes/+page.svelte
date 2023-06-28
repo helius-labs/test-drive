@@ -3,7 +3,6 @@
     import RPCMenu from "../components/RPCMenu.svelte";
     import Request from "../components/Request.svelte";
     import Response from "../components/Response.svelte";
-    import Docs from "../components/Docs.svelte";
 </script>
 
 <div class="min-h-screen bg-white">
@@ -13,7 +12,6 @@
         <Request />
         <Response />
     </div>
-    <Docs />
 
     <div class="mx-auto max-w-xl">
         <!-- <p>This is a page</p>
