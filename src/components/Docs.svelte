@@ -1,5 +1,4 @@
-<script>
-    import RPCMenu from "./RPCMenu.svelte";
+<script lang="ts">
     let selected;
 </script>
 
