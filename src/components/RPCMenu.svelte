@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+    // @ts-nocheck
     import { methods } from "$lib/api/methods.js";
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
 
@@ -11,25 +11,25 @@
     export let answer = "";
 
     async function handleSubmit() {
-    const methodData = methods[$currentMethod];
+        const methodData = methods[$currentMethod];
 
-    if (methodData) {
-        const params = { ...methodData.defaultParams };
+        if (methodData) {
+            const params = { ...methodData.defaultParams };
 
-        if (answer && Object.keys(params).length > 0) {
-            const paramName = Object.keys(params)[0];
-            params[paramName] = answer;
+            if (answer && Object.keys(params).length > 0) {
+                const paramName = Object.keys(params)[0];
+                params[paramName] = answer;
+            }
+
+            try {
+                const result = await callRPC($currentMethod, params);
+            } catch (error) {
+                console.error("Error calling RPC:", error);
+            }
+        } else {
+            console.warn("Method not found:", $currentMethod);
         }
-
-        try {
-            const result = await callRPC($currentMethod, params);
-        } catch (error) {
-            console.error("Error calling RPC:", error);
-        }
-    } else {
-        console.warn("Method not found:", $currentMethod);
     }
-}
     async function callRPC(method, params) {
         let body = {
             jsonrpc: "2.0",
