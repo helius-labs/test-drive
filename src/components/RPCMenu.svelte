@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     import { methods } from "$lib/api/methods.js";
 
     let selected;
@@ -9,37 +11,53 @@
     export let answer = "";
 
     async function handleSubmit() {
-        if (methods[selected.text]) {
-            const params = methods[selected.text].defaultParams;
+    const methodData = methods[selected.text];
 
-            if (answer) {
-                const paramName = Object.keys(params)[0];
-                params[paramName] = answer;
-            }
+    if (methodData) {
+        const params = {...methodData.defaultParams}; // Cloning defaultParams
 
-            try {
-                const result = await callRPC(selected.text, [params]);
-            } catch (error) {}
+        if (answer && Object.keys(params).length > 0) {
+            const paramName = Object.keys(params)[0];
+            params[paramName] = answer;
+        }
+
+        try {
+            const result = await callRPC(selected.text, params);
+        } catch (error) {
+            console.error('Error calling RPC:', error);
+        }
+    } else {
+        console.warn('Method not found:', selected.text);
+    }
+}
+async function callRPC(method, params) {
+    let body = {
+        jsonrpc: "2.0",
+        id: 1,
+        method
+    };
+
+    if (params && Object.keys(params).length > 0) {
+        // If params only contains a single property, set params to that property value
+        if (Object.keys(params).length === 1) {
+            body.params = [params[Object.keys(params)[0]]];
         } else {
+            body.params = [params];
         }
     }
-    async function callRPC(method, params) {
-        const response = await fetch(answer, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                jsonrpc: "2.0",
-                id: 1,
-                method,
-                params,
-            }),
-        });
 
-        const data = await response.json();
-        return data.result;
-    }
+    const response = await fetch(answer, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+    });
+
+    const data = await response.json();
+    console.log(data)
+    return data.result;
+}
 </script>
 
 <div class="flex justify-center">
@@ -70,15 +88,16 @@
                     placeholder="Drop a Solana endpoint here"
                 />
             </div>
-            <!-- <div class="m-3">
+             <div class="m-3">
                 <button
                     disabled={!answer}
                     type="submit"
                     class=" rounded bg-green-500 p-2 text-black"
+                    on:click={handleSubmit}
                 >
                     Submit
                 </button>
-            </div> -->
+            </div> 
         </div>
     </form>
 </div>
