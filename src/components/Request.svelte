@@ -1,10 +1,14 @@
-<div class="m-3 w-5/12  p-2 text-black">
+<script>
+    import { currentMethod } from "$lib/stores/currentMethodStore.js";
+</script>
+
+<div class="m-5 p-2 text-black ">
     <h1 class=" text-2xl font-semibold">Request</h1>
     <div class="rounded border">
         <h1 class=" rounded-t bg-[#929498] p-2 text-lg font-semibold">
-            Parameters
+            Parameters for {$currentMethod}
         </h1>
-        <div class=" h-48 overflow-x-auto">
+        <div class="overflow-x-auto">
             <table class="w-full overflow-y-scroll border">
                 <thead class="">
                     <tr class="items-cet border">
@@ -34,7 +38,7 @@
                         <td class="p-1">
                             <div class="m-1">
                                 <input
-                                    class="w-full rounded bg-[#D9D9D9] p-2"
+                                    class="w-full rounded bg-RequestInputBG p-2"
                                     placeholder="default value set here"
                                 />
                             </div>
@@ -57,7 +61,7 @@
                         <td class="p-1">
                             <div class="m-1">
                                 <input
-                                    class="w-full rounded bg-[#D9D9D9] p-2"
+                                    class="w-full rounded bg-RequestInputBG p-2"
                                     placeholder="default value set here"
                                 />
                             </div>
@@ -80,7 +84,7 @@
                         <td class="p-1">
                             <div class="m-1">
                                 <input
-                                    class="w-full rounded bg-[#D9D9D9] p-2"
+                                    class="w-full rounded bg-RequestInputBG p-2"
                                     placeholder="default value set here"
                                 />
                             </div>
@@ -103,7 +107,7 @@
                         <td class="p-1">
                             <div class="m-1">
                                 <input
-                                    class="w-full rounded bg-[#D9D9D9] p-2"
+                                    class="w-full rounded bg-RequestInputBG p-2"
                                     placeholder="default value set here"
                                 />
                             </div>
