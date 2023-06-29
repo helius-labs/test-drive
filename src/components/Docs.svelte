@@ -1,4 +1,5 @@
-<script lang="ts">
+<script>
+    import { currentMethod } from "$lib/stores/currentMethodStore.js";
     let selected;
 </script>
 
@@ -6,7 +7,7 @@
     <div class="m-3 w-10/12  p-2 text-black">
         <div class=" rounded border">
             <h1 class=" rounded-t bg-[#929498] p-2 text-lg font-semibold">
-                Docs:
+                {$currentMethod} Documentation:
             </h1>
             <div class="flex">
                 <div class="w-1/2">

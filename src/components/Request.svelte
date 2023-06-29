@@ -1,8 +1,12 @@
-<div class="m-5 p-2 text-black">
+<script>
+    import { currentMethod } from "$lib/stores/currentMethodStore.js";
+</script>
+
+<div class="m-5 p-2 text-black ">
     <h1 class=" text-2xl font-semibold">Request</h1>
     <div class="rounded border">
         <h1 class=" rounded-t bg-[#929498] p-2 text-lg font-semibold">
-            Parameters
+            Parameters for {$currentMethod}
         </h1>
         <div class="overflow-x-auto">
             <table class="w-full overflow-y-scroll border">

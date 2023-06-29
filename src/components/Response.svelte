@@ -23,7 +23,7 @@
     <h1 class=" text-2xl font-semibold">Response</h1>
     <div class=" rounded border">
         <h1 class=" rounded-t bg-[#929498] p-2 text-lg font-semibold">JSON:</h1>
-        <div class=" bg-[#282935] text-white ">
+        <div class=" bg-[#282935] p-4 text-white">
             <pre><code style="white-space: pre-wrap;">{code}</code></pre>
         </div>
         <div class=" flex items-center justify-between border p-2">
