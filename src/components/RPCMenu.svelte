@@ -2,7 +2,7 @@
 // @ts-nocheck
 
     import { methods } from "$lib/api/methods.js";
-
+    import { currentMethod } from "$lib/stores/currentMethodStore.js";
     let selected;
 
     let questions = Object.keys(methods).map((method, index) => {
@@ -10,6 +10,7 @@
     });
     export let answer = "";
 
+    // How do we handle the form submission? The run button is in a different component
     async function handleSubmit() {
     const methodData = methods[selected.text];
 
@@ -28,7 +29,7 @@
         }
     } else {
         console.warn('Method not found:', selected.text);
-    }
+    }xs
 }
 async function callRPC(method, params) {
     let body = {
@@ -36,6 +37,7 @@ async function callRPC(method, params) {
         id: 1,
         method
     };
+
 
     if (params && Object.keys(params).length > 0) {
         // If params only contains a single property, set params to that property value
@@ -70,12 +72,12 @@ async function callRPC(method, params) {
         >
             <div class="m-1 w-1/3">
                 <select
-                    bind:value={selected}
+                    bind:value={$currentMethod}
                     on:change={() => (answer = "")}
                     class=" w-full rounded bg-white p-2 text-black"
                 >
                     {#each questions as question}
-                        <option value={question}>
+                        <option value={question.text}>
                             {question.text}
                         </option>
                     {/each}

@@ -5,6 +5,7 @@ const config = {
         extend: {
             colors: {
                 HeliusOrange: "#E47332",
+                RequestInputBG: "#D9D9D9",
             },
         },
     },
