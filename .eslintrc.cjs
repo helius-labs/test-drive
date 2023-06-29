@@ -38,7 +38,7 @@ module.exports = {
     rules: {
         indent: ["error", 4],
 
-        "no-console": "error",
+        "no-console": "off",
 
         "no-debugger": "error",
 
