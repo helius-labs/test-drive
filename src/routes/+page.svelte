@@ -10,7 +10,8 @@
     <Header />
     <RPCMenu />
     <div class="flex justify-center">
-        <div class="grid max-w-7xl grid-cols-2 gap-3">
+        <!-- Need help from qudo on getting these two components to be the correct width -->
+        <div class="margin-auto grid w-10/12 grid-cols-2 gap-3">
             <Request />
             <Response />
         </div>

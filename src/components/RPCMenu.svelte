@@ -57,7 +57,7 @@
 
         const data = await response.json();
         console.log(data);
-        responseStore.set(JSON.stringify(data));
+        responseStore.set(JSON.stringify(data, null, 2));
         return data.result;
     }
 </script>
