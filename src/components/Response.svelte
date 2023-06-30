@@ -1,5 +1,9 @@
 <script>
-    import { responseStore } from "$lib/stores/responseStore.js";
+    import {
+        responseStore,
+        responseStatus,
+        responseTime,
+    } from "$lib/stores/responseStore.js";
 </script>
 
 <div class="mt-5 w-full text-black">
@@ -12,11 +16,11 @@
         </div>
         <div class=" flex items-center justify-between border p-2">
             <div class=" h-min rounded bg-green-500 p-2 text-center text-white">
-                200 OK
+                {$responseStatus}
             </div>
             <div class=" h-min rounded bg-[#D9D9D9] p-2 px-5 text-black">
                 <h1 class="font-semibold">Time</h1>
-                <h1 class="text-sm">12000 MS</h1>
+                <h1 class="text-sm">{$responseTime} MS</h1>
             </div>
         </div>
     </div>

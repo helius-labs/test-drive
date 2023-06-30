@@ -2,7 +2,11 @@
     // @ts-nocheck
     import { methods } from "$lib/api/methods.js";
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
-    import { responseStore } from "$lib/stores/responseStore.js";
+    import {
+        responseStatus,
+        responseStore,
+        responseTime,
+    } from "$lib/stores/responseStore.js";
 
     let questions = Object.keys(methods).map((method, index) => {
         return { id: index + 1, text: method };
@@ -35,16 +39,14 @@
             jsonrpc: "2.0",
             method,
         };
-
         if (params && Object.keys(params).length > 0) {
-            // If params only contains a single property, set params to that property value
             if (Object.keys(params).length === 1) {
                 body.params = [params[Object.keys(params)[0]]];
             } else {
                 body.params = [params];
             }
         }
-
+        const startTime = performance.now();
         const response = await fetch(answer, {
             body: JSON.stringify(body),
             headers: {
@@ -54,8 +56,12 @@
         });
 
         const data = await response.json();
+        const endTime = performance.now();
+        const duration = endTime - startTime;
         console.log(data);
+        responseStatus.set(response.status);
         responseStore.set(JSON.stringify(data, null, 2));
+        responseTime.set(duration.toFixed(2));
         return data.result;
     }
 </script>
