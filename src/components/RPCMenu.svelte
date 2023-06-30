@@ -4,8 +4,6 @@
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
     import { responseStore } from "$lib/stores/responseStore.js";
 
-    let selected;
-
     let questions = Object.keys(methods).map((method, index) => {
         return { id: index + 1, text: method };
     });
