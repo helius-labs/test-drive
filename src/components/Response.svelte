@@ -2,7 +2,7 @@
     import { responseStore } from "$lib/stores/responseStore.js";
 </script>
 
-<div class="m-5 p-2 text-black">
+<div class="mt-5 w-full text-black">
     <h1 class=" text-2xl font-semibold">Response</h1>
     <div class=" rounded border">
         <h1 class=" rounded-t bg-[#929498] p-2 text-lg font-semibold">JSON:</h1>
