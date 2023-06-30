@@ -1,6 +1,8 @@
 <script>
+    // @ts-nocheck
     import { methods } from "$lib/api/methods.js";
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
+
     let selected;
 
     let questions = Object.keys(methods).map((method, index) => {
@@ -8,37 +10,52 @@
     });
     export let answer = "";
 
-    // How do we handle the form submission? The run button is in a different component
     async function handleSubmit() {
-        if (methods[selected.text]) {
-            const params = methods[selected.text].defaultParams;
+        const methodData = methods[$currentMethod];
 
-            if (answer) {
+        if (methodData) {
+            const params = { ...methodData.defaultParams };
+
+            if (answer && Object.keys(params).length > 0) {
                 const paramName = Object.keys(params)[0];
                 params[paramName] = answer;
             }
 
             try {
-                const result = await callRPC(selected.text, [params]);
-            } catch (error) {}
+                const result = await callRPC($currentMethod, params);
+            } catch (error) {
+                console.error("Error calling RPC:", error);
+            }
         } else {
+            console.warn("Method not found:", $currentMethod);
         }
     }
     async function callRPC(method, params) {
+        let body = {
+            jsonrpc: "2.0",
+            id: 1,
+            method,
+        };
+
+        if (params && Object.keys(params).length > 0) {
+            // If params only contains a single property, set params to that property value
+            if (Object.keys(params).length === 1) {
+                body.params = [params[Object.keys(params)[0]]];
+            } else {
+                body.params = [params];
+            }
+        }
+
         const response = await fetch(answer, {
-            body: JSON.stringify({
-                id: 1,
-                jsonrpc: "2.0",
-                method,
-                params,
-            }),
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            method: "POST",
+            body: JSON.stringify(body),
         });
 
         const data = await response.json();
+        console.log(data);
         return data.result;
     }
 </script>
@@ -71,7 +88,7 @@
                     placeholder="Drop a Solana endpoint here"
                 />
             </div>
-            <!-- <div class="m-3">
+            <div class="m-3">
                 <button
                     disabled={!answer}
                     type="submit"
@@ -79,7 +96,7 @@
                 >
                     Submit
                 </button>
-            </div> -->
+            </div>
         </div>
     </form>
 </div>
