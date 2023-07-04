@@ -2,7 +2,7 @@
     import HeliusCircles from "$lib/assets/heliusCircles.svg";
 </script>
 
-<div class="flex">
+<div class="flex justify-center">
     <div>
         <img
             src={HeliusCircles}
@@ -11,9 +11,14 @@
         />
     </div>
     <div class="flex items-center">
-        <h1 class="text-center text-5xl font-bold text-black">
-            Catchy line goes here
-        </h1>
+        <div>
+            <h1 class="text-center text-5xl font-bold text-black">
+                Helius Test Drive
+            </h1>
+            <h1 class="m-3 text-center text-2xl font-bold text-black">
+                An all in one playground to test Solana RPC methods.
+            </h1>
+        </div>
     </div>
     <div>
         <img

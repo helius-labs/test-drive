@@ -57,7 +57,7 @@
 
         const data = await response.json();
         console.log(data);
-        responseStore.set(JSON.stringify(data, null, 2));
+        responseStore.set(data);
         return data.result;
     }
 </script>
@@ -93,7 +93,7 @@
                 <button
                     disabled={!answer}
                     type="submit"
-                    class=" rounded bg-green-500 p-2 text-black"
+                    class=" rounded bg-HeliusOrange p-2 text-white"
                 >
                     Submit
                 </button>
