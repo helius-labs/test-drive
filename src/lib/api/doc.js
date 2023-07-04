@@ -604,6 +604,36 @@ export const methods = {
             },
         },
     },
+    getBlockTime: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc":"2.0", "id":1,
+          "method": "getBlockTime",
+          "params":[5]
+        }
+      '`,
+        description: "Returns the estimated production time of a block.",
+        parameters: {
+            optional: {},
+            required: {
+                blockNumber: {
+                    description: "block number, identified by Slot",
+                    type: "u64",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result field will be an array of u64 integers listing confirmed blocks starting at start_slot for up to limit blocks, inclusive.",
+            fields: {
+                estProductionTime: {
+                    description:
+                        "estimated production time, as Unix timestamp (seconds since the Unix epoch)",
+                    type: "i64",
+                },
+            },
+        },
+    },
     getBlocks: {
         codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
         {
@@ -635,16 +665,63 @@ export const methods = {
                 },
             },
             required: {
-                pubKey: {
-                    description:
-                        "Pubkey of account to query, as base-58 encoded string",
-                    type: "string",
+                startSlot: {
+                    description: "starting slot",
+                    type: "u64",
                 },
             },
         },
         result: {
             description:
                 "The result field will be an array of u64 integers listing confirmed blocks between start_slot and either end_slot - if provided, or latest confirmed block, inclusive. Max range allowed is 500,000 slots.",
+            fields: {
+                RpcResponse: {
+                    description:
+                        "RpcResponse JSON object with value field set to the balance",
+                    type: "array",
+                },
+            },
+        },
+    },
+    getBlocksWithLimit: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id":1,
+          "method":"getBlocksWithLimit",
+          "params":[5, 3]
+        }
+      '`,
+        description: "Returns a list of confirmed blocks between two slots",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+                limit: {
+                    description:
+                        "limit, as u64 integer (must be no more than 500,000 blocks higher than the start_slot)",
+
+                    type: "u64",
+                },
+            },
+            required: {
+                startSlot: {
+                    description: "Starting slot",
+                    type: "u64",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result field will be an array of u64 integers listing confirmed blocks starting at start_slot for up to limit blocks, inclusive.",
             fields: {
                 RpcResponse: {
                     description:
