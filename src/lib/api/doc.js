@@ -443,6 +443,50 @@ export const methods = {
             },
         },
     },
+    getBlockCommitment: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "getBlockCommitment",
+          "params":[5]
+        }
+      '`,
+        description: "Returns commitment for particular block",
+        parameters: {
+            optional: {},
+            required: {
+                blockNumber: {
+                    description: "Block number, identified by Slot",
+                    type: "u64",
+                },
+            },
+        },
+        result: {
+            description: "The result field will be a JSON object containing:",
+            fields: {
+                commitment: {
+                    description: "commitment, comprising either",
+                    fields: {
+                        commitmentArray: {
+                            description:
+                                "commitment, array of u64 integers logging the amount of cluster stake in lamports that has voted on the block at each depth from 0 to MAX_LOCKOUT_HISTORY + 1",
+                            type: "array",
+                        },
+                        null: {
+                            description: "unknown block",
+                            type: "null",
+                        },
+                    },
+                    type: "object",
+                },
+                totalStake: {
+                    description:
+                        "total active stake, in lamports, of the current epoch",
+                    type: "u64",
+                },
+            },
+        },
+    },
     getBlockHeight: {
         codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
         {
@@ -527,11 +571,85 @@ export const methods = {
             required: {},
         },
         result: {
-            description: "getBlockHeight response",
+            description:
+                "The result will be an RpcResponse JSON object with value equal to:",
             fields: {
-                blockHeight: {
-                    description: "Current block height",
+                blockProductionObject: {
+                    description:
+                        " information from the current or previous epoch",
+                    fields: {
+                        byIdentity: {
+                            description:
+                                "a dictionary of validator identities, as base-58 encoded strings. Value is a two element array containing the number of leader slots and the number of blocks produced.",
+                            type: "object",
+                        },
+                        range: {
+                            description: "Block production slot range",
+                            fields: {
+                                firstSlot: {
+                                    description:
+                                        "first slot of the block production information (inclusive)",
+                                    type: "u64",
+                                },
+                                lastSlot: {
+                                    description:
+                                        "last slot of the block production information (inclusive)",
+                                    type: "u64",
+                                },
+                            },
+                        },
+                    },
+                    type: "object",
+                },
+            },
+        },
+    },
+    getBlocks: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "getBlocks",
+          "params": [
+            5, 10
+          ]
+        }
+      '`,
+        description: "Returns a list of confirmed blocks between two slots",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+                endSlot: {
+                    description:
+                        "Ending slot (must be no more than 500,000 blocks higher than the `start_slot`)",
+
                     type: "u64",
+                },
+            },
+            required: {
+                pubKey: {
+                    description:
+                        "Pubkey of account to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result field will be an array of u64 integers listing confirmed blocks between start_slot and either end_slot - if provided, or latest confirmed block, inclusive. Max range allowed is 500,000 slots.",
+            fields: {
+                RpcResponse: {
+                    description:
+                        "RpcResponse JSON object with value field set to the balance",
+                    type: "array",
                 },
             },
         },
