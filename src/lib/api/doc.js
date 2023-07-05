@@ -731,4 +731,557 @@ export const methods = {
             },
         },
     },
+    getClusterNodes: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "getClusterNodes"
+        }
+      '`,
+        description:
+            "Returns information about all the nodes participating in the cluster.",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description:
+                "The result field will be an array of JSON objects, each with the following sub fields:",
+            fields: {
+                featureSet: {
+                    description:
+                        "The unique identifier of the node's feature set",
+                    type: "u32|null",
+                },
+                gossip: {
+                    description: "Gossip network address for the node",
+                    type: "string|null",
+                },
+                pubKey: {
+                    description: "Node public key, as base-58 encoded string",
+                    type: "string",
+                },
+                rpc: {
+                    description:
+                        "JSON RPC network address for the node, or null if the JSON RPC service is not enabled",
+                    type: "string|null",
+                },
+                shredVersion: {
+                    description:
+                        "The shred version the node has been configured to use",
+                    type: "u16|null",
+                },
+                tpu: {
+                    description: "TPU network address for the node",
+                    type: "string|null",
+                },
+                version: {
+                    description:
+                        " The software version of the node, or null if the version information is not available",
+                    type: "string|null",
+                },
+            },
+        },
+    },
+    getEpochInfo: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "getClusterNodes"
+        }
+      '`,
+        description: "Returns information about the current epoch",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+                minContextSlot: {
+                    description:
+                        "The minimum slot that the request can be evaluated at",
+
+                    type: "number",
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "The result field will be an object with the following fields:",
+            fields: {
+                absoluteSlot: {
+                    description: "the current slot",
+                    type: "u64",
+                },
+                blockHeight: {
+                    description: " the current block height",
+                    type: "u64",
+                },
+                epoch: {
+                    description: "the current epoch",
+                    type: "u64",
+                },
+                slotIndex: {
+                    description:
+                        "the current slot relative to the start of the current epoch",
+                    type: "u64",
+                },
+                slotsInEpoch: {
+                    description: "the number of slots in this epoch",
+                    type: "u64",
+                },
+                transactionCount: {
+                    description:
+                        "Total number of transactions processed without error since genesis",
+                    type: "u64|null",
+                },
+            },
+        },
+    },
+    getEpochSchedule: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc":"2.0","id":1,
+          "method":"getEpochSchedule"
+        }
+      '`,
+        description:
+            "Returns the epoch schedule information from this cluster's genesis config",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description:
+                "The result field will be an object with the following fields:",
+            fields: {
+                epoch: {
+                    description: "the current epoch",
+                    type: "u64",
+                },
+                firstNormalEpoch: {
+                    description:
+                        "first normal-length epoch, log2(slotsPerEpoch) - log2(MINIMUM_SLOTS_PER_EPOCH)",
+                    type: "u64",
+                },
+                firstNormalSlot: {
+                    description:
+                        "MINIMUM_SLOTS_PER_EPOCH * (2.pow(firstNormalEpoch) - 1)",
+                    type: "u64",
+                },
+                leaderScheduleSlotOffset: {
+                    description:
+                        " the number of slots before beginning of an epoch to calculate a leader schedule for that epoch",
+                    type: "u64",
+                },
+                warmup: {
+                    description: "whether epochs start short and grow",
+                    type: "bool",
+                },
+            },
+        },
+    },
+    getFeeForMessage: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "id":1,
+          "jsonrpc":"2.0",
+          "method":"getFeeForMessage",
+          "params":[
+            "AQABAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQAA",
+            {
+              "commitment":"processed"
+            }
+          ]
+        }
+        '`,
+        description:
+            "Get the fee the network will charge for a particular Message",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+            },
+            required: {
+                encodedMessage: {
+                    description: "Base-64 encoded Message",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description: "The result will be the fee the network will charge.",
+            fields: {
+                fee: {
+                    description:
+                        "Fee corresponding to the message at the specified blockhash",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getFirstAvailableBlock: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc":"2.0","id":1,
+          "method":"getFirstAvailableBlock"
+        }
+      '`,
+        description:
+            "Returns the slot of the lowest confirmed block that has not been purged from the ledger",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description: "Result is the slot of the lowest confirmed block.",
+            fields: {
+                slot: {
+                    description: "Slot of the lowest confirmed block.",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getHealth: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getHealth"}
+      '`,
+        description: "Returns the current health of the node.",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description: "Result depends on the health of the node.",
+            fields: {
+                error: {
+                    description:
+                        "If the node is unhealthy, a JSON RPC error response is returned. The specifics of the error response are UNSTABLE and may change in the future",
+                    type: "error",
+                },
+                ok: {
+                    description: "If the node is healthy",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getHighestSnapshotSlot: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1,"method":"getHighestSnapshotSlot"}
+      '`,
+        description:
+            "Returns the highest slot information that the node has snapshots for. This will find the highest full snapshot slot, and the highest incremental snapshot slot based on the full snapshot slot, if there is one.",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description:
+                "When the node has a snapshot, this returns a JSON object with the following fields:",
+            fields: {
+                full: {
+                    description: "Highest full snapshot slot",
+                    type: "u64",
+                },
+                incremental: {
+                    description:
+                        "Highest incremental snapshot slot based on full.",
+                    type: "u64|undefined",
+                },
+            },
+        },
+    },
+    getIdentity: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getIdentity"}
+      '`,
+        description: "Returns the identity pubkey for the current node",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description:
+                "The result field will be a JSON object with the following fields:",
+            fields: {
+                identity: {
+                    description:
+                        "the identity pubkey of the current node (as a base-58 encoded string)",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getInflationGovernor: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getInflationGovernor"}
+      '`,
+        description: "Returns the current inflation governor",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "The result field will be a JSON object with the following fields:",
+            fields: {
+                foundation: {
+                    description:
+                        " percentage of total inflation allocated to the foundation",
+                    type: "f64",
+                },
+                foundationTerm: {
+                    description:
+                        "duration of foundation pool inflation in years",
+                    type: "f64",
+                },
+                initial: {
+                    description: "the initial inflation percentage from time 0",
+                    type: "f64",
+                },
+                taper: {
+                    description:
+                        "rate per year at which inflation is lowered. (Rate reduction is derived using the target slot time in genesis config)",
+                    type: "f64",
+                },
+                terminal: {
+                    description: " terminal inflation percentage",
+                    type: "f64",
+                },
+            },
+        },
+    },
+    getInflationRate: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getInflationRate"}
+      '`,
+        description:
+            "Returns the specific inflation values for the current epoch",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description:
+                "The result field will be a JSON object with the following fields:",
+            fields: {
+                epoch: {
+                    description: "epoch for which these values are valid",
+                    type: "u64",
+                },
+                foundation: {
+                    description: " inflation allocated to the foundation",
+                    type: "f64",
+                },
+                total: {
+                    description: "total inflation",
+                    type: "f64",
+                },
+                validator: {
+                    description: "inflation allocated to validators",
+                    type: "f64",
+                },
+            },
+        },
+    },
+    getInflationReward: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getInflationReward",
+          "params": [
+            [
+              "6dmNQ5jwLeLk5REvio1JcMshcbvkYMwy26sJ8pbkvStu",
+              "BGsqMegLpV6n6Ve146sSX2dTjUMj3M92HnU8BbNRMhF2"
+            ],
+            {"epoch": 2}
+          ]
+        }
+      '`,
+        description:
+            "Returns the inflation / staking reward for a list of addresses for an epoch",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        epoch: {
+                            description:
+                                "An epoch for which the reward occurs. If omitted, the previous epoch will be used",
+                            type: "u64",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+            },
+            required: {
+                addresses: {
+                    description:
+                        "An array of addresses to query, as base-58 encoded strings",
+                    type: "array",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result field will be a JSON object with the following fields:",
+            fields: {
+                amount: {
+                    description: "reward amount in lamports",
+                    type: "f64",
+                },
+                commission: {
+                    description:
+                        "vote account commission when the reward was credited",
+                    type: "u8|undefined",
+                },
+                effectiveSlot: {
+                    description: "the slot in which the rewards are effective",
+                    type: "f64",
+                },
+                epoch: {
+                    description: "epoch for which reward occured",
+                    type: "u64",
+                },
+                postBalance: {
+                    description: "post balance of the account in lamports",
+                    type: "f64",
+                },
+            },
+        },
+    },
+    getLargestAccounts: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getLargestAccounts"}
+      '`,
+        description:
+            "Returns the 20 largest accounts, by lamport balance (results may be cached up to two hours)",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        filters: {
+                            description:
+                                "Filter results by account type. Values: circulatingnonCirculating",
+                            type: "u64",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to an array of <object> containing:",
+            fields: {
+                address: {
+                    description: " base-58 encoded address of the account",
+                    type: "string",
+                },
+                lamports: {
+                    description: "number of lamports in the account, as a u64",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getLatestBlockhash: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "id":1,
+          "jsonrpc":"2.0",
+          "method":"getLatestBlockhash",
+          "params":[
+            {
+              "commitment":"processed"
+            }
+          ]
+        }
+      '`,
+        description: "Returns the latest blockhash",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "RpcResponse<object> - RpcResponse JSON object with value field set to a JSON object including:",
+            fields: {
+                blockhash: {
+                    description: " a Hash as base-58 encoded string",
+                    type: "string",
+                },
+                lastValidBlockHeight: {
+                    description:
+                        "last block height at which the blockhash will be valid",
+                    type: "u64",
+                },
+            },
+        },
+    },
 };
