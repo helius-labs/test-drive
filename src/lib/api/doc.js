@@ -1743,4 +1743,96 @@ export const methods = {
             },
         },
     },
+    getSignaturesForAddress: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getSignaturesForAddress",
+          "params": [
+            "Vote111111111111111111111111111111111111111",
+            {
+              "limit": 1
+            }
+          ]
+        }
+      '`,
+        description:
+            "Returns signatures for confirmed transactions that include the given address in their accountKeys list. Returns signatures backwards in time from the provided signature or most recent confirmed block",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        before: {
+                            description:
+                                "start searching backwards from this transaction signature. If not provided the search starts from the top of the highest max confirmed block.",
+                            type: "string",
+                        },
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        limit: {
+                            description:
+                                "maximum transaction signatures to return (between 1 and 1,000).",
+                            type: "number",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                        util: {
+                            description:
+                                "search until this transaction signature, if found before limit reached",
+                            type: "string",
+                        },
+                    },
+                },
+            },
+            required: {
+                address: {
+                    description: "Account address as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "An array of <object>, ordered from newest to oldest transaction, containing transaction signature information with the following fields:",
+            fields: {
+                blockTime: {
+                    description:
+                        "estimated production time, as Unix timestamp (seconds since the Unix epoch) of when transaction was processed. null if not available.",
+                    type: "i64|null",
+                },
+                confirmationStatus: {
+                    description:
+                        "The transaction's cluster confirmation status; Either processed, confirmed, or finalized. See Commitment for more on optimistic confirmation.",
+                    type: "string|null",
+                },
+                err: {
+                    description:
+                        "Error if transaction failed, null if transaction succeeded. See TransactionError definitions for more info.",
+                    type: "object|null",
+                },
+                memo: {
+                    description:
+                        "Memo associated with the transaction, null if no memo is present",
+                    type: "string|null",
+                },
+                samplePeriodSecs: {
+                    description: "Number of seconds in a sample window",
+                    type: "u16",
+                },
+                slot: {
+                    description:
+                        "The slot that contains the block with the transaction",
+                    type: "u64",
+                },
+            },
+        },
+    },
 };
