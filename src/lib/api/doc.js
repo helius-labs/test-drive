@@ -1284,4 +1284,463 @@ export const methods = {
             },
         },
     },
+    getLeaderSchedule: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getLeaderSchedule",
+          "params": [
+            null,
+            {
+              "identity": "4Qkev8aNZcqFNSRhQzwyLMFSsi94jHqE8WNVTJzTP99F"
+            }
+          ]
+        }
+      '`,
+        description: "Returns the leader schedule for an epoch",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        identity: {
+                            description:
+                                "Only return results for this validator identity (base-58 encoded)",
+                            type: "string",
+                        },
+                    },
+                },
+                epoch: {
+                    description:
+                        "Fetch the leader schedule for the epoch that corresponds to the provided slot. If unspecified, the leader schedule for the current epoch is fetched.",
+                    type: "u64",
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "Returns a result with one of the two following values:",
+            fields: {
+                null: {
+                    description: "if requested epoch is not found, or",
+                    type: "null",
+                },
+                object: {
+                    description:
+                        " the result field will be a dictionary of validator identities, as base-58 encoded strings, and their corresponding leader slot indices as values (indices are relative to the first slot in the requested epoch)",
+                    type: "object",
+                },
+            },
+        },
+    },
+    getMaxRetransmitSlot: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getMaxRetransmitSlot"}
+      '`,
+        description: "Get the max slot seen from retransmit stage.",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description: "Max slot",
+            fields: {
+                slotNumber: {
+                    description: "Slot number",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getMaxShredInsertSlot: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getMaxShredInsertSlot"}
+      '`,
+        description: "Get the max slot seen from after shred insert.",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description: "Max slot",
+            fields: {
+                slotNumber: {
+                    description: "Slot number",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getMinimumBalanceForRentExemption: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "getMinimumBalanceForRentExemption",
+          "params": [50]
+        }
+      '`,
+        description:
+            "Returns minimum balance required to make account rent exempt.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+                dataLength: {
+                    description: "the Account's data length",
+                    type: "usize",
+                },
+            },
+            required: {},
+        },
+        result: {
+            description: "Returns minimum balance required",
+            fields: {
+                minLamports: {
+                    description:
+                        "minimum lamports required in the Account to remain rent free",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getMultipleAccounts: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getMultipleAccounts",
+          "params": [
+            [
+              "vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg",
+              "4fYNw3dojWmQ4dXtSGE9epjRGy9pFSx62YypT7avPYvA"
+            ],
+            {
+              "encoding": "base58"
+            }
+          ]
+        }
+      '`,
+        description: "Returns the account information for a list of Pubkeys.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        dataSlice: {
+                            description:
+                                "Request a slice of the account's data.",
+                            fields: {
+                                length: {
+                                    description: "number of bytes to return",
+                                    type: "usize",
+                                },
+                                offset: {
+                                    description:
+                                        " byte offset from which to start reading",
+                                    type: "usize",
+                                },
+                            },
+                            type: "object",
+                        },
+                        encoding: {
+                            description:
+                                "encoding format for the returned Account data",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+                pubKeys: {
+                    description:
+                        "An array of Pubkeys to query, as base-58 encoded strings (up to a maximum of 100)",
+                    type: "array",
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "The result will be a JSON object with value equal to an array of:",
+            fields: {
+                null: {
+                    description: "If the account at that Pubkey doesn't exist",
+                    type: "null",
+                },
+                object: {
+                    description: "a JSON object containing:",
+                    fields: {
+                        data: {
+                            description:
+                                "data associated with the account, either as encoded binary data or JSON format {<program>: <state>} - depending on encoding parameter",
+                            type: "[string, encoding]|object",
+                        },
+                        executable: {
+                            description:
+                                "boolean indicating if the account contains a program (and is strictly read-only)",
+                            type: "bool",
+                        },
+                        lamports: {
+                            description:
+                                "number of lamports assigned to the account",
+                            type: "u64",
+                        },
+                        owner: {
+                            description:
+                                "base-58 encoded Pubkey of the program this account has been assigned to",
+                            type: "string",
+                        },
+                        rentEpoch: {
+                            description:
+                                "the epoch at which this account will next owe rent, as u64",
+                            type: "u64",
+                        },
+                        size: {
+                            description: " the data size of the account",
+                            type: "u64",
+                        },
+                    },
+                    type: "object",
+                },
+            },
+        },
+    },
+    getProgramAccounts: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "getProgramAccounts",
+            "params": [
+            "4Nd1mBQtrMJVYVfKf2PJy9NZUZdTAsp7D4xWLs4gDB4T",
+            {
+                "filters": [
+                {
+                    "dataSize": 17
+                },
+                {
+                    "memcmp": {
+                    "offset": 4,
+                    "bytes": "3Mc6vR"
+                    }
+                }
+                ]
+            }
+            ]
+        }
+        '`,
+        description:
+            "Returns all accounts owned by the provided program Pubkey",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        dataSlice: {
+                            description:
+                                "Request a slice of the account's data.",
+                            fields: {
+                                length: {
+                                    description: "number of bytes to return",
+                                    type: "usize",
+                                },
+                                offset: {
+                                    description:
+                                        " byte offset from which to start reading",
+                                    type: "usize",
+                                },
+                            },
+                            type: "object",
+                        },
+                        encoding: {
+                            description:
+                                "encoding format for the returned Account data",
+                            type: "string",
+                        },
+                        filters: {
+                            description:
+                                "filter results using up to 4 filter objects",
+                            type: "array",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                        withContext: {
+                            description:
+                                "wrap the result in an RpcResponse JSON object",
+                            type: "bool",
+                        },
+                    },
+                },
+            },
+            required: {
+                pubKey: {
+                    description: "Pubkey of program, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "By default, the result field will be an array of JSON objects.",
+            fields: {
+                account: {
+                    description:
+                        "a JSON object, with the following sub fields:",
+                    fields: {
+                        data: {
+                            description:
+                                "data associated with the account, either as encoded binary data or JSON format {<program>: <state>} - depending on encoding parameter",
+                            type: "[string, encoding]|object",
+                        },
+                        executable: {
+                            description:
+                                "boolean indicating if the account contains a program (and is strictly read-only)",
+                            type: "bool",
+                        },
+                        lamports: {
+                            description:
+                                "number of lamports assigned to the account",
+                            type: "u64",
+                        },
+                        owner: {
+                            description:
+                                "base-58 encoded Pubkey of the program this account has been assigned to",
+                            type: "string",
+                        },
+                        rentEpoch: {
+                            description:
+                                "the epoch at which this account will next owe rent, as u64",
+                            type: "u64",
+                        },
+                        size: {
+                            description: " the data size of the account",
+                            type: "u64",
+                        },
+                    },
+                    type: "object",
+                },
+                pubKey: {
+                    description: "The account Pubkey as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getRecentPerformanceSamples: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc":"2.0", "id":1,
+          "method": "getRecentPerformanceSamples",
+          "params": [4]}
+      '`,
+        description:
+            "Returns a list of recent performance samples, in reverse slot order. Performance samples are taken every 60 seconds and include the number of transactions and slots that occur in a given time window.",
+        parameters: {
+            optional: {
+                limit: {
+                    description: "number of samples to return (maximum 720)",
+                    type: "usize",
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "An array of RpcPerfSample<object> with the following fields:",
+            fields: {
+                numNonVoteTransaction: {
+                    description:
+                        "Number of non-vote transactions processed during the sample period.",
+                    type: "u64",
+                },
+                numSlots: {
+                    description:
+                        "Number of slots completed during the sample period",
+                    type: "u64",
+                },
+                numTransactions: {
+                    description:
+                        "Number of transactions processed during the sample period",
+                    type: "u64",
+                },
+                samplePeriodSecs: {
+                    description: "Number of seconds in a sample window",
+                    type: "u16",
+                },
+                slot: {
+                    description: "Slot in which sample was taken at.",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getRecentPrioritizationFees: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc":"2.0", "id":1,
+          "method": "getRecentPrioritizationFees",
+          "params": [
+            ["CxELquR1gPP8wHe33gZ4QxqGB3sZ9RSwsJ2KshVewkFY"]
+          ]
+        }
+      '`,
+        description:
+            "Returns a list of prioritization fees from recent blocks.",
+        parameters: {
+            optional: {
+                accountAddresses: {
+                    description:
+                        "An array of Account addresses (up to a maximum of 128 addresses), as base-58 encoded strings",
+                    type: "array",
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "An array of RpcPrioritizationFee<object> with the following fields:",
+            fields: {
+                prioritizationFee: {
+                    description:
+                        "the per-compute-unit fee paid by at least one successfully landed transaction, specified in increments of micro-lamports (0.000001 lamports)",
+                    type: "u64",
+                },
+                slot: {
+                    description: "slot in which the fee was observed",
+                    type: "u64",
+                },
+            },
+        },
+    },
 };
