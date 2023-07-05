@@ -8,10 +8,11 @@
 
 <div class="mt-5 w-full text-black">
     <h1 class=" text-2xl font-semibold">Response</h1>
-    <div class=" rounded border">
+    <div class="rounded border">
         <h1 class=" rounded-t bg-[#929498] p-2 text-lg font-semibold">JSON:</h1>
-        <div class=" bg-[#282935] p-4 text-white">
-            <pre><code style="word-break: break-all;">{$responseStore}</code
+        <div class=" w-100 bg-[#282935] p-4 text-white">
+            <pre><code style="word-break: break-all; w-40"
+                    >{$responseStore}</code
                 ></pre>
         </div>
         <div class=" flex items-center justify-between border p-2">
