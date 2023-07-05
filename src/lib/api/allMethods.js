@@ -1,4 +1,90 @@
 export const methods = {
+    getAsset: {
+        name: "getAsset",
+        defaultParams: {
+            id: "F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk",
+        },
+    },
+    getAssetProof: {
+        name: "getAssetProof",
+        defaultParams: {
+            id: "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss",
+        },
+    },
+    getAssetsByGroup: {
+        name: "getAssetsByGroup",
+        defaultParams: {
+            groupKey: "collection",
+            groupValue: "J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w",
+            page: 1,
+        },
+        optionalParams: {
+            limit: 1,
+            sortBy: { sortBy: "created", field: "asc" },
+            before: "",
+            after: "",
+        },
+    },
+    getAssetsByCreator: {
+        name: "getAssetsByCreator",
+        defaultParams: {
+            creatorAddress: "D3XrkNZz6wx6cofot7Zohsf2KSsu2ArngNk8VqU9cTY3",
+            page: 1,
+        },
+        optionalParams: {
+            limit: 1,
+            sortBy: { sortBy: "created", field: "asc" },
+            before: "",
+            after: "",
+        },
+    },
+    getAssetsByOwner: {
+        name: "getAssetsByOwner",
+        defaultParams: {
+            ownerAddress: "86xCnPeV69n6t3DnyGvkKobf9FdN2H9oiVDdaMpo2MMY",
+            page: 1,
+        },
+        optionalParams: {
+            limit: 1,
+            sortBy: { sortBy: "created", field: "asc" },
+            before: "",
+            after: "",
+        },
+    },
+    getAssetsByAuthority: {
+        name: "getAssetsByAuthority",
+        defaultParams: {
+            authorityAddress: "2RtGg6fsFiiF1EQzHqbd66AhW7R5bWeQGpTbv2UMkCdW",
+            page: 1,
+        },
+        optionalParams: {
+            limit: 1,
+            sortBy: { sortBy: "created", field: "asc" },
+            before: "",
+            after: "",
+        },
+    },
+    searchAssets: {
+        name: "searchAssets",
+        defaultParams: {
+            ownerAddress: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
+            grouping: [
+                "collection",
+                "DRiP2Pn2K6fuMLKQmt5rZWyHiUZ6WK3GChEySUpHSS4x",
+            ],
+            page: 1,
+            compressed: true,
+        },
+        optionalParams: {
+            limit: 1,
+            sortBy: { sortBy: "created", field: "asc" },
+            authorityAddress: "publicKey",
+            creatorAddress: "publicKey",
+            grouping: ["collection", "key"],
+            before: "",
+            after: "",
+        },
+    },
     getBalance: {
         name: "getBalance",
         defaultParams: {

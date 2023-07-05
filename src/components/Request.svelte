@@ -1,6 +1,5 @@
 <script>
     // @ts-nocheck
-
     import { methods } from "$lib/api/allMethods.js";
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
     import { onMount } from "svelte";
@@ -61,7 +60,7 @@
         <h1 class="rounded-t bg-[#929498] p-2 text-lg font-semibold">
             Parameters for {selectedMethod}
         </h1>
-        <div class="overflow-x-auto">
+        <div class="max-h-96 overflow-y-auto">
             <table class="w-full overflow-y-scroll border">
                 <thead>
                     <!-- header row -->
