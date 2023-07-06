@@ -1,10 +1,15 @@
 <script>
     // @ts-nocheck
-    import { methods } from "$lib/api/methods.js";
-    import { currentMethod } from "$lib/stores/currentMethodStore.js";
-    import { responseStore } from "$lib/stores/responseStore.js";
-
-    let selected;
+    import { methods } from "$lib/api/allMethods.js";
+    import {
+        currentMethod,
+        currentRPC,
+    } from "$lib/stores/currentMethodStore.js";
+    import {
+        responseStatus,
+        responseStore,
+        responseTime,
+    } from "$lib/stores/responseStore.js";
 
     let questions = Object.keys(methods).map((method, index) => {
         return { id: index + 1, text: method };
@@ -18,8 +23,22 @@
             const params = { ...methodData.defaultParams };
 
             if (answer && Object.keys(params).length > 0) {
-                const paramName = Object.keys(params)[0];
-                params[paramName] = answer;
+                // Iterate over the answer and assign it to the respective parameter in params
+                for (const paramName in answer) {
+                    if (params.hasOwnProperty(paramName)) {
+                        const paramType = typeof params[paramName];
+                        if (paramType === "object") {
+                            // If the parameter is an object, parse the answer as JSON
+                            params[paramName] = JSON.parse(answer[paramName]);
+                        } else if (paramType === "number") {
+                            // If the parameter is a number, parse the answer as a float
+                            params[paramName] = parseFloat(answer[paramName]);
+                        } else {
+                            // For other types (e.g., string), use the answer as is
+                            params[paramName] = answer[paramName];
+                        }
+                    }
+                }
             }
 
             try {
@@ -37,16 +56,53 @@
             jsonrpc: "2.0",
             method,
         };
-
-        if (params && Object.keys(params).length > 0) {
-            // If params only contains a single property, set params to that property value
-            if (Object.keys(params).length === 1) {
-                body.params = [params[Object.keys(params)[0]]];
+        if (params) {
+            if (
+                Object.keys(methods[method].defaultParams).length === 0 &&
+                methods[method].optionalParams.length === 0
+            ) {
+                // This method does not expect any parameters, so do not include the 'params' field in the body
             } else {
-                body.params = [params];
+                let primaryParams = {};
+                let optionalParams = {};
+
+                let defaultParams = methods[method].defaultParams;
+                let optionalParamsList = methods[method].optionalParams;
+
+                for (let key in params) {
+                    if (defaultParams.hasOwnProperty(key)) {
+                        primaryParams[key] = params[key];
+                    } else if (optionalParamsList.includes(key)) {
+                        optionalParams[key] = params[key];
+                    }
+                }
+
+                for (let key in primaryParams) {
+                    if (!primaryParams[key]) {
+                        throw new Error(`Required parameter ${key} is empty`);
+                    }
+                }
+                // If the method only has one parameter and it's not an object, pass it as a simple string.
+                if (
+                    Object.keys(primaryParams).length === 1 &&
+                    typeof primaryParams[Object.keys(primaryParams)[0]] !==
+                        "object"
+                ) {
+                    // This method has a single non-object parameter, so pass it as a simple string.
+                    body.params = [
+                        primaryParams[Object.keys(primaryParams)[0]],
+                    ];
+                }
+                // If there are optional parameters or more than one primary parameter, put them into an object.
+                else if (
+                    Object.keys(optionalParams).length > 0 ||
+                    Object.keys(primaryParams).length > 1
+                ) {
+                    body.params = { ...primaryParams, ...optionalParams };
+                }
             }
         }
-
+        const startTime = performance.now();
         const response = await fetch(answer, {
             body: JSON.stringify(body),
             headers: {
@@ -56,8 +112,12 @@
         });
 
         const data = await response.json();
+        const endTime = performance.now();
+        const duration = endTime - startTime;
         console.log(data);
-        responseStore.set(data);
+        responseStatus.set(response.status);
+        responseStore.set(JSON.stringify(data, null, 2));
+        responseTime.set(duration.toFixed(2));
         return data.result;
     }
 </script>
