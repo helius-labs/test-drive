@@ -2,7 +2,7 @@
     import HeliusCircles from "$lib/assets/heliusCircles.svg";
 </script>
 
-<div class="flex">
+<div class="flex justify-center">
     <div>
         <img
             src={HeliusCircles}

@@ -153,7 +153,7 @@
                 <button
                     disabled={!answer}
                     type="submit"
-                    class=" rounded bg-green-500 p-2 text-black"
+                    class=" rounded bg-HeliusOrange p-2 text-white"
                 >
                     Submit
                 </button>

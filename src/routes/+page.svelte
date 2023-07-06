@@ -6,7 +6,7 @@
     import Response from "../components/Response.svelte";
 </script>
 
-<div class=" h-screen bg-white">
+<div class=" h-full bg-white">
     <Header />
     <RPCMenu />
     <div class="flex justify-center">
@@ -17,4 +17,5 @@
             <Response />
         </div>
     </div>
+    <Docs />
 </div>
