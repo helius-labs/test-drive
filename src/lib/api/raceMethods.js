@@ -1,4 +1,4 @@
-export const methods = {
+export const raceMethods = {
     getBlockHeight: {
         name: "getBlockHeight",
         defaultParams: {},

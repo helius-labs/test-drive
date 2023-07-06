@@ -11,9 +11,7 @@
         />
     </div>
     <div class="flex items-center">
-        <h1 class="text-center text-5xl font-bold text-black">
-            Catchy line goes here
-        </h1>
+        <h1 class="text-center text-5xl font-bold text-black">go faster</h1>
     </div>
     <div>
         <img
