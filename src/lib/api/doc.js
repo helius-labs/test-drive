@@ -1835,4 +1835,1466 @@ export const methods = {
             },
         },
     },
+    getSignaturesStatuses: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getSignatureStatuses",
+          "params": [
+            [
+              "5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYjCJjBRnbJLgp8uirBgmQpjKhoR4tjF3ZpRzrFmBV6UjKdiSZkQUW"
+            ],
+            {
+              "searchTransactionHistory": true
+            }
+          ]
+        }
+      '`,
+        description:
+            "Returns the statuses of a list of signatures. Each signature must be a txid, the first signature of a transaction.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        searchTransactionHistory: {
+                            description:
+                                "if true - a Solana node will search its ledger cache for any signatures not found in the recent status cache",
+                            type: "bool",
+                        },
+                    },
+                },
+                transactionSigArray: {
+                    description:
+                        "An array of transaction signatures to confirm, as base-58 encoded strings (up to a maximum of 256)",
+                    type: "array",
+                },
+            },
+            required: {
+                address: {
+                    description: "Account address as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "An array of RpcResponse<object> consisting of either:",
+            fields: {
+                null: {
+                    description: "Unknown transaction",
+                    type: "null",
+                },
+                object: {
+                    description: "Object with response data",
+                    fields: {
+                        confirmationStatus: {
+                            description:
+                                "The transaction's cluster confirmation status; Either processed, confirmed, or finalized.",
+                            type: "object",
+                        },
+                        confirmations: {
+                            description:
+                                "Number of blocks since signature confirmation, null if rooted, as well as finalized by a supermajority of the cluster",
+                            type: "usize|null",
+                        },
+                        err: {
+                            description:
+                                "Error if transaction failed, null if transaction succeeded. ",
+                            type: "object|null",
+                        },
+                        slot: {
+                            description:
+                                "The slot the transaction was processed",
+                            type: "u64",
+                        },
+                    },
+                    type: "object",
+                },
+            },
+        },
+    },
+    getSlot: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getSlot"}
+      '`,
+        description:
+            "Returns the slot that has reached the given or default commitment level",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+        result: {
+            description: "Returns a slot.",
+            fields: {
+                slot: {
+                    description: "Current slot",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getSlotLeader: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getSlotLeader"}
+      '`,
+        description: "Returns the current slot leader",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+        result: {
+            description: "Returns the current leader",
+            fields: {
+                identityPubkey: {
+                    description:
+                        "Node identity Pubkey as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getSlotLeaders: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc":"2.0", "id": 1,
+          "method": "getSlotLeaders",
+          "params": [100, 10]
+        }
+      '`,
+        description: "Returns epoch activation information for a stake account",
+        parameters: {
+            optional: {
+                limit: {
+                    description: "Limit, as u64 integer (between 1 and 5,000)",
+                    type: "u64",
+                },
+                startSlot: {
+                    description: "Start slot, as u64 integer",
+                    type: "u64",
+                },
+            },
+            required: {},
+        },
+        result: {
+            description: "Returns the slot leaders",
+            fields: {
+                identityPubkeyArray: {
+                    description:
+                        "array of Node identity public keys as base-58 encoded strings",
+                    type: "array[string]",
+                },
+            },
+        },
+    },
+    getStakeActivation: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getStakeActivation",
+          "params": [
+            "CYRJWqiSjLitBAcRxPvWpgX3s5TvmN2SuRY3eEYypFvT",
+            {
+              "epoch": 4
+            }
+          ]
+        }
+      '`,
+        description: "Returns the current slot leader",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        epoch: {
+                            description:
+                                "epoch for which to calculate activation details. If parameter not provided, defaults to current epoch.",
+                            type: "u64",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+            },
+            required: {
+                stakeAccountPubkey: {
+                    description:
+                        "Stake account address as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result will be a JSON object with the following fields:",
+            fields: {
+                active: {
+                    description: "stake active during the epoch",
+                    type: "u64",
+                },
+                inactive: {
+                    description: "take inactive during the epoch",
+                    type: "u64",
+                },
+                state: {
+                    description:
+                        "the stake account's activation state, either: active, inactive, activating, or deactivating",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getStakeMinimumDelegation: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc":"2.0", "id":1,
+          "method": "getStakeMinimumDelegation"
+        }
+      '`,
+        description: "Returns the stake minimum delegation, in lamports.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to:",
+            fields: {
+                stakeMinimumDelegation: {
+                    description: "The stake minimum delegation, in lamports",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getSupply: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0", "id":1, "method":"getSupply"}
+      '`,
+        description: "Returns information about the current supply.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        excludeNonCirculatingAccountsList: {
+                            description:
+                                "exclude non circulating accounts list from response",
+                            type: "bool",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to a JSON object containing:",
+            fields: {
+                circulating: {
+                    description: "Circulating supply in lamports",
+                    type: "u64",
+                },
+                nonCirculating: {
+                    description: "Non-circulating supply in lamports",
+                    type: "u64",
+                },
+                nonCirculatingAccounts: {
+                    description:
+                        "an array of account addresses of non-circulating accounts, as strings. If excludeNonCirculatingAccountsList is enabled, the returned array will be empty.",
+                    type: "array",
+                },
+                total: {
+                    description: "Total supply in lamports",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getTokenAccountsByDelegate: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getTokenAccountsByDelegate",
+          "params": [
+            "4Nd1mBQtrMJVYVfKf2PJy9NZUZdTAsp7D4xWLs4gDB4T",
+            {
+              "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+            },
+            {
+              "encoding": "jsonParsed"
+            }
+          ]
+        }
+      '`,
+        description: "Returns all SPL Token accounts by approved Delegate.",
+        parameters: {
+            optional: {
+                JSONObject: {
+                    description:
+                        "A JSON object with one of the following fields:",
+                    fields: {
+                        mint: {
+                            description:
+                                "Pubkey of the specific token Mint to limit accounts to, as base-58 encoded string",
+                            type: "string",
+                        },
+                        programID: {
+                            description:
+                                "Pubkey of the Token program that owns the accounts, as base-58 encoded string",
+                            type: "string",
+                        },
+                    },
+                },
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        dataSlice: {
+                            description:
+                                "Request a slice of the account's data.",
+                            fields: {
+                                length: {
+                                    description: "number of bytes to return",
+                                    type: "usize",
+                                },
+                                offset: {
+                                    description:
+                                        " byte offset from which to start reading",
+                                    type: "usize",
+                                },
+                            },
+                            type: "object",
+                        },
+                        encoding: {
+                            description:
+                                "encoding format for the returned Account data",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+                tokenAccount: {
+                    description:
+                        "Pubkey of Token account to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+            required: {
+                accountDelegate: {
+                    description:
+                        "Pubkey of account delegate to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to an array of JSON objects, which will contain:",
+            fields: {
+                account: {
+                    description:
+                        " a JSON object, with the following sub fields:",
+                    fields: {
+                        data: {
+                            description:
+                                "Token state data associated with the account, either as encoded binary data or in JSON format {<program>: <state>}",
+                            type: "object",
+                        },
+                        executable: {
+                            description:
+                                "boolean indicating if the account contains a program (and is strictly read-only)",
+                            type: "bool",
+                        },
+                        lamports: {
+                            description:
+                                "number of lamports assigned to this account, as a u64",
+                            type: "u64",
+                        },
+                        owner: {
+                            description:
+                                "base-58 encoded Pubkey of the program this account has been assigned to",
+                            type: "string",
+                        },
+                        rentEpoch: {
+                            description:
+                                "the epoch at which this account will next owe rent, as u64",
+                            type: "u64",
+                        },
+                        size: {
+                            description: "the data size of the account",
+                            type: "u64",
+                        },
+                    },
+                    type: "object",
+                },
+                pubKey: {
+                    description: "the account Pubkey as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getTokenAccountsByOwner: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getTokenAccountsByOwner",
+          "params": [
+            "4Qkev8aNZcqFNSRhQzwyLMFSsi94jHqE8WNVTJzTP99F",
+            {
+              "mint": "3wyAj7Rt1TWVPZVteFJPLa26JmLvdb1CAKEFZm3NY75E"
+            },
+            {
+              "encoding": "jsonParsed"
+            }
+          ]
+        }
+      '`,
+        description: "Returns all SPL Token accounts by token owner.",
+        parameters: {
+            optional: {
+                JSONObject: {
+                    description:
+                        "A JSON object with one of the following fields:",
+                    fields: {
+                        mint: {
+                            description:
+                                "Pubkey of the specific token Mint to limit accounts to, as base-58 encoded string",
+                            type: "string",
+                        },
+                        programID: {
+                            description:
+                                "Pubkey of the Token program that owns the accounts, as base-58 encoded string",
+                            type: "string",
+                        },
+                    },
+                },
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        dataSlice: {
+                            description:
+                                "Request a slice of the account's data.",
+                            fields: {
+                                length: {
+                                    description: "number of bytes to return",
+                                    type: "usize",
+                                },
+                                offset: {
+                                    description:
+                                        " byte offset from which to start reading",
+                                    type: "usize",
+                                },
+                            },
+                            type: "object",
+                        },
+                        encoding: {
+                            description:
+                                "encoding format for the returned Account data",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+                tokenAccount: {
+                    description:
+                        "Pubkey of Token account to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+            required: {
+                accountDelegate: {
+                    description:
+                        "Pubkey of account delegate to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to an array of JSON objects, which will contain:",
+            fields: {
+                account: {
+                    description:
+                        " a JSON object, with the following sub fields:",
+                    fields: {
+                        data: {
+                            description:
+                                "Token state data associated with the account, either as encoded binary data or in JSON format {<program>: <state>}",
+                            type: "object",
+                        },
+                        executable: {
+                            description:
+                                "boolean indicating if the account contains a program (and is strictly read-only)",
+                            type: "bool",
+                        },
+                        lamports: {
+                            description:
+                                "number of lamports assigned to this account, as a u64",
+                            type: "u64",
+                        },
+                        owner: {
+                            description:
+                                "base-58 encoded Pubkey of the program this account has been assigned to",
+                            type: "string",
+                        },
+                        rentEpoch: {
+                            description:
+                                "the epoch at which this account will next owe rent, as u64",
+                            type: "u64",
+                        },
+                        size: {
+                            description: "the data size of the account",
+                            type: "u64",
+                        },
+                    },
+                    type: "object",
+                },
+                pubKey: {
+                    description: "the account Pubkey as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getTokenBalance: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "getTokenAccountBalance",
+          "params": [
+            "7fUAJdStEuGbc3sM84cKRL6yYaaSstyLSU4ve5oovLS7"
+          ]
+        }
+      '`,
+        description: "Returns the token balance of an SPL Token account.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+                tokenAccount: {
+                    description:
+                        "Pubkey of Token account to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+            required: {},
+        },
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to a JSON object containing:",
+            fields: {
+                amount: {
+                    description:
+                        "the raw balance without decimals, a string representation of u64",
+                    type: "string",
+                },
+                decimals: {
+                    description:
+                        "number of base 10 digits to the right of the decimal place",
+                    type: "u8",
+                },
+                uiAmountString: {
+                    description:
+                        "the balance as a string, using mint-prescribed decimals",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getTokenLargestAccounts: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "getTokenLargestAccounts",
+          "params": [
+            "3wyAj7Rt1TWVPZVteFJPLa26JmLvdb1CAKEFZm3NY75E"
+          ]
+        }
+      '`,
+        description:
+            "Returns the 20 largest accounts of a particular SPL Token type.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+            },
+            required: {
+                tokenMint: {
+                    description:
+                        "Pubkey of the token Mint to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to a JSON object containing:",
+            fields: {
+                address: {
+                    description: " the address of the token account",
+                    type: "string",
+                },
+                amount: {
+                    description:
+                        "the raw balance without decimals, a string representation of u64",
+                    type: "string",
+                },
+                decimals: {
+                    description:
+                        "number of base 10 digits to the right of the decimal place",
+                    type: "u8",
+                },
+                uiAmountString: {
+                    description:
+                        "the balance as a string, using mint-prescribed decimals",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getTokenSupply: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "getTokenSupply",
+          "params": [
+            "3wyAj7Rt1TWVPZVteFJPLa26JmLvdb1CAKEFZm3NY75E"
+          ]
+        }
+      '`,
+        description: "Returns the total supply of an SPL Token type.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+            },
+            required: {
+                tokenMint: {
+                    description:
+                        "Pubkey of the token Mint to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to a JSON object containing:",
+            fields: {
+                amount: {
+                    description:
+                        "the raw balance without decimals, a string representation of u64",
+                    type: "string",
+                },
+                decimals: {
+                    description:
+                        "number of base 10 digits to the right of the decimal place",
+                    type: "u8",
+                },
+                uiAmountString: {
+                    description:
+                        "the balance as a string, using mint-prescribed decimals",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getTransaction: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getTransaction",
+          "params": [
+            "2nBhEBYYvfaAe16UMNqRHre4YNSskvuYgx3M6E4JP1oDYvZEJHvoPzyUidNgNX5r9sTyN1J9UxtbCXy2rqYcuyuv",
+            "json"
+          ]
+        }
+      '
+      
+      
+      `,
+        description: "Returns transaction details for a confirmed transaction",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+            },
+            required: {
+                tokenMint: {
+                    description:
+                        "Pubkey of the token Mint to query, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+        result: {
+            description:
+                "The result will either be a null value if the transaction was not found, or a JSON object containing:",
+            fields: {
+                null: {
+                    description: "if transaction is not found or not confirmed",
+                    type: "null",
+                },
+                object: {
+                    description:
+                        "if transaction is confirmed, an object with the following fields:",
+                    fields: {
+                        blockTime: {
+                            description:
+                                "estimated production time, as Unix timestamp (seconds since the Unix epoch) of when the transaction was processed. null if not available",
+                            type: "i64|null",
+                        },
+
+                        computeUnitsConsumed: {
+                            description:
+                                "number of compute units consumed by the transaction",
+                            type: "u64|undefined",
+                        },
+                        innerInstructions: {
+                            description:
+                                "List of inner instructions or null if inner instruction recording was not enabled during this transaction",
+                            type: "array|null",
+                        },
+                        loadedAddresses: {
+                            description:
+                                "Transaction addresses loaded from address lookup tables. Undefined if maxSupportedTransactionVersion is not set in request params, or if jsonParsed encoding is set in request params.",
+                            type: "object|undefined",
+                        },
+                        logMessages: {
+                            description:
+                                "array of string log messages or null if log message recording was not enabled during this transaction",
+                            type: "array|null",
+                        },
+                        meta: {
+                            description: "transaction status metadata object:",
+                            fields: {
+                                err: {
+                                    description:
+                                        "Error if transaction failed, null if transaction succeeded.",
+                                    type: "object|null",
+                                },
+                                fee: {
+                                    description:
+                                        "fee this transaction was charged, as u64 integer",
+                                    type: "u64",
+                                },
+                            },
+                            type: "object|null",
+                        },
+                        postBalances: {
+                            description:
+                                "array of u64 account balances after the transaction was processed",
+                            type: "array",
+                        },
+                        postTokenBalances: {
+                            description:
+                                "List of token balances from after the transaction was processed or omitted if token balance recording was not yet enabled during this transaction",
+                            type: "array|undefined",
+                        },
+                        preBalances: {
+                            description:
+                                "array of u64 account balances from before the transaction was processed",
+                            type: "array",
+                        },
+                        preTokenBalances: {
+                            description:
+                                "List of token balances from before the transaction was processed or omitted if token balance recording was not yet enabled during this transaction",
+                            type: "array|undefined",
+                        },
+                        readonly: {
+                            description:
+                                "Ordered list of base-58 encoded addresses for readonly loaded accounts",
+                            type: "array[string]",
+                        },
+                        returnData: {
+                            description:
+                                "the most-recent return data generated by an instruction in the transaction, with the following fields:",
+                            fields: {
+                                data: {
+                                    description:
+                                        "the return data itself, as base-64 encoded binary data",
+                                    type: "[string, encoding]",
+                                },
+                                programId: {
+                                    description:
+                                        "the program that generated the return data, as base-58 encoded Pubkey",
+                                    type: "string",
+                                },
+                            },
+                            type: "object|undefined",
+                        },
+                        rewards: {
+                            description:
+                                "transaction-level rewards, populated if rewards are requested; an array of JSON objects containing:",
+                            fields: {
+                                commission: {
+                                    description:
+                                        "vote account commission when the reward was credited, only present for voting and staking rewards",
+                                    type: "u8|undefined",
+                                },
+                                lamports: {
+                                    description:
+                                        "number of reward lamports credited or debited by the account, as a i64",
+                                    type: "i64",
+                                },
+                                postBalance: {
+                                    description:
+                                        "account balance in lamports after the reward was applied",
+                                    type: "u64",
+                                },
+                                pubkey: {
+                                    description:
+                                        "The public key, as base-58 encoded string, of the account that received the reward",
+                                    type: "string",
+                                },
+                                rewardType: {
+                                    description:
+                                        "type of reward: currently only rent, other types may be added in the future",
+                                    type: "string",
+                                },
+                            },
+                            type: "array|null",
+                        },
+                        slot: {
+                            description:
+                                "the slot this transaction was processed in",
+                            type: "u64",
+                        },
+                        transaction: {
+                            description:
+                                "Transaction object, either in JSON format or encoded binary data, depending on encoding parameter",
+                            type: "object|[string,encoding]",
+                        },
+                        version: {
+                            description:
+                                "Transaction version. Undefined if maxSupportedTransactionVersion is not set in request params.",
+                            type: "legacy|number|undefined",
+                        },
+                        writable: {
+                            description:
+                                "Ordered list of base-58 encoded addresses for writable loaded accounts",
+                            type: "array[string]",
+                        },
+                    },
+                    type: "object",
+                },
+            },
+        },
+    },
+    getTransactionCount: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getTransactionCount"}
+      '
+      `,
+        description: "Returns the current Transaction count from the ledger",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value equal to a JSON object containing:",
+            fields: {
+                transactionCount: {
+                    description:
+                        "the current Transaction count from the ledger",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    getVersion: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getTransactionCount"}
+      '
+      `,
+        description: "Returns the current Solana version running on the node",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+        result: {
+            description:
+                "The result field will be a JSON object with the following fields:",
+            fields: {
+                featureSet: {
+                    description:
+                        "unique identifier of the current software's feature set",
+                    type: "number",
+                },
+                solanaCore: {
+                    description: "software version of solana-core",
+                    type: "string",
+                },
+            },
+        },
+    },
+    getVoteAccounts: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "getVoteAccounts",
+          "params": [
+            {
+              "votePubkey": "3ZT31jkAGhUaw8jsy4bTknwBMP8i4Eueh52By4zXcsVw"
+            }
+          ]
+        }
+      '`,
+        description:
+            "Returns the account info and associated stake for all the voting accounts in the current bank.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        delinquentSlotDistance: {
+                            description:
+                                "Specify the number of slots behind the tip that a validator must fall to be considered delinquent. **NOTE:** For the sake of consistency between ecosystem products, _it is **not** recommended that this argument be specified.",
+                            type: "u64",
+                        },
+                        keepUnstakedDelinquents: {
+                            description:
+                                "Do not filter out delinquent validators with no stake",
+                            type: "bool",
+                        },
+                        votePubKey: {
+                            description:
+                                "Only return results for this validator vote address (base-58 encoded)",
+                            type: "string",
+                        },
+                    },
+                },
+            },
+            required: {},
+        },
+
+        result: {
+            description:
+                "The result field will be a JSON object of current and delinquent accounts, each containing an array of JSON objects with the following sub fields:",
+            fields: {
+                accountsObject: {
+                    description:
+                        "the current Transaction count from the ledger",
+                    fields: {
+                        activatedStake: {
+                            description:
+                                " the stake, in lamports, delegated to this vote account and active in this epoch",
+                            type: "u64",
+                        },
+                        commission: {
+                            description:
+                                "percentage (0-100) of rewards payout owed to the vote account",
+                            type: "number",
+                        },
+                        epochCredits: {
+                            description:
+                                "Latest history of earned credits for up to five epochs, as an array of arrays containing: [epoch, credits, previousCredits].",
+                            type: "array",
+                        },
+                        epochVoteAccount: {
+                            description:
+                                "bool, whether the vote account is staked for this epoch",
+                            type: "bool",
+                        },
+                        lastVote: {
+                            description:
+                                "Most recent slot voted on by this vote account",
+                            type: "u64",
+                        },
+                        nodePubkey: {
+                            description:
+                                "Validator identity, as base-58 encoded string",
+                            type: "string",
+                        },
+                        rootSlot: {
+                            description:
+                                "Current root slot for this vote account",
+                            type: "u64",
+                        },
+                        votePubkey: {
+                            description:
+                                "Vote account address, as base-58 encoded string",
+                            type: "string",
+                        },
+                    },
+                    type: "object",
+                },
+            },
+        },
+    },
+    isBlockhashValid: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "id":45,
+          "jsonrpc":"2.0",
+          "method":"isBlockhashValid",
+          "params":[
+            "J7rBdM6AecPDEZp8aPq5iPSNKVkU5Q76F3oAV4eW5wsW",
+            {"commitment":"processed"}
+          ]
+        }
+      '`,
+        description: "Returns whether a blockhash is still valid or not",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at.",
+                            type: "u64",
+                        },
+                    },
+                },
+            },
+            required: {
+                blockhash: {
+                    description:
+                        "the blockhash of the block to evauluate, as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+
+        result: {
+            description: "Returns blockhash validity",
+            fields: {
+                blockhashValidity: {
+                    description: "true if the blockhash is still valid",
+                    type: "bool",
+                },
+            },
+        },
+    },
+    minimumLedgerSlot: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"minimumLedgerSlot"}
+      '`,
+        description:
+            "Returns the lowest slot that the node has information about in its ledger.",
+        parameters: {
+            optional: {},
+            required: {},
+        },
+
+        result: {
+            description: "Returns minimum ledger slot number",
+            fields: {
+                minSlotNumber: {
+                    description: "Minimum ledger slot number",
+                    type: "u64",
+                },
+            },
+        },
+    },
+    requestAirdrop: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0", "id": 1,
+          "method": "requestAirdrop",
+          "params": [
+            "83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri",
+            1000000000
+          ]
+        }
+      '`,
+        description: "Requests an airdrop of lamports to a Pubkey",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        commitment: {
+                            description: "commitment level",
+                            type: "string",
+                        },
+                    },
+                },
+            },
+            required: {
+                lamports: {
+                    description: "lamports to airdrop, as a 'u64'",
+                    type: "integer",
+                },
+                pubkey: {
+                    description:
+                        "Pubkey of account to receive lamports, as a base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+
+        result: {
+            description:
+                "If the airdrop is successful the transaction signature will be returned ",
+            fields: {
+                transactionSig: {
+                    description:
+                        "Transaction Signature of the airdrop, as a base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+    },
+    sendTransaction: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "sendTransaction",
+          "params": [
+            "4hXTCkRzt9WyecNzV1XPgCDfGAZzQKNxLXgynz5QDuWWPSAZBZSHptvWRL3BjCvzUXRdKvHL2b7yGrRQcWyaqsaBCncVG7BFggS8w9snUts67BSh3EqKpXLUm5UMHfD7ZBe9GhARjbNQMLJ1QD3Spr6oMTBU6EhdB4RD8CP2xUxr2u3d6fos36PD98XS6oX8TQjLpsMwncs5DAMiD4nNnR8NBfyghGCWvCVifVwvA8B8TJxE1aiyiv2L429BCWfyzAme5sZW8rDb14NeCQHhZbtNqfXhcp2tAnaAT"
+          ]
+        }
+      '`,
+        description:
+            "Submits a signed transaction to the cluster for processing.This method does not alter the transaction in any way; it relays the transaction created by clients to the node as-is. If the node's rpc service receives the transaction, this method immediately succeeds, without waiting for any confirmations. A successful response from this method does not guarantee the transaction is processed or confirmed by the cluster. While the rpc service will reasonably retry to submit it, the transaction could be rejected if transaction's recent_blockhash expires before it lands. Use getSignatureStatuses to ensure a transaction is processed and confirmed. Before submitting, the following preflight checks are performed: The transaction signatures are verified. The transaction is simulated against the bank slot specified by the preflight commitment. On failure an error will be returned. Preflight checks may be disabled if desired. It is recommended to specify the same commitment and preflight commitment to avoid confusing behavior. The returned signature is the first signature in the transaction, which is used to identify the transaction (transaction id). This identifier can be easily extracted from the transaction data before submission.",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        encoding: {
+                            description:
+                                "Encoding used for the transaction data.",
+                            type: "string",
+                        },
+                        maxRetries: {
+                            description:
+                                "Commitment level to use for preflight.",
+                            type: "usize",
+                        },
+                        minContextSlot: {
+                            description:
+                                "set the minimum slot at which to perform preflight transaction checks",
+                            type: "number",
+                        },
+                        preflightCommitment: {
+                            description:
+                                "Commitment level to use for preflight.",
+                            type: "string",
+                        },
+                        skipPreflight: {
+                            description:
+                                "if 'true', skip the preflight transaction checks",
+                            type: "bool",
+                        },
+                    },
+                },
+            },
+            required: {
+                signedTransaction: {
+                    description: "Fully-signed Transaction, as encoded string.",
+                    type: "string",
+                },
+            },
+        },
+
+        result: {
+            description: "Returns the First Transaction Signature",
+            fields: {
+                transactionSig: {
+                    description:
+                        " First Transaction Signature embedded in the transaction, as base-58 encoded string (transaction id)",
+                    type: "string",
+                },
+            },
+        },
+    },
+    simulateTransaction: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "simulateTransaction",
+          "params": [
+            "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEDArczbMia1tLmq7zz4DinMNN0pJ1JtLdqIJPUw3YrGCzYAMHBsgN27lcgB6H2WQvFgyZuJYHa46puOQo9yQ8CVQbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCp20C7Wj2aiuk5TReAXo+VTVg8QTHjs0UjNMMKCvpzZ+ABAgEBARU=",
+            {
+              "encoding":"base64",
+            }
+          ]
+        }
+      '`,
+        description: "Simulate sending a transaction",
+        parameters: {
+            optional: {
+                configObject: {
+                    description:
+                        "Configuration object containing the following fields:",
+                    fields: {
+                        accounts: {
+                            description:
+                                "Accounts configuration object containing the following fields:",
+                            fields: {
+                                addresses: {
+                                    description:
+                                        "An `array` of accounts to return, as base-58 encoded strings",
+                                    type: "array",
+                                },
+                                encoding: {
+                                    description:
+                                        "encoding for returned Account data",
+                                    type: "string",
+                                },
+                            },
+                            type: "object",
+                        },
+                        encoding: {
+                            description:
+                                "Encoding used for the transaction data.",
+                            type: "string",
+                        },
+                        minContextSlot: {
+                            description:
+                                "The minimum slot that the request can be evaluated at",
+                            type: "number",
+                        },
+                        replaceRecentBlockhash: {
+                            description:
+                                "if `true` the transaction recent blockhash will be replaced with the most recent blockhash. (conflicts with `sigVerify`)",
+                            type: "bool",
+                        },
+                        sigVerify: {
+                            description:
+                                "If `true` the transaction signatures will be verified (conflicts with `replaceRecentBlockhash`)",
+                            type: "bool",
+                        },
+                    },
+                },
+            },
+            required: {
+                transaction: {
+                    description: "Transaction, as an encoded string.",
+                    type: "string",
+                },
+            },
+        },
+
+        result: {
+            description:
+                "The result will be an RpcResponse JSON object with value set to a JSON object with the following fields:",
+            fields: {
+                accounts: {
+                    description:
+                        "array of accounts with the same length as the accounts.addresses array in the request",
+                    fields: {
+                        null: {
+                            description:
+                                "if the account doesn't exist or if err is not null",
+                            object: {
+                                description:
+                                    " otherwise, a JSON object containing:",
+                                fields: {
+                                    data: {
+                                        description:
+                                            "data associated with the account, either as encoded binary data or JSON format {<program>: <state>} - depending on encoding parameter",
+                                        type: "[string, encoding]|object",
+                                    },
+                                    executable: {
+                                        description:
+                                            "boolean indicating if the account contains a program (and is strictly read-only)",
+                                        type: "bool",
+                                    },
+                                    lamports: {
+                                        description:
+                                            "number of lamports assigned to this account, as a u64",
+                                        type: "u64",
+                                    },
+                                    owner: {
+                                        description:
+                                            "base-58 encoded Pubkey of the program this account has been assigned to",
+                                        type: "string",
+                                    },
+                                    rentEpoch: {
+                                        description:
+                                            "the epoch at which this account will next owe rent, as u64",
+                                        type: "u64",
+                                    },
+                                },
+                                type: "object",
+                            },
+                            type: "null",
+                        },
+                    },
+                    type: "array|null",
+                },
+                accountsConsumed: {
+                    description:
+                        "The number of compute budget units consumed during the processing of this transaction",
+                    type: "u64",
+                },
+                err: {
+                    description:
+                        "Error if transaction failed, null if transaction succeeded.",
+                    type: "object|string|null",
+                },
+                logs: {
+                    description:
+                        "Array of log messages the transaction instructions output during execution, null if simulation failed before the transaction was able to execute (for example due to an invalid blockhash or signature verification failure)",
+                    type: "array|null",
+                },
+                returnData: {
+                    description:
+                        "the most-recent return data generated by an instruction in the transaction, with the following fields:",
+                    fields: {
+                        data: {
+                            description:
+                                "The return data itself, as base-64 encoded binary data.",
+                            type: "[string ,encoding]",
+                        },
+                        programId: {
+                            description:
+                                "the program that generated the return data, as base-58 encoded Pubkey",
+                            type: "string",
+                        },
+                    },
+                    type: "object|null",
+                },
+            },
+        },
+    },
 };
