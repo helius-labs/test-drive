@@ -34,10 +34,10 @@
 </script>
 
 <div class="drop-shadow-1xl flex justify-center">
-    <div class="m-3 w-10/12  p-2">
-        <div class="rounded border shadow-lg">
+    <div class="m-3 w-3/4  p-2">
+        <div class="rounded  shadow-lg">
             <h1
-                class="rounded-t bg-[#1d242a] p-2 text-lg font-semibold text-white"
+                class="rounded-t bg-HeliusBlack p-2 text-lg font-semibold text-white"
             >
                 {$currentMethod} Documentation:
             </h1>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="m-2 ">
                         <h1 class="font-semibold underline">Code Sample:</h1>
-                        <div class="mockup-code m-2">
+                        <div class="mockup-code m-2 text-white">
                             <pre><code>{methodData?.codeExample}</code></pre>
                         </div>
                     </div>

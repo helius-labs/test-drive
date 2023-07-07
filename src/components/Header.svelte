@@ -3,23 +3,23 @@
 </script>
 
 <div class="flex justify-center">
-    <div>
+    <!-- <div>
         <img
             src={HeliusCircles}
             alt="Helius Circles"
             class="p-5"
         />
-    </div>
-    <div class="flex items-center">
-        <h1 class="text-center text-5xl font-bold text-black">
-            go <span class="text-orange-500">faster</span>
+    </div> -->
+    <div class=" m-12 flex items-center">
+        <h1 class="text-center text-7xl font-bold text-HeliusOrangeDark">
+            go faster
         </h1>
     </div>
-    <div>
+    <!-- <div>
         <img
             src={HeliusCircles}
             alt="Helius Circles"
             class="p-5"
         />
-    </div>
+    </div> -->
 </div>

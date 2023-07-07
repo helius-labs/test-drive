@@ -22,11 +22,11 @@
 <div class="flex justify-center">
     <form class="flex w-full justify-center">
         <div
-            class="flex w-2/3 items-center justify-center rounded bg-[#1d232a] p-3 shadow-lg"
+            class="m-3 flex w-3/4 items-center justify-center rounded p-2 hover:shadow-lg "
         >
             <div class="m-1 w-1/3">
                 <select
-                    class="select-error select w-full max-w-xs bg-white text-black"
+                    class="select-error select w-full max-w-xs bg-HeliusGray text-black"
                     bind:value={$currentMethod}
                 >
                     {#each questions as question}
@@ -36,12 +36,12 @@
                     {/each}
                 </select>
             </div>
-            <div class="m-1 w-2/3">
+            <div class="m-1 w-full">
                 <input
                     type="text"
                     bind:value={answer}
                     placeholder="Drop a Solana endpoint here"
-                    class="input-bordered input-error input w-full max-w-2xl bg-white text-black"
+                    class="input-bordered input-error input w-full bg-HeliusGray text-black"
                 />
             </div>
         </div>

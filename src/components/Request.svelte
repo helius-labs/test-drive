@@ -19,10 +19,10 @@
             const method = methods[selectedMethod];
             params = Object.keys(method.defaultParams).map((param) => {
                 return {
-                    name: param,
-                    value: method.defaultParams[param],
-                    type: typeof method.defaultParams[param],
                     isOptional: false,
+                    name: param,
+                    type: typeof method.defaultParams[param],
+                    value: method.defaultParams[param],
                 };
             });
 
@@ -31,10 +31,10 @@
                 for (const param in optionalParams) {
                     if (!(param in method.defaultParams)) {
                         params.push({
-                            name: param,
-                            value: optionalParams[param],
-                            type: typeof optionalParams[param],
                             isOptional: true,
+                            name: param,
+                            type: typeof optionalParams[param],
+                            value: optionalParams[param],
                         });
                     }
                 }
@@ -54,8 +54,8 @@
         const rpcUrlValue = $currentRPC; // Access the value from the rpcUrl store
         const methodData = methods[selectedMethod];
         let requestData = {
-            jsonrpc: "2.0",
             id: "test-drive",
+            jsonrpc: "2.0",
             method: selectedMethod,
             params: [],
         };
@@ -129,19 +129,19 @@
     }
 </script>
 
-<div class="m-5 p-2 text-white">
-    <div class="rounded border shadow-lg">
-        <h1 class="rounded-t bg-[#1d232a] p-2 text-lg font-semibold">
+<div class="my-5 min-h-full p-2 text-white">
+    <div class=" rounded shadow-lg">
+        <h1 class="rounded-t bg-HeliusBlack p-2 text-lg font-semibold">
             Parameters for {selectedMethod}
         </h1>
         <div class="max-h-96 overflow-y-auto">
-            <table class="w-full overflow-y-scroll border">
+            <table class="w-full overflow-y-scroll ">
                 <thead>
                     <!-- header row -->
                 </thead>
                 <tbody class="text-black">
                     {#each params as param}
-                        <tr class="border">
+                        <tr class="">
                             <td class="p-1">
                                 <div class="flex flex-col items-center">
                                     <h1 class="text-base font-semibold">
@@ -168,12 +168,12 @@
                                             type="number"
                                             bind:value={param.value}
                                             placeholder="input here"
-                                            class="input-bordered input-error input w-full max-w-md bg-white"
+                                            class="input-bordered input-error input w-full max-w-md bg-HeliusGray"
                                         />
                                     {:else if param.type === "boolean"}
                                         <select
                                             bind:value={param.value}
-                                            class="w-full rounded bg-RequestInputBG p-2"
+                                            class="bg-RequestInputBG w-full rounded p-2"
                                         >
                                             <option value={true}>True</option>
                                             <option value={false}>False</option>
@@ -183,7 +183,7 @@
                                             type="text"
                                             bind:value={param.value}
                                             placeholder="input here"
-                                            class="input-bordered input-error input w-full max-w-md bg-white"
+                                            class="input-bordered input-error input w-full max-w-md bg-HeliusGray"
                                         />
                                     {/if}
                                 </div>
@@ -194,9 +194,9 @@
             </table>
             <tfoot><tr /></tfoot>
         </div>
-        <div class="flex justify-end border p-2">
+        <div class="flex justify-end  p-2">
             <button
-                class="btn w-20 rounded bg-HeliusOrange p-2 text-white"
+                class="btn w-20 rounded border-HeliusOrangeDark bg-HeliusOrangeLight p-2 text-white"
                 on:click={handleRun}
             >
                 Run
