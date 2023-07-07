@@ -6,9 +6,9 @@
     import RaceModal from "../components/RaceModal.svelte";
 </script>
 
-<main>
+<main class="h-screen">
     <nav
-        class="sticky top-0 left-0 flex w-full items-center justify-between bg-HeliusBlack p-2"
+        class="sticky top-0 left-0 flex w-full items-center justify-between bg-[#242934] p-2"
     >
         <div class="flex items-center">
             <svg
@@ -83,7 +83,7 @@
             <RaceModal />
             <div class="m-1 flex items-center justify-center">
                 <button
-                    class="btn bg-HeliusOrangeLight p-2 text-white shadow-sm"
+                    class="btn bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-sm"
                     on:click={() =>
                         window.open("https://dev.helius.xyz/dashboard/app")}
                 >
