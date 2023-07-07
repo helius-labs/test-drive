@@ -107,7 +107,7 @@
 
 <div class="m-1 flex items-center justify-center">
     <button
-        class="btn bg-HeliusOrangeLight p-2 text-white shadow-sm"
+        class="btn bg-HeliusOrangeLight  p-2 text-white shadow-sm"
         on:click={open}
     >
         Race RPCs

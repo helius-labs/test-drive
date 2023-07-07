@@ -6,7 +6,7 @@
     } from "$lib/stores/responseStore.js";
 </script>
 
-<div class="my-5 p-2  text-white">
+<div class="my-5 min-h-full p-2 text-white">
     <div class="rounded  shadow-lg">
         <h1 class="rounded-t bg-HeliusBlack p-2 text-lg font-semibold">
             JSON:
