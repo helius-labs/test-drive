@@ -4,7 +4,7 @@
 
 <main>
     <nav
-        class="sticky top-0 left-0 flex w-full items-center justify-between bg-zinc-100 p-2"
+        class="sticky top-0 left-0 flex w-full items-center justify-between bg-[#1d232a] p-2"
     >
         <div class="flex items-center">
             <svg
@@ -72,12 +72,12 @@
                 />
             </svg>
             <h1 class="m-3 text-xl font-semibold">
-                <span class="text-neutral-700">TEST</span>
+                <span class="text-white-700">TEST</span>
                 <span class="text-HeliusOrange">DRIVE</span>
             </h1>
         </div>
         <div
-            class="flex items-center rounded border border-cyan-600 bg-HeliusOrange p-2 text-center font-semibold leading-normal text-white"
+            class="btn flex items-center rounded border border-cyan-600 bg-HeliusOrange p-2 text-center font-semibold leading-normal text-white"
         >
             <a
                 href="https://dev.helius.xyz/dashboard/app"

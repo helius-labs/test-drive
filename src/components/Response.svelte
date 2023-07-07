@@ -6,10 +6,9 @@
     } from "$lib/stores/responseStore.js";
 </script>
 
-<div class="mt-5 w-full text-black">
-    <h1 class="text-2xl font-semibold">Response</h1>
-    <div class="rounded border">
-        <h1 class="rounded-t bg-[#929498] p-2 text-lg font-semibold">JSON:</h1>
+<div class="drop-shadow-1xl mt-5 w-full text-white">
+    <div class="rounded border shadow-lg">
+        <h1 class="rounded-t bg-[#1d232a] p-2 text-lg font-semibold">JSON:</h1>
         <div
             class="flex max-h-96 flex-col overflow-y-auto bg-[#282935] p-4 text-white"
         >

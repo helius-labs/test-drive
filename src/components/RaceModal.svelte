@@ -107,7 +107,7 @@
 
 <div class="flex h-20 items-center justify-center">
     <button
-        class="rounded bg-blue-500 py-2 px-4 text-white"
+        class="btn bg-orange-500 py-2 px-4 text-white shadow-sm"
         on:click={open}
     >
         Race RPCs
@@ -139,23 +139,25 @@
                         RPC Speed Test
                     </h3>
                     <div class="mt-2">
-                        <h3>RPC URL 1</h3>
+                        <h3 class="text-black">RPC URL 1</h3>
                         <input
-                            class="focus:shadow-outline text-white-700 w-full appearance-none rounded border py-2 px-3 leading-tight shadow focus:outline-none"
                             type="text"
-                            placeholder="RPC URL 1"
+                            class="input-bordered input-error input w-full max-w-lg bg-white text-black"
                             bind:value={rpcUrl1}
+                            placeholder="RPC URL 1"
                         />
-                        <h3>RPC URL 2</h3>
+                        <h3 class="text-black">RPC URL 2</h3>
                         <input
-                            class="focus:shadow-outline text-white-700 w-full appearance-none rounded border py-2 px-3 leading-tight shadow focus:outline-none"
                             type="text"
-                            placeholder="RPC URL 2"
+                            class="input-bordered input-error input w-full max-w-lg bg-white text-black"
                             bind:value={rpcUrl2}
+                            placeholder="RPC URL 2"
                         />
-                        <h3>Method</h3>
+
+                        <h3 class="text-black">Method</h3>
+
                         <select
-                            class="focus:shadow-outline text-white-700 w-full appearance-none rounded border py-2 px-3 leading-tight shadow focus:outline-none"
+                            class="select-error select w-full max-w-lg bg-white text-black"
                             bind:value={methodToTest}
                         >
                             <option
@@ -169,7 +171,7 @@
                         </select>
                     </div>
                     <button
-                        class="mt-3 rounded bg-green-500 py-2 px-4 text-white"
+                        class="btn mt-3 rounded bg-green-500 py-2 px-4 text-white"
                         on:click={runSpeedTest}>Start</button
                     >
                     <div class="mt-3 flex">
@@ -179,6 +181,7 @@
                             >
                                 RPC URL 1
                             </h4>
+
                             <div class="mt-2 h-4 rounded-full bg-gray-200">
                                 <div
                                     class="h-full bg-orange-500 text-center text-xs text-white"
@@ -222,11 +225,11 @@
                     </div>
                 </div>
                 <div
-                    class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+                    class="bg-[#1d232a] px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
                 >
                     <button
                         type="button"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                        class="btn inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                         on:click={close}
                     >
                         Close
