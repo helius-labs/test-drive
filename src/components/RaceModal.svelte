@@ -129,10 +129,10 @@
                 aria-hidden="true"
             />
             <div
-                class="inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
+                class="inline-block transform overflow-hidden rounded-lg bg-HeliusGray text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
             >
                 <div
-                    class="justify-center bg-[#1d232a] px-4 py-3 text-left sm:flex sm:flex-row-reverse sm:px-6"
+                    class="justify-center bg-HeliusBlack px-4 py-3 text-left sm:flex sm:flex-row-reverse sm:px-6"
                 >
                     <h3
                         class="text-left text-lg font-medium leading-6 text-white"
@@ -146,14 +146,14 @@
                         <h3 class="text-black">RPC URL 1</h3>
                         <input
                             type="text"
-                            class="input-bordered input-error input w-full max-w-lg bg-white text-black"
+                            class="input-bordered input-error input w-full max-w-lg bg-HeliusGray text-black"
                             bind:value={rpcUrl1}
                             placeholder="RPC URL 1"
                         />
                         <h3 class="text-black">RPC URL 2</h3>
                         <input
                             type="text"
-                            class="input-bordered input-error input w-full max-w-lg bg-white text-black"
+                            class="input-bordered input-error input w-full max-w-lg bg-HeliusGray text-black"
                             bind:value={rpcUrl2}
                             placeholder="RPC URL 2"
                         />
@@ -161,7 +161,7 @@
                         <h3 class="text-black">Method</h3>
 
                         <select
-                            class="select-error select w-full max-w-lg bg-white text-black"
+                            class="select-error select w-full max-w-lg bg-HeliusGray text-black"
                             bind:value={methodToTest}
                         >
                             <option
@@ -174,10 +174,12 @@
                             {/each}
                         </select>
                     </div>
-                    <button
-                        class="btn mt-3 items-center rounded bg-orange-500 py-2 px-4 text-white"
-                        on:click={runSpeedTest}>Start</button
-                    >
+                    <div class="flex justify-center">
+                        <button
+                            class="btn mt-3 items-center rounded border border-HeliusOrangeDark bg-orange-500  p-1 px-4 text-white"
+                            on:click={runSpeedTest}>Start</button
+                        >
+                    </div>
                     <div class="mt-3 flex">
                         <div class="w-1/2 pr-2">
                             <h4
@@ -229,7 +231,7 @@
                     </div>
                 </div>
                 <div
-                    class="bg-[#1d232a] px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+                    class="bg-HeliusBlack px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
                 >
                     <button
                         type="button"
