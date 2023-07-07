@@ -249,7 +249,7 @@ export const methods = {
         optionalParams: {
             epoch: 0,
             commitment: "confirmed",
-            identity: "4Qkev8aNZcqFNSRhQzwyLMFSsi94jHqE8WNVTJzTP99F",
+            identity: "7Gjec4iDbTxLvVYNsRbZrrHdtyLByzdDJ1C5BmcMMBks",
         },
         paramsFormat: "array",
     },
@@ -292,14 +292,6 @@ export const methods = {
         optionalParams: {},
         paramsFormat: "none",
     },
-    getRecentPrioritizationFees: {
-        name: "getRecentPrioritizationFees",
-        defaultParams: {
-            addresses: "CxELquR1gPP8wHe33gZ4QxqGB3sZ9RSwsJ2KshVewkFY",
-        },
-        optionalParams: {},
-        paramsFormat: "array",
-    },
     getSignaturesForAddress: {
         name: "getSignaturesForAddress",
         defaultParams: {
@@ -329,7 +321,7 @@ export const methods = {
     getStakeActivation: {
         name: "getStakeActivation",
         defaultParams: {
-            stakeAccount: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
+            stakeAccount: "CAf8jfgqhia5VNrEF4A7Y9VLD3numMq9DVSceq7cPhNY",
         },
         optionalParams: {
             commitment: "confirmed",
