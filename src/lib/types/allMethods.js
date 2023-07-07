@@ -4,12 +4,14 @@ export const methods = {
         defaultParams: {
             id: "F9Lw3ki3hJ7PF9HQXsBzoY8GyE6sPoEZZdXJBsTTD2rk",
         },
+        paramsFormat: "object",
     },
     getAssetProof: {
         name: "getAssetProof",
         defaultParams: {
             id: "Bu1DEKeawy7txbnCEJE4BU3BKLXaNAKCYcHR4XhndGss",
         },
+        paramsFormat: "object",
     },
     getAssetsByGroup: {
         name: "getAssetsByGroup",
@@ -19,12 +21,13 @@ export const methods = {
             page: 1,
         },
         optionalParams: {
-            limit: 1,
-            sortBy: { sortBy: "created", field: "asc" },
+            limit: 1000,
             before: "",
             after: "",
         },
+        paramsFormat: "object",
     },
+
     getAssetsByCreator: {
         name: "getAssetsByCreator",
         defaultParams: {
@@ -32,11 +35,11 @@ export const methods = {
             page: 1,
         },
         optionalParams: {
-            limit: 1,
-            sortBy: { sortBy: "created", field: "asc" },
-            before: "",
-            after: "",
+            limit: 1000,
+            before: null,
+            after: null,
         },
+        paramsFormat: "object",
     },
     getAssetsByOwner: {
         name: "getAssetsByOwner",
@@ -45,11 +48,11 @@ export const methods = {
             page: 1,
         },
         optionalParams: {
-            limit: 1,
-            sortBy: { sortBy: "created", field: "asc" },
-            before: "",
-            after: "",
+            limit: 1000,
+            before: null,
+            after: null,
         },
+        paramsFormat: "object",
     },
     getAssetsByAuthority: {
         name: "getAssetsByAuthority",
@@ -58,33 +61,51 @@ export const methods = {
             page: 1,
         },
         optionalParams: {
-            limit: 1,
-            sortBy: { sortBy: "created", field: "asc" },
-            before: "",
-            after: "",
+            limit: 1000,
+            before: null,
+            after: null,
         },
+        paramsFormat: "object",
     },
-    searchAssets: {
+    getSignaturesForAsset: {
+        name: "getSignaturesForAsset",
+        defaultParams: {
+            id: "FNt6A9Mfnqbwc1tY7uwAguKQ1JcpBrxmhczDgbdJy5AC",
+            page: 1,
+        },
+        optionalParams: {
+            limit: 1000,
+            before: null,
+            after: null,
+        },
+        paramsFormat: "object",
+    },
+    // searchAssets is a pretty dynamic method, so we will add specific handling for this method in the future.
+
+    /* searchAssets: {
         name: "searchAssets",
         defaultParams: {
+            grouping: [
+                "collection",
+                "DRiP2Pn2K6fuMLKQmt5rZWyHiUZ6WK3GChEySUpHSS4x",
+            ],
             ownerAddress: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
+        },
+        optionalParams: {
+            limit: 1000,
+            authorityAddress: "",
+            creatorAddress: "",
             grouping: [
                 "collection",
                 "DRiP2Pn2K6fuMLKQmt5rZWyHiUZ6WK3GChEySUpHSS4x",
             ],
             page: 1,
             compressed: true,
+            before: null,
+            after: null,
         },
-        optionalParams: {
-            limit: 1,
-            sortBy: { sortBy: "created", field: "asc" },
-            authorityAddress: "publicKey",
-            creatorAddress: "publicKey",
-            grouping: ["collection", "key"],
-            before: "",
-            after: "",
-        },
-    },
+    },*/
+
     getBalance: {
         name: "getBalance",
         defaultParams: {
@@ -94,19 +115,8 @@ export const methods = {
             commitment: "confirmed",
             minContextSlot: 0,
         },
-    },
-    getBlock: {
-        name: "getBlock",
-        defaultParams: {
-            slot: 430,
-        },
-        optionalParams: {
-            commitment: "confirmed",
-            encoding: "json",
-            transactionDetails: "full",
-            maxSupportedTransactionVersion: "",
-            rewards: "",
-        },
+        paramsFormat: "array",
+        paramsStructure: ["pubkey"], // the order of parameters matters if it's array type
     },
     getBlockHeight: {
         name: "getBlockHeight",
@@ -117,10 +127,11 @@ export const methods = {
         name: "getBlockProduction",
         defaultParams: {},
         optionalParams: {
-            commitment: "confirmed",
+            commitment: "",
             identity: "",
             range: "",
         },
+        paramsFormat: "none",
     },
     getBlockCommitment: {
         name: "getBlockCommitment",
@@ -128,20 +139,17 @@ export const methods = {
             block: 5,
         },
         optionalParams: [],
+        paramsFormat: "array",
     },
     getBlocks: {
         name: "getBlocks",
         defaultParams: {
-            blocks: 5,
+            blocks: [5, 10],
         },
         optionalParams: {
             commitment: "confirmed",
         },
-    },
-    getBlocksWithLimit_NW: {
-        name: "getBlocksWithLimit",
-        defaultParams: [5, 3],
-        optionalParams: { commitment: "confirmed" },
+        paramsFormat: "array",
     },
     getBlockTime: {
         name: "getBlockTime",
@@ -149,21 +157,25 @@ export const methods = {
             block: 203422040,
         },
         optionalParams: [],
+        paramsFormat: "array",
     },
     getClusterNodes: {
         name: "getClusterNodes",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getEpochInfo: {
         name: "getEpochInfo",
         defaultParams: {},
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
+        paramsFormat: "array",
     },
     getEpochSchedule: {
         name: "getEpochSchedule",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getFeeForMessage: {
         name: "getFeeForMessage",
@@ -172,69 +184,64 @@ export const methods = {
                 "AQABAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQAA",
         },
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
+        paramsFormat: "array",
     },
     getFirstAvailableBlock: {
         name: "getFirstAvailableBlock",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getGenesisHash: {
         name: "getGenesisHash",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getHealth: {
         name: "getHealth",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getHighestSnapshotSlot: {
         name: "getHighestSnapshotSlot",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getIdentity: {
         name: "getIdentity",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getInflationGovernor: {
         name: "getInflationGovernor",
         defaultParams: {},
         optionalParams: { commitment: "confirmed" },
+        paramsFormat: "array",
     },
     getInflationRate: {
         name: "getInflationRate",
         defaultParams: {},
         optionalParams: [],
-    },
-    getInflationReward_NW: {
-        name: "getInflationReward",
-        defaultParams: {
-            addresses: [
-                "6dmNQ5jwLeLk5REvio1JcMshcbvkYMwy26sJ8pbkvStu",
-                "BGsqMegLpV6n6Ve146sSX2dTjUMj3M92HnU8BbNRMhF2",
-            ],
-            epoch: 2,
-        },
-        optionalParams: {
-            commitment: "confirmed",
-            epoch: 2,
-            minContextSlot: 0,
-        },
+        paramsFormat: "none",
     },
     getLargestAccounts: {
         name: "getLargestAccounts",
         defaultParams: {},
         optionalParams: {
             commitment: "confirmed",
-            filter: "none",
+            filter: "circulating",
         },
+        paramsFormat: "array",
     },
     getLatestBlockhash: {
         name: "getLatestBlockhash",
         defaultParams: {},
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
+        paramsFormat: "array",
     },
     getLeaderSchedule: {
         name: "getLeaderSchedule",
@@ -242,43 +249,29 @@ export const methods = {
         optionalParams: {
             epoch: 0,
             commitment: "confirmed",
-            identity: "base58",
+            identity: "4Qkev8aNZcqFNSRhQzwyLMFSsi94jHqE8WNVTJzTP99F",
         },
+        paramsFormat: "array",
     },
     getMaxRetransmitSlot: {
         name: "getMaxRetransmitSlot",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getMaxShredInsertSlot: {
         name: "getMaxShredInsertSlot",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getMinimumBalanceForRentExemption: {
         name: "getMinimumBalanceForRentExemption",
-        defaultParams: { dataSize: 50 },
+        defaultParams: { dataSize: [50] },
         optionalParams: { commitment: "confirmed" },
+        paramsFormat: "array",
     },
-    getMultipleAccounts_NW: {
-        name: "getMultipleAccounts",
-        defaultParams: {
-            pubkeys: [
-                "vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg",
-                "4fYNw3dojWmQ4dXtSGE9epjRGy9pFSx62YypT7avPYvA",
-            ],
-            options: {
-                encoding: "base58",
-            },
-        },
-        optionalParams: {
-            commitment: "confirmed",
-            minContextSlot: 0,
-            dataSlice: 0,
-            encoding: "json",
-        },
-    },
-    getProgramAccounts_NW: {
+    getProgramAccounts: {
         name: "getProgramAccounts",
         defaultParams: {
             pubkey: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
@@ -291,18 +284,21 @@ export const methods = {
             dataSlice: 0,
             filters: "",
         },
+        paramsFormat: "array",
     },
     getRecentPerformanceSamples: {
         name: "getRecentPerformanceSamples",
-        defaultParams: { limit: 4 },
-        optionalParams: { limit: 100 },
+        defaultParams: {},
+        optionalParams: {},
+        paramsFormat: "none",
     },
     getRecentPrioritizationFees: {
         name: "getRecentPrioritizationFees",
         defaultParams: {
-            addresses: ["CxELquR1gPP8wHe33gZ4QxqGB3sZ9RSwsJ2KshVewkFY"],
+            addresses: "CxELquR1gPP8wHe33gZ4QxqGB3sZ9RSwsJ2KshVewkFY",
         },
-        optionalParams: { addresses: "" },
+        optionalParams: {},
+        paramsFormat: "array",
     },
     getSignaturesForAddress: {
         name: "getSignaturesForAddress",
@@ -310,40 +306,25 @@ export const methods = {
             address: "Vote111111111111111111111111111111111111111",
         },
         optionalParams: {
-            commitment: "confirmed",
+            commitment: "finalized",
             minContextSlot: 0,
             before: "",
             until: "",
             limit: 0,
         },
-    },
-    getSignatureStatuses_NW: {
-        name: "getSignatureStatuses",
-        defaultParams: {
-            signatures: [
-                "3bWQUKetZ48rJHvU6CxB3LqxSUiqr5U3Noh5NYmZkKcqSZHbaDE8Ys4Ye8tVNHDS537uR7qCGPRx7BSm1fFCzeJb",
-            ],
-            options: { searchTransactionHistory: true },
-        },
-        optionalParams: ["searchTransactionHistory"],
+        paramsFormat: "array",
     },
     getSlot: {
         name: "getSlot",
         defaultParams: {},
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
+        paramsFormat: "array",
     },
     getSlotLeader: {
         name: "getSlotLeader",
         defaultParams: {},
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
-    },
-    getSlotLeaders_NW: {
-        name: "getSlotLeaders",
-        defaultParams: { startSlot: 100, limit: 10 },
-        optionalParams: {
-            startSlot: 100,
-            limit: 10,
-        },
+        paramsFormat: "array",
     },
     getStakeActivation: {
         name: "getStakeActivation",
@@ -355,11 +336,13 @@ export const methods = {
             minContextSlot: 0,
             epoch: 0,
         },
+        paramsFormat: "array",
     },
     getStakeMinimumDelegation: {
         name: "getStakeMinimumDelegation",
         defaultParams: {},
         optionalParams: { commitment: "confirmed" },
+        paramsFormat: "array",
     },
     getSupply: {
         name: "getSupply",
@@ -368,6 +351,7 @@ export const methods = {
             commitment: "confirmed",
             excludeNonCirculatingAccountsList: false,
         },
+        paramsFormat: "array",
     },
     getTokenAccountBalance: {
         name: "getTokenAccountBalance",
@@ -375,33 +359,7 @@ export const methods = {
             account: "Bwum3pnrPH4vqAc9ow4ShBA5N1niAsmrgtVZZga6wxf8",
         },
         optionalParams: { commitment: "confirmed" },
-    },
-    getTokenAccountsByDelegate_NW: {
-        name: "getTokenAccountsByDelegate",
-        defaultParams: {
-            delegate: "4Nd1mBQtrMJVYVfKf2PJy9NZUZdTAsp7D4xWLs4gDB4T",
-            programId: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
-            encoding: "jsonParsed",
-        },
-        optionalParams: {
-            commitment: "confirmed",
-            minContextSlot: 0,
-            dataSlice: 0,
-            encoding: "jsonParsed",
-        },
-    },
-    getTokenAccountsByOwner_NW: {
-        name: "getTokenAccountsByOwner",
-        defaultParams: {
-            owner: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
-            encoding: "jsonParsed",
-        },
-        optionalParams: {
-            commitment: "confirmed",
-            minContextSlot: 0,
-            dataSlice: 0,
-            encoding: "jsonParsed",
-        },
+        paramsFormat: "array",
     },
     getTokenLargestAccounts: {
         name: "getTokenLargestAccounts",
@@ -411,6 +369,7 @@ export const methods = {
         optionalParams: {
             commitment: "confirmed",
         },
+        paramsFormat: "array",
     },
     getTokenSupply: {
         name: "getTokenSupply",
@@ -418,6 +377,7 @@ export const methods = {
             mint: "DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
         },
         optionalParams: { commitment: "confirmed" },
+        paramsFormat: "array",
     },
     getTransaction: {
         name: "getTransaction",
@@ -428,39 +388,45 @@ export const methods = {
         optionalParams: {
             commitment: "confirmed",
             maxSupportedTransactionVersion: 0,
-            encoding: "jsonParsed",
+            encoding: "json",
         },
+        paramsFormat: "array",
     },
     getTransactionCount: {
         name: "getTransactionCount",
         defaultParams: {},
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
+        paramsFormat: "array",
     },
     getVersion: {
         name: "getVersion",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
     getVoteAccounts: {
         name: "getVoteAccounts",
         defaultParams: {},
         optionalParams: {
             commitment: "confirmed",
-            votePubkey: "",
+            votePubkey: "3ZT31jkAGhUaw8jsy4bTknwBMP8i4Eueh52By4zXcsVw",
             keepUnstakedDelinquents: false,
             delinquentSlotDistance: 0,
         },
+        paramsFormat: "array",
     },
     isBlockhashValid: {
         name: "isBlockhashValid",
         defaultParams: {
             blockhash: "J7rBdM6AecPDEZp8aPq5iPSNKVkU5Q76F3oAV4eW5wsW",
         },
-        optionalParams: { commitment: "confirmed", minContextSlot: 0 },
+        optionalParams: { commitment: "processed", minContextSlot: 0 },
+        paramsFormat: "array",
     },
     minimumLedgerSlot: {
         name: "minimumLedgerSlot",
         defaultParams: {},
         optionalParams: [],
+        paramsFormat: "none",
     },
 };

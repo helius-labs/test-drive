@@ -1,9 +1,15 @@
 <script>
     // @ts-nocheck
-    import { methods } from "$lib/api/allMethods.js";
+    import { methods } from "$lib/types/allMethods.js";
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
     import { onMount } from "svelte";
-
+    import { currentRPC } from "$lib/stores/currentMethodStore.js";
+    import {
+        responseStatus,
+        responseStore,
+        responseTime,
+    } from "$lib/stores/responseStore.js";
+    import { methodParamMap } from "$lib/types/methodParamMap";
     let selectedMethod;
     let params = [];
 
@@ -34,7 +40,6 @@
             params = [];
         }
     }
-
     onMount(updateParams);
 
     $: {
@@ -42,15 +47,82 @@
         updateParams();
     }
 
-    function handleRun() {
-        const requestData = {
+    async function handleRun() {
+        const rpcUrlValue = $currentRPC; // Access the value from the rpcUrl store
+        const methodData = methods[selectedMethod];
+        let requestData = {
             jsonrpc: "2.0",
-            id: 1,
+            id: "test-drive",
             method: selectedMethod,
-            params: params.map((param) => param.value),
+            params: [],
         };
 
-        console.log(requestData);
+        const requestParams = {};
+        params.forEach((param) => {
+            if (param.value !== "") {
+                requestParams[param.name] = param.value;
+            }
+        });
+
+        if (methodData.optionalParams) {
+            const optionalParams = methodData.optionalParams;
+            for (const param in optionalParams) {
+                const defaultValue = optionalParams[param];
+                if (!requestParams[param]) {
+                    requestParams[param] = defaultValue;
+                }
+            }
+        }
+        if (methodData.paramsFormat === "array") {
+            if (Object.keys(requestParams).length > 0) {
+                requestData.params = [requestParams];
+            }
+            const paramName = methodParamMap[methodData.name];
+            if (paramName) {
+                let paramValue = requestParams[paramName];
+                // Convert the param to int if needed
+                const methodsNeedConverting = [
+                    "getBlocks",
+                    "getBlockCommitment",
+                    "getBlockTime",
+                    "getSlotLeaders",
+                    "getMinimumBalanceForRentExemption",
+                ];
+                if (methodsNeedConverting.includes(methodData.name)) {
+                    paramValue = parseInt(paramValue);
+                }
+
+                requestData.params = [paramValue];
+            }
+        } else if (methodData.paramsFormat === "object") {
+            requestData.params = requestParams;
+        } else if (methodData.paramsFormat === "none") {
+            delete requestData.params;
+        }
+
+        console.log(requestData); // Log the requestData object for debugging
+
+        const result = await callRPC(requestData, rpcUrlValue);
+        // Handle the result as needed
+    }
+
+    async function callRPC(requestData, rpcUrl) {
+        const startTime = performance.now();
+        const response = await fetch(rpcUrl, {
+            body: JSON.stringify(requestData),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+        });
+        const data = await response.json();
+        const endTime = performance.now();
+        const duration = endTime - startTime;
+        console.log(data);
+        responseStatus.set(response.status);
+        responseStore.set(JSON.stringify(data, null, 2));
+        responseTime.set(duration.toFixed(2));
+        return data.result;
     }
 </script>
 

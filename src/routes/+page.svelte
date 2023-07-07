@@ -2,12 +2,14 @@
     import Docs from "../components/Docs.svelte";
     import Header from "../components/Header.svelte";
     import RPCMenu from "../components/RPCMenu.svelte";
+    import RaceModal from "../components/RaceModal.svelte";
     import Request from "../components/Request.svelte";
     import Response from "../components/Response.svelte";
 </script>
 
 <div class=" h-full bg-white">
     <Header />
+    <RaceModal />
     <RPCMenu />
     <div class="flex justify-center">
         <!-- Need help from qudo on getting these two components to be the correct width -->
