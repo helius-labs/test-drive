@@ -2,7 +2,6 @@
     // @ts-nocheck
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
     import { methods } from "$lib/types/doc.js";
-    import { onMount } from "svelte";
 
     let methodData = null;
     let parameters = [];
@@ -15,7 +14,6 @@
         );
         results = flattenFields(methodData?.result?.fields);
     }
-
     function flattenFields(obj, prefix = "") {
         let result = [];
         for (let key in obj) {
@@ -35,13 +33,15 @@
     }
 </script>
 
-<div class="flex justify-center">
-    <div class="m-3 w-10/12  p-2 text-black">
-        <div class="rounded border">
-            <h1 class="rounded-t bg-[#929498] p-2 text-lg font-semibold">
+<div class="drop-shadow-1xl flex justify-center">
+    <div class="m-3 w-10/12  p-2">
+        <div class="rounded border shadow-lg">
+            <h1
+                class="rounded-t bg-[#1d242a] p-2 text-lg font-semibold text-white"
+            >
                 {$currentMethod} Documentation:
             </h1>
-            <div class="flex">
+            <div class="flex text-black">
                 <div class="w-1/2">
                     <div class="m-2">
                         <h1 class="font-semibold underline">Parameters:</h1>

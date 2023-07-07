@@ -10,6 +10,7 @@
         responseTime,
     } from "$lib/stores/responseStore.js";
     import { methodParamMap } from "$lib/types/methodParamMap";
+
     let selectedMethod;
     let params = [];
 
@@ -20,6 +21,7 @@
                 return {
                     name: param,
                     value: method.defaultParams[param],
+                    type: typeof method.defaultParams[param],
                     isOptional: false,
                 };
             });
@@ -31,6 +33,7 @@
                         params.push({
                             name: param,
                             value: optionalParams[param],
+                            type: typeof optionalParams[param],
                             isOptional: true,
                         });
                     }
@@ -126,10 +129,9 @@
     }
 </script>
 
-<div class="m-5 p-2 text-black">
-    <h1 class="text-2xl font-semibold">Request</h1>
-    <div class="rounded border">
-        <h1 class="rounded-t bg-[#929498] p-2 text-lg font-semibold">
+<div class="m-5 p-2 text-white">
+    <div class="rounded border shadow-lg">
+        <h1 class="rounded-t bg-[#1d232a] p-2 text-lg font-semibold">
             Parameters for {selectedMethod}
         </h1>
         <div class="max-h-96 overflow-y-auto">
@@ -137,22 +139,22 @@
                 <thead>
                     <!-- header row -->
                 </thead>
-                <tbody>
+                <tbody class="text-black">
                     {#each params as param}
                         <tr class="border">
                             <td class="p-1">
                                 <div class="flex flex-col items-center">
-                                    <h1 class="text-base font-semibold italic">
+                                    <h1 class="text-base font-semibold">
                                         {param.name}
                                     </h1>
                                     <h1
-                                        class="text-sm font-semibold text-red-600"
+                                        class="text-xs font-semibold italic text-red-600"
                                     >
                                         {typeof param.value}
                                     </h1>
                                     {#if param.isOptional}
                                         <h1
-                                            class="text-sm font-semibold text-black"
+                                            class="text-xs font-semibold italic text-black"
                                         >
                                             Optional
                                         </h1>
@@ -161,11 +163,29 @@
                             </td>
                             <td class="p-1">
                                 <div class="m-1">
-                                    <input
-                                        bind:value={param.value}
-                                        class="w-full rounded bg-RequestInputBG p-2"
-                                        placeholder="default value set here"
-                                    />
+                                    {#if param.type === "number"}
+                                        <input
+                                            type="number"
+                                            bind:value={param.value}
+                                            placeholder="input here"
+                                            class="input-bordered input-error input w-full max-w-md bg-white"
+                                        />
+                                    {:else if param.type === "boolean"}
+                                        <select
+                                            bind:value={param.value}
+                                            class="w-full rounded bg-RequestInputBG p-2"
+                                        >
+                                            <option value={true}>True</option>
+                                            <option value={false}>False</option>
+                                        </select>
+                                    {:else}
+                                        <input
+                                            type="text"
+                                            bind:value={param.value}
+                                            placeholder="input here"
+                                            class="input-bordered input-error input w-full max-w-md bg-white"
+                                        />
+                                    {/if}
                                 </div>
                             </td>
                         </tr>
@@ -176,7 +196,7 @@
         </div>
         <div class="flex justify-end border p-2">
             <button
-                class="w-20 rounded bg-HeliusOrange p-2 text-white"
+                class="btn w-20 rounded bg-HeliusOrange p-2 text-white"
                 on:click={handleRun}
             >
                 Run
