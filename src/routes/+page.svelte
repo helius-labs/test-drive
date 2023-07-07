@@ -7,12 +7,11 @@
     import Response from "../components/Response.svelte";
 </script>
 
-<div class="h-full bg-white">
+<div class="h-full bg-HeliusGray">
     <Header />
 
     <div class="grid grid-cols-2 gap-3">
         <div class="col-span-2">
-            <RaceModal />
             <RPCMenu />
         </div>
 

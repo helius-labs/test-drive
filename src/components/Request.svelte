@@ -130,18 +130,18 @@
 </script>
 
 <div class="my-5 p-2 text-white">
-    <div class="rounded border shadow-lg">
-        <h1 class="rounded-t bg-[#1d232a] p-2 text-lg font-semibold">
+    <div class="rounded  shadow-lg">
+        <h1 class="rounded-t bg-HeliusBlack p-2 text-lg font-semibold">
             Parameters for {selectedMethod}
         </h1>
         <div class="max-h-96 overflow-y-auto">
-            <table class="w-full overflow-y-scroll border">
+            <table class="w-full overflow-y-scroll ">
                 <thead>
                     <!-- header row -->
                 </thead>
                 <tbody class="text-black">
                     {#each params as param}
-                        <tr class="border">
+                        <tr class="">
                             <td class="p-1">
                                 <div class="flex flex-col items-center">
                                     <h1 class="text-base font-semibold">
@@ -168,12 +168,12 @@
                                             type="number"
                                             bind:value={param.value}
                                             placeholder="input here"
-                                            class="input-bordered input-error input w-full max-w-md bg-white"
+                                            class="input-bordered input-error input w-full max-w-md bg-HeliusGray"
                                         />
                                     {:else if param.type === "boolean"}
                                         <select
                                             bind:value={param.value}
-                                            class="w-full rounded bg-RequestInputBG p-2"
+                                            class="bg-RequestInputBG w-full rounded p-2"
                                         >
                                             <option value={true}>True</option>
                                             <option value={false}>False</option>
@@ -183,7 +183,7 @@
                                             type="text"
                                             bind:value={param.value}
                                             placeholder="input here"
-                                            class="input-bordered input-error input w-full max-w-md bg-white"
+                                            class="input-bordered input-error input w-full max-w-md bg-HeliusGray"
                                         />
                                     {/if}
                                 </div>
@@ -194,9 +194,9 @@
             </table>
             <tfoot><tr /></tfoot>
         </div>
-        <div class="flex justify-end border p-2">
+        <div class="flex justify-end  p-2">
             <button
-                class="btn w-20 rounded bg-HeliusOrange p-2 text-white"
+                class="btn w-20 rounded border-HeliusOrangeDark bg-HeliusOrangeLight p-2 text-white"
                 on:click={handleRun}
             >
                 Run

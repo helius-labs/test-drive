@@ -9,8 +9,10 @@ const config = {
                 sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                HeliusOrange: "#E47332",
-                RequestInputBG: "#D9D9D9",
+                HeliusOrangeLight: "#e35930",
+                HeliusOrangeDark: "#e84125",
+                HeliusBlack: "#000000",
+                HeliusGray: "#e1d3d0",
             },
         },
     },
