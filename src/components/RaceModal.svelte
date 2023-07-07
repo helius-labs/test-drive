@@ -135,18 +135,21 @@
                         RPC Speed Test
                     </h3>
                     <div class="mt-2">
+                        <h3>RPC URL 1</h3>
                         <input
                             class="focus:shadow-outline text-white-700 w-full appearance-none rounded border py-2 px-3 leading-tight shadow focus:outline-none"
                             type="text"
                             placeholder="RPC URL 1"
                             bind:value={rpcUrl1}
                         />
+                        <h3>RPC URL 2</h3>
                         <input
                             class="focus:shadow-outline text-white-700 w-full appearance-none rounded border py-2 px-3 leading-tight shadow focus:outline-none"
                             type="text"
                             placeholder="RPC URL 2"
                             bind:value={rpcUrl2}
                         />
+                        <h3>Method</h3>
                         <select
                             class="focus:shadow-outline text-white-700 w-full appearance-none rounded border py-2 px-3 leading-tight shadow focus:outline-none"
                             bind:value={methodToTest}
@@ -174,7 +177,7 @@
                             </h4>
                             <div class="mt-2 h-4 rounded-full bg-gray-200">
                                 <div
-                                    class="h-full bg-blue-500 text-center text-xs text-white"
+                                    class="h-full bg-orange-500 text-center text-xs text-white"
                                     style="width: {progress1}%"
                                 />
                             </div>
