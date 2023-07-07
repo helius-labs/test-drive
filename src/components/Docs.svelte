@@ -2,7 +2,6 @@
     // @ts-nocheck
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
     import { methods } from "$lib/types/doc.js";
-    import { onMount } from "svelte";
 
     let methodData = null;
     let parameters = [];
@@ -15,7 +14,6 @@
         );
         results = flattenFields(methodData?.result?.fields);
     }
-
     function flattenFields(obj, prefix = "") {
         let result = [];
         for (let key in obj) {

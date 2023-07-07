@@ -70,6 +70,10 @@
         successfulRequests2 = 0;
         failedRequests1 = 0;
         failedRequests2 = 0;
+        if (rpcUrl1 === "" || rpcUrl2 === "") {
+            result = "Please enter two RPC URLs to compare.";
+            return;
+        }
 
         for (let i = 0; i < 100; i++) {
             totalTime1 += await runSingleTest(rpcUrl1, methodToTest, 1);

@@ -10,6 +10,7 @@
         responseTime,
     } from "$lib/stores/responseStore.js";
     import { methodParamMap } from "$lib/types/methodParamMap";
+
     let selectedMethod;
     let params = [];
 
@@ -20,6 +21,7 @@
                 return {
                     name: param,
                     value: method.defaultParams[param],
+                    type: typeof method.defaultParams[param],
                     isOptional: false,
                 };
             });
@@ -31,6 +33,7 @@
                         params.push({
                             name: param,
                             value: optionalParams[param],
+                            type: typeof optionalParams[param],
                             isOptional: true,
                         });
                     }
@@ -161,11 +164,29 @@
                             </td>
                             <td class="p-1">
                                 <div class="m-1">
-                                    <input
-                                        bind:value={param.value}
-                                        class="w-full rounded bg-RequestInputBG p-2"
-                                        placeholder="default value set here"
-                                    />
+                                    {#if param.type === "number"}
+                                        <input
+                                            type="number"
+                                            bind:value={param.value}
+                                            class="w-full rounded bg-RequestInputBG p-2"
+                                            placeholder="default value set here"
+                                        />
+                                    {:else if param.type === "boolean"}
+                                        <select
+                                            bind:value={param.value}
+                                            class="w-full rounded bg-RequestInputBG p-2"
+                                        >
+                                            <option value={true}>True</option>
+                                            <option value={false}>False</option>
+                                        </select>
+                                    {:else}
+                                        <input
+                                            type="text"
+                                            bind:value={param.value}
+                                            class="w-full rounded bg-RequestInputBG p-2"
+                                            placeholder="default value set here"
+                                        />
+                                    {/if}
                                 </div>
                             </td>
                         </tr>
