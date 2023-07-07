@@ -19,10 +19,10 @@
             const method = methods[selectedMethod];
             params = Object.keys(method.defaultParams).map((param) => {
                 return {
-                    name: param,
-                    value: method.defaultParams[param],
-                    type: typeof method.defaultParams[param],
                     isOptional: false,
+                    name: param,
+                    type: typeof method.defaultParams[param],
+                    value: method.defaultParams[param],
                 };
             });
 
@@ -31,10 +31,10 @@
                 for (const param in optionalParams) {
                     if (!(param in method.defaultParams)) {
                         params.push({
-                            name: param,
-                            value: optionalParams[param],
-                            type: typeof optionalParams[param],
                             isOptional: true,
+                            name: param,
+                            type: typeof optionalParams[param],
+                            value: optionalParams[param],
                         });
                     }
                 }
@@ -54,8 +54,8 @@
         const rpcUrlValue = $currentRPC; // Access the value from the rpcUrl store
         const methodData = methods[selectedMethod];
         let requestData = {
-            jsonrpc: "2.0",
             id: "test-drive",
+            jsonrpc: "2.0",
             method: selectedMethod,
             params: [],
         };
@@ -129,7 +129,7 @@
     }
 </script>
 
-<div class="m-5 p-2 text-white">
+<div class="my-5 p-2 text-white">
     <div class="rounded border shadow-lg">
         <h1 class="rounded-t bg-[#1d232a] p-2 text-lg font-semibold">
             Parameters for {selectedMethod}

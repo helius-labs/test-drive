@@ -34,7 +34,7 @@
 </script>
 
 <div class="drop-shadow-1xl flex justify-center">
-    <div class="m-3 w-10/12  p-2">
+    <div class="m-3 w-3/4  p-2">
         <div class="rounded border shadow-lg">
             <h1
                 class="rounded-t bg-[#1d242a] p-2 text-lg font-semibold text-white"

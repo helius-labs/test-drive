@@ -7,17 +7,26 @@
     import Response from "../components/Response.svelte";
 </script>
 
-<div class=" h-full bg-white">
+<div class="h-full bg-white">
     <Header />
-    <RaceModal />
-    <RPCMenu />
-    <div class="flex justify-center">
-        <!-- Need help from qudo on getting these two components to be the correct width -->
-        <!-- <div class="margin-auto m-2 w-2/3"> -->
-        <div class="margin-auto grid w-10/12 grid-cols-2 gap-3">
-            <Request />
-            <Response />
+
+    <div class="grid grid-cols-2 gap-3">
+        <div class="col-span-2">
+            <RaceModal />
+            <RPCMenu />
+        </div>
+
+        <div class="col-span-2 flex items-center justify-center">
+            <div class="grid w-3/4 grid-cols-2 gap-3">
+                <div class="col-span-1">
+                    <Request />
+                </div>
+                <div class="col-span-1">
+                    <Response />
+                </div>
+            </div>
         </div>
     </div>
+
     <Docs />
 </div>

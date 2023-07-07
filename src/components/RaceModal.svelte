@@ -28,8 +28,8 @@
 
     async function runSingleTest(rpcUrl, methodToTest, urlIndex) {
         let requestData = {
-            jsonrpc: "2.0",
             id: "test-drive",
+            jsonrpc: "2.0",
             method: methodToTest,
         };
 
@@ -174,10 +174,12 @@
                             {/each}
                         </select>
                     </div>
-                    <button
-                        class="btn mt-3 rounded bg-orange-500 py-2 px-4 text-white"
-                        on:click={runSpeedTest}>Start</button
-                    >
+                    <div class="flex justify-center">
+                        <button
+                            class="btn mt-3 items-center rounded bg-orange-500 py-2 px-4 text-white"
+                            on:click={runSpeedTest}>Start</button
+                        >
+                    </div>
                     <div class="mt-3 flex">
                         <div class="w-1/2 pr-2">
                             <h4
