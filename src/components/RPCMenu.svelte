@@ -19,7 +19,7 @@
     export let answer = "";
 </script>
 
-<div class="flex justify-center">
+<div class="my-2 flex justify-center">
     <form class="flex w-full justify-center">
         <div
             class="m-3 flex w-3/4 items-center justify-center rounded p-2 hover:shadow-lg "

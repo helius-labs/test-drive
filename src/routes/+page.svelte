@@ -6,7 +6,7 @@
     import Response from "../components/Response.svelte";
 </script>
 
-<div class="h-full bg-HeliusGray">
+<div class="min-h-screen bg-HeliusGray">
     <Header />
 
     <div class="grid grid-cols-2 gap-3">

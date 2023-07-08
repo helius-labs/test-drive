@@ -6,7 +6,7 @@
     import RaceModal from "../components/RaceModal.svelte";
 </script>
 
-<main class="h-screen">
+<main class="h-full">
     <nav
         class="sticky top-0 left-0 flex w-full items-center justify-between bg-[#242934] p-2"
     >
