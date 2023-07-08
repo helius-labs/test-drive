@@ -109,7 +109,7 @@
     }
 </script>
 
-<div class="m-1 flex items-center justify-center">
+<div class="flex items-center justify-center">
     <button
         class="btn bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-sm"
         on:click={open}
