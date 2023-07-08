@@ -52,7 +52,7 @@
         </div>
     </form>
 </div>
-<div class="alert m-auto my-1 h-1/4 w-1/4 justify-center text-center">
+<div class="alert m-auto h-1/6 w-1/4 justify-center text-center">
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

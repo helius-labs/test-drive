@@ -15,7 +15,7 @@
 </script>
 
 {#if selectedMethod}
-    <div class="my-5 min-h-full p-2 text-white">
+    <div class="my-1 min-h-full p-2 text-white">
         <div class="rounded  shadow-lg">
             <h1 class="rounded-t bg-[#242934] p-2 text-lg font-semibold">
                 JSON:
