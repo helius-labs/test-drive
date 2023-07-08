@@ -10,7 +10,14 @@
         responseTime,
     } from "$lib/stores/responseStore.js";
     import { methodParamMap } from "$lib/types/methodParamMap";
+    import { fly } from "svelte/transition";
+    let isVisible = false;
 
+    onMount(() => {
+        setTimeout(() => {
+            isVisible = true;
+        }, 100);
+    });
     let selectedMethod;
     let params = [];
     let rpcError = false;
@@ -135,7 +142,10 @@
 </script>
 
 {#if selectedMethod}
-    <div class="my-1 min-h-full p-2 text-white">
+    <div
+        class="my-1 min-h-full p-2 text-white"
+        transition:fly={{ y: 200, duration: 2200 }}
+    >
         <div class=" rounded shadow-lg">
             <h1 class="rounded-t bg-[#242934] p-2 text-lg font-semibold">
                 Parameters for {selectedMethod}

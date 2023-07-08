@@ -3,7 +3,7 @@
 </script>
 
 <nav
-    class="sticky top-0 left-0 flex w-full items-center justify-between bg-[#242934] p-2"
+    class="sticky top-0 left-0 flex w-full items-center justify-between bg-[#242934] p-1"
 >
     <div class="flex items-center">
         <img

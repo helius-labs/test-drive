@@ -2,7 +2,16 @@
     // @ts-nocheck
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
     import { methods } from "$lib/types/doc.js";
+    import { fly } from "svelte/transition";
+    import { onMount } from "svelte";
 
+    let isVisible = false;
+
+    onMount(() => {
+        setTimeout(() => {
+            isVisible = true;
+        }, 100);
+    });
     let methodData = null;
     let parameters = [];
     let results = [];
@@ -38,7 +47,10 @@
 </script>
 
 {#if selectedMethod}
-    <div class="drop-shadow-1xl flex justify-center">
+    <div
+        class="drop-shadow-1xl flex justify-center"
+        transition:fly={{ y: 200, duration: 2500 }}
+    >
         <div class="m-3 w-3/4  p-2">
             <div class="rounded  shadow-lg">
                 <h1

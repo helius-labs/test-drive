@@ -71,17 +71,27 @@
         successfulRequests2 = 0;
         failedRequests1 = 0;
         failedRequests2 = 0;
+
         if (rpcUrl1 === "" || rpcUrl2 === "") {
             urlError = true;
             return;
         }
         urlError = false;
-        for (let i = 0; i < 100; i++) {
-            totalTime1 += await runSingleTest(rpcUrl1, methodToTest, 1);
+
+        for (
+            let i = 0;
+            i < 100 &&
+            successfulRequests1 + failedRequests1 < 100 &&
+            successfulRequests2 + failedRequests2 < 100;
+            i++
+        ) {
+            const time1 = await runSingleTest(rpcUrl1, methodToTest, 1);
+            totalTime1 += time1;
             successfulRequests1++;
             progress1 = ((successfulRequests1 + errorCount1) / 100) * 100;
 
-            totalTime2 += await runSingleTest(rpcUrl2, methodToTest, 2);
+            const time2 = await runSingleTest(rpcUrl2, methodToTest, 2);
+            totalTime2 += time2;
             successfulRequests2++;
             progress2 = ((successfulRequests2 + errorCount2) / 100) * 100;
         }
@@ -192,12 +202,12 @@
                                 RPC URL 1
                             </h4>
 
-                            <div class="mt-2 h-4 rounded-full bg-gray-200">
-                                <div
-                                    class="h-full bg-orange-500 text-center text-xs text-white"
-                                    style="width: {progress1}%"
-                                />
-                            </div>
+                            <progress
+                                class="progress progress-error w-56"
+                                value={progress1}
+                                max="100"
+                            />
+
                             <div class="text-white-900 italic">
                                 Successful Requests: {successfulRequests1}
                             </div>
@@ -215,12 +225,11 @@
                             <h4 class="text-lg font-bold leading-6 text-white">
                                 RPC URL 2
                             </h4>
-                            <div class="mt-2 h-4 rounded-full bg-gray-200">
-                                <div
-                                    class="h-full bg-blue-500 text-center text-xs text-white"
-                                    style="width: {progress2}%"
-                                />
-                            </div>
+                            <progress
+                                class="progress progress-warning w-56"
+                                value={progress1}
+                                max="100"
+                            />
                             <div class="text-white-900 italic">
                                 Successful Requests: {successfulRequests2}
                             </div>
