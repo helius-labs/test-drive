@@ -1,4 +1,4 @@
 import { writable } from "svelte/store";
 
-export const currentMethod = writable("getAsset");
+export const currentMethod = writable("");
 export const currentRPC = writable("");

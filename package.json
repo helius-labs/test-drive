@@ -66,6 +66,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@sveltejs/kit": "^1.6.0"
+        "@sveltejs/kit": "^1.6.0",
+        "clipboard": "^2.0.8",
+        "highlight.js": "^10.7.2"
     }
 }
