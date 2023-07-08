@@ -11,13 +11,7 @@
     } from "$lib/stores/responseStore.js";
     import { methodParamMap } from "$lib/types/methodParamMap";
     import { fly } from "svelte/transition";
-    let isVisible = false;
 
-    onMount(() => {
-        setTimeout(() => {
-            isVisible = true;
-        }, 100);
-    });
     let selectedMethod;
     let params = [];
     let rpcError = false;

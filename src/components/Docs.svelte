@@ -5,13 +5,6 @@
     import { fly } from "svelte/transition";
     import { onMount } from "svelte";
 
-    let isVisible = false;
-
-    onMount(() => {
-        setTimeout(() => {
-            isVisible = true;
-        }, 100);
-    });
     let methodData = null;
     let parameters = [];
     let results = [];

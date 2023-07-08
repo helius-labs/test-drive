@@ -8,14 +8,7 @@
     } from "$lib/stores/responseStore.js";
     import { currentMethod } from "$lib/stores/currentMethodStore.js";
     import { fly } from "svelte/transition";
-    import { onMount } from "svelte";
-    let isVisible = false;
 
-    onMount(() => {
-        setTimeout(() => {
-            isVisible = true;
-        }, 100);
-    });
     let selectedMethod;
     $: {
         selectedMethod = $currentMethod;
