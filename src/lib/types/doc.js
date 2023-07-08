@@ -104,6 +104,275 @@ export const methods = {
             },
         },
     },
+    getAsset: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAsset",
+            "params": {
+              "id": "string"
+            }
+         }
+      '`,
+        description:
+            "This method will return valuable NFT metadata. This can define compressed or standard NFTs.",
+        parameters: {
+            optional: {},
+            required: {
+                id: {
+                    description: "The ID of the asset to retrieve.",
+                    type: "string",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Details",
+            fields: {
+                assets: {
+                    description: "Information regarding the asset.",
+                    fields: {
+                        items: {
+                            description: "An array of assets.",
+                            type: "array",
+                        },
+                        limit: {
+                            description:
+                                "The maximum number of assets requested.",
+                            type: "integer",
+                        },
+                        page: {
+                            description: "The current page of results.",
+                            type: "integer",
+                        },
+                        total: {
+                            description: "The total number of assets found.",
+                            type: "integer",
+                        },
+                    },
+                    type: "object",
+                },
+            },
+        },
+    },
+    getAssetProof: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetProof",
+            "params": {
+              "id": "string"
+            }
+          }
+      '`,
+        description:
+            "This is an essential method for transactions involving a compressed asset. For instance, when you need to transfer a compressed NFT you need to return the proof and tree id for the transaction to be successful.",
+        parameters: {
+            optional: {},
+            required: {
+                id: {
+                    description: "The ID of the asset to retrieve.",
+                    type: "string",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Proof Details",
+
+            fields: {
+                leaf: {
+                    description: "The leaf of the merkle tree.",
+                    type: "string",
+                },
+                nodeIndex: {
+                    description: "The node index",
+                    type: "integer",
+                },
+                proof: {
+                    description: "The proof of the asset.",
+                    type: "array[string]",
+                },
+                root: {
+                    description: "The root of the merkle tree.",
+                    type: "string",
+                },
+                treeId: {
+                    description: "The ID of the merkle tree.",
+                    type: "string",
+                },
+            },
+            type: "object",
+        },
+    },
+    getAssetsByAuthority: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetsByAuthority",
+            "params": {
+              "authorityAddress": "string",
+              "page": 1,
+              "limit": 100,
+              "sortBy": {
+                "sortBy": "created",
+                "sortDirection": "asc"
+              },
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This will return a list of assets for the given authority provided. This can define compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the assets.",
+                    type: "string",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted.",
+                    type: "string",
+                },
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
+                },
+            },
+            required: {
+                authorityAddress: {
+                    description:
+                        "The address of the owner whose assets to retrieve.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            assets: {
+                description: "Assets from Authority",
+                type: "object",
+                fields: {
+                    total: {
+                        description: "The total number of assets found.",
+                        type: "integer",
+                    },
+                    limit: {
+                        description: "The maximum number of assets requested.",
+                        type: "integer",
+                    },
+                    page: {
+                        description: "The current page of results.",
+                        type: "integer",
+                    },
+                    items: {
+                        description: "An array of assets",
+                        type: "array[object]",
+                    },
+                },
+            },
+            description: "Asset Proof Details",
+            type: "object",
+        },
+    },
+    getAssetsByOwner: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetsByOwner",
+            "params": {
+              "ownerAddress": "string",
+              "page": 1,
+              "limit": 100,
+              "sortBy": {
+                "sortBy": "created",
+                "sortDirection": "asc"
+              },
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This will return a list of assets for the given owner. This can define compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the assets.",
+                    type: "string",
+                },
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted.",
+                    type: "string",
+                },
+            },
+            required: {
+                ownerAddress: {
+                    description: "The owner address key.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Proof Details",
+
+            fields: {
+                leaf: {
+                    description: "The leaf of the merkle tree.",
+                    type: "string",
+                },
+                nodeIndex: {
+                    description: "The node index",
+                    type: "integer",
+                },
+                proof: {
+                    description: "The proof of the asset.",
+                    type: "array[string]",
+                },
+                root: {
+                    description: "The root of the merkle tree.",
+                    type: "string",
+                },
+                treeId: {
+                    description: "The ID of the merkle tree.",
+                    type: "string",
+                },
+            },
+            type: "object",
+        },
+    },
     getBalance: {
         codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
         {
@@ -1234,6 +1503,88 @@ export const methods = {
             },
         },
     },
+    getAssetsByCreator: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetsByCreator",
+            "params": {
+              "creatorAddress": "string",
+              "page": 1,
+              "limit": 100,
+              "sortBy": {
+                "sortBy": "created",
+                "sortDirection": "asc"
+              },
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This will return a list of assets for the given authority provided. This can define compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the assets.",
+                    type: "string",
+                },
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
+                },
+            },
+            required: {
+                creatorAddress: {
+                    description: "The creator address key to return assets.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Proof Details",
+            assets: {
+                description: "Assets from Authority",
+                type: "object",
+                fields: {
+                    total: {
+                        description: "The total number of assets found.",
+                        type: "integer",
+                    },
+                    limit: {
+                        description: "The maximum number of assets requested.",
+                        type: "integer",
+                    },
+                    page: {
+                        description: "The current page of results.",
+                        type: "integer",
+                    },
+                    items: {
+                        description: "An array of assets",
+                        type: "array[object]",
+                    },
+                },
+            },
+            type: "object",
+        },
+    },
     getLatestBlockhash: {
         codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
         {
@@ -1833,6 +2184,168 @@ export const methods = {
                     type: "u64",
                 },
             },
+        },
+    },
+    getSignaturesForAsset: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getSignaturesForAsset",
+            "params": {
+              "id": "string",
+              "page": 1,
+              "limit": 100,
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This method will return the transaction signatures for a given asset. This only supports compressed assets. ",
+        parameters: {
+            optional: {
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the signatures.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the signatures.",
+                    type: "string",
+                },
+                limit: {
+                    description: "The maximum number of signatures to return.",
+                    type: "integer",
+                },
+            },
+            required: {
+                id: {
+                    description: "The ID of the asset to retrieve.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return.",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Details",
+            fields: {
+                assets: {
+                    description: "Information regarding the asset.",
+                    fields: {
+                        items: {
+                            description: "An array of assets.",
+                            type: "array",
+                        },
+                        limit: {
+                            description:
+                                "The maximum number of assets requested.",
+                            type: "integer",
+                        },
+                        page: {
+                            description: "The current page of results.",
+                            type: "integer",
+                        },
+                        total: {
+                            description: "The total number of assets found.",
+                            type: "integer",
+                        },
+                    },
+                    type: "object",
+                },
+            },
+        },
+    },
+    getAssetsByGroup: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetsByGroup",
+            "params": {
+              "groupKey": "collection",
+              "groupValue": "string",
+              "page": 1,
+              "limit": 100,
+              "sortBy": {
+                "sortBy": "created",
+                "sortDirection": "asc"
+              },
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This will return the asset information for a specific group provided (i.e Collection). This can return compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the assets.",
+                    type: "string",
+                },
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
+                },
+            },
+            required: {
+                groupValue: {
+                    description: "The address value of the group.",
+                    type: "string",
+                },
+                groupKey: {
+                    description: "The group key for the asset search.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Proof Details",
+            assets: {
+                description: "Assets from Authority",
+                type: "object",
+                fields: {
+                    total: {
+                        description: "The total number of assets found.",
+                        type: "integer",
+                    },
+                    limit: {
+                        description: "The maximum number of assets requested.",
+                        type: "integer",
+                    },
+                    page: {
+                        description: "The current page of results.",
+                        type: "integer",
+                    },
+                    items: {
+                        description: "An array of assets",
+                        type: "array[object]",
+                    },
+                },
+            },
+            type: "object",
         },
     },
     getSignaturesStatuses: {
@@ -3075,6 +3588,166 @@ export const methods = {
                     description:
                         "Transaction Signature of the airdrop, as a base-58 encoded string",
                     type: "string",
+                },
+            },
+        },
+    },
+    searchAsset: {
+        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getSignaturesForAsset",
+            "params": {
+              "id": "string",
+              "page": 1,
+              "limit": 100,
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This method will return assets based on the custom search criteria passed in. This can define compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the signatures.",
+                    type: "string",
+                },
+                authorityAddress: {
+                    description:
+                        "The criteria for authority address set for the asset search.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the signatures.",
+                    type: "string",
+                },
+                burnt: {
+                    description:
+                        "The criteria for whether an asset is burnt or not.",
+                    type: "boolean",
+                },
+                compressed: {
+                    description:
+                        "The criteria in which an asset is compressed or not.",
+                    type: "boolean",
+                },
+                compressible: {
+                    description:
+                        "The criteria in which an asset is compressible or not.",
+                    type: "boolean",
+                },
+                creatorAddress: {
+                    description: "The criteria for creator in asset search.",
+                    type: "string",
+                },
+                creatorVerified: {
+                    description:
+                        "The criteria for whether a creator is verified or not.",
+                    type: "boolean",
+                },
+                delegate: {
+                    description:
+                        "The criteria for delegate set for the asset search.",
+                    type: "integer",
+                },
+                frozen: {
+                    description:
+                        "The criteria for whether an assets searched are frozen or not.",
+                    type: "boolean",
+                },
+                grouping: {
+                    description:
+                        "The address of the owner whose assets to retrieve.",
+                    type: "string",
+                },
+                interface: {
+                    description:
+                        "The criteria for interface set for the asset search.",
+                    type: "string",
+                },
+                limit: {
+                    description: "The maximum number of signatures to return.",
+                    type: "integer",
+                },
+                ownerAddress: {
+                    description:
+                        "The address of the owner whose assets to retrieve.",
+                    type: "string",
+                },
+                ownerType: {
+                    description:
+                        "The criteria for ownership model set for the asset search.",
+                    type: "integer",
+                },
+                royaltyAmount: {
+                    description:
+                        "The criteria for royalty amount set for the asset search.",
+                    type: "integer",
+                },
+                royaltyTarget: {
+                    description:
+                        "The criteria for royalty target set for the asset search.",
+                    type: "integer",
+                },
+                royaltyTargetType: {
+                    description:
+                        "The criteria for royalty target type set for the asset search.",
+                    type: "string",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted",
+                    type: "string",
+                },
+                supply: {
+                    description:
+                        "The criteria for supply set for the asset search.",
+                    type: "integer",
+                },
+                supplyMint: {
+                    description:
+                        "The criteria for supply mint set for the asset search.",
+                    type: "string",
+                },
+            },
+            required: {
+                page: {
+                    description: "The page of results to return.",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Details",
+            fields: {
+                assets: {
+                    description: "Information regarding the asset.",
+                    fields: {
+                        items: {
+                            description: "An array of assets.",
+                            type: "array",
+                        },
+                        limit: {
+                            description:
+                                "The maximum number of assets requested.",
+                            type: "integer",
+                        },
+                        page: {
+                            description: "The current page of results.",
+                            type: "integer",
+                        },
+                        total: {
+                            description: "The total number of assets found.",
+                            type: "integer",
+                        },
+                    },
+                    type: "object",
                 },
             },
         },
