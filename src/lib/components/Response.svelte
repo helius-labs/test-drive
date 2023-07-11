@@ -21,7 +21,6 @@
     import formatHighlight from "json-format-highlight";
     import { fly } from "svelte/transition";
 
-
     function copyToClipboard(text) {
         navigator.clipboard
             .writeText(text)
@@ -45,11 +44,14 @@
         data = $responseStore;
     }
 
-    $: metadataHTML = formatHighlight(JSON.stringify(data || {}, null, 2).trimStart(), {
-        keyColor: "#a5a3a3",
-        numberColor: "#e8a034",
-        stringColor: "#24ae67",
-    });
+    $: metadataHTML = formatHighlight(
+        JSON.stringify(data || {}, null, 2).trim(),
+        {
+            keyColor: "#a5a3a3",
+            numberColor: "#e8a034",
+            stringColor: "#24ae67",
+        }
+    );
 </script>
 
 {#if selectedMethod && responseStatus == "true"}
@@ -65,11 +67,11 @@
             </div>
             {#if $responseStore !== ""}
                 <div
-                    class="relative mt-2 flex max-h-96 flex-col overflow-y-auto rounded-lg bg-black p-4 text-left text-white"
+                    class="relative mt-2 flex max-h-96 flex-col overflow-y-auto rounded-lg bg-black p-4 text-white"
                 >
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <div
-                        class="clipboard-icon absolute top-2 right-2 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-gray-800 transition duration-300"
+                        class="clipboard-icon absolute top-2 right-2 flex h-6 w-6 cursor-pointer rounded-full bg-gray-800 transition duration-300"
                         on:click={handleCopy}
                     >
                         <svg
@@ -92,13 +94,13 @@
                             <path d="M5 15V5H9M19 15V5H9" />
                         </svg>
                     </div>
-                    <pre>
-              <code
-                            class="code bordered text-xs"
-                            style="">
-                {@html metadataHTML}
-              </code>
-            </pre>
+                    <div>
+                        <pre>
+                    <code class="code bordered whitespace-pre-line text-xs">
+                        {@html metadataHTML}
+                    </code>
+                </pre>
+                    </div>
                 </div>
             {/if}
         </div>
@@ -112,7 +114,7 @@
         <div
             class="min-h-100 rounded-xl border border-zinc-900 border-opacity-80 p-4 opacity-50 shadow-lg"
         >
-            <div class="flex items-center justify-between">
+            <div class="flex justify-between">
                 <h1 class="rounded-t p-2 text-xl font-semibold">Output</h1>
                 <div class="badge-outline badge mx-2 flex h-8 flex-row">
                     No response

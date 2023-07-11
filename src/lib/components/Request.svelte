@@ -15,7 +15,11 @@
 <script>
     // @ts-nocheck
     import { methods } from "$lib/types/all-methods.js";
-    import { currentMethod, currentRPC } from "$lib/stores/current-method.js";
+    import {
+        currentMethod,
+        currentRPC,
+        noParams,
+    } from "$lib/stores/current-method.js";
     import { fly } from "svelte/transition";
     import capitalize from "$lib/utils/capitalize";
     import { updateParams } from "$lib/utils/params";

@@ -121,11 +121,19 @@
                                     <div class="flex items-center">
                                         <div class="h-full w-1 bg-gray-500" />
                                         <li class="text-gray-300">
-                                            <strong>{name}</strong>: {description}
+                                            <strong class="text-gray-200"
+                                                >{name}</strong
+                                            >: {description}
                                             ({type})
                                         </li>
                                     </div>
                                 {/each}
+                                {#if parameters.length === 0}
+                                    <p class="text-gray-400">
+                                        This method has no custom input
+                                        parameters.
+                                    </p>
+                                {/if}
                             </div>
                         </div>
                     </div>
@@ -167,7 +175,10 @@
                                     <div class="flex items-center">
                                         <div class="h-full w-1 bg-gray-500" />
                                         <li class="pl-2 text-gray-300">
-                                            {name}: {description} ({type})
+                                            <strong class="text-gray-100">
+                                                {name}:</strong
+                                            >
+                                            {description} ({type})
                                         </li>
                                     </div>
                                 {/each}
