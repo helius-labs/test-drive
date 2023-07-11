@@ -31,9 +31,9 @@
     >
         <form class="flex w-full justify-center">
             <div
-                class="m-3 flex w-3/4 items-center justify-center rounded p-2 hover:shadow-lg "
+                class="m-3 w-full items-center justify-center rounded p-2 hover:shadow-lg md:flex md:w-3/4"
             >
-                <div class="m-1 w-2/6">
+                <div class="m-1 w-full md:w-2/6">
                     <select
                         class="select-bordered select select-md w-full max-w-lg border-gray-500 bg-transparent text-sm text-gray-300"
                         bind:value={$currentMethod}

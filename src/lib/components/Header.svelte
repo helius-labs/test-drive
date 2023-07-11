@@ -25,29 +25,31 @@
 </script>
 
 <div
-    class="banner-new alert m-auto h-10 w-full justify-center border-none p-6 text-center text-white"
+    class="banner-new alert m-auto h-auto w-full justify-center border-none p-6 text-center text-white md:h-10"
 >
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        class="h-6 w-6 shrink-0 stroke-info"
-    >
-        <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-    </svg>
-    <span class="justify-center text-sm"
-        >Don't have an RPC? Get one for free, <a
-            class="underline"
-            href="https://dev.helius.xyz/dashboard/app"
-            target="_blank"
-            rel="noreferrer">here.</a
-        ></span
-    >
+    <div class="flex items-center justify-center">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="h-6 w-6 shrink-0 stroke-info"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+        </svg>
+        <span class="justify-center text-sm">
+            Don't have an RPC? Get one for free, <a
+                class="underline"
+                href="https://dev.helius.xyz/dashboard/app"
+                target="_blank"
+                rel="noreferrer">here.</a
+            >
+        </span>
+    </div>
 </div>
 
 <div class="header-new flex justify-center">

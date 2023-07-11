@@ -1,6 +1,7 @@
 <script>
     // @ts-nocheck
     import { raceMethods } from "$lib/types/race-methods.js";
+    import { raceRPC } from "$lib/utils/rpc";
 
     let isOpen = false;
     let rpcUrl1 = "";
@@ -46,19 +47,6 @@
         const endTime = performance.now();
 
         return endTime - startTime; // returns time taken for the RPC call
-    }
-
-    async function raceRPC(requestData, rpcUrl) {
-        const response = await fetch(rpcUrl, {
-            body: JSON.stringify(requestData),
-            headers: {
-                "Content-Type": "application/json",
-            },
-            method: "POST",
-        });
-        const data = await response.json();
-
-        return response; // return response instead of result
     }
 
     async function runSpeedTest() {

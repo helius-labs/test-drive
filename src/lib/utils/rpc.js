@@ -3,6 +3,8 @@ import {
     responseStore,
     responseTime,
 } from "$lib/stores/response-store";
+
+// THIS IS FOR RPC REQUEST COMPONENT.
 /**
  * @param {any} requestData
  * @param {RequestInfo | URL} rpcUrl
@@ -23,4 +25,22 @@ export default async function callRPC(requestData, rpcUrl) {
     responseStore.set(JSON.stringify(data, null, 2));
     responseTime.set(duration.toFixed(2));
     return data.result;
+}
+
+// THIS IS IN RPC RACE FEATURE
+/**
+ * @param {any} requestData
+ * @param {RequestInfo | URL} rpcUrl
+ */
+export async function raceRPC(requestData, rpcUrl) {
+    const response = await fetch(rpcUrl, {
+        body: JSON.stringify(requestData),
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: "POST",
+    });
+    const data = await response.json();
+
+    return response;
 }

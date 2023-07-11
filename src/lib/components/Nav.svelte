@@ -6,24 +6,24 @@
 </style>
 
 <script>
+    // WILL BE IMPLEMENTED IN THE FUTURE
     // import RaceModal from "./RaceModal.svelte";
 </script>
 
 <nav
-    class="nav-new sticky top-0 left-0 flex h-16 w-full items-center justify-between p-1"
+    class="nav-new sticky top-0 left-0 flex h-16 w-full flex-wrap items-center justify-between p-1 md:flex-nowrap"
 >
-    <div class="flex items-center">
+    <div class="flex flex-1 items-center">
         <img
-            class="w-1/6"
+            class="w-1/2 sm:w-1/6 md:w-1/6"
             src="/logo.png"
             alt="Logo"
         />
     </div>
-    <div class="flex">
-        <!-- <RaceModal /> -->
-        <div class="mx-2 flex items-center justify-center">
+    <div class="ml-auto">
+        <div class="mr-2">
             <button
-                class="btn mx-5 bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-sm"
+                class="btn bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-sm"
                 on:click={() =>
                     window.open("https://dev.helius.xyz/dashboard/app")}
             >

@@ -44,7 +44,7 @@
 {#if selectedMethod}
     <div
         class="min-h-100 my-1 p-2 text-white"
-        transition:fly={{ y: 200, duration: 1500 }}
+        transition:fly={{ y: 200, duration: 1600 }}
     >
         <div
             class="rounded rounded-xl border-2 border-gray-500 border-opacity-80 p-4 shadow-lg"
