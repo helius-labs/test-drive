@@ -137,7 +137,7 @@
             </div>
             <div class="flex justify-end p-2 py-6">
                 <button
-                    class="w-full border-none bg-orange-400 hover:bg-orange-300 duration-200 rounded-md p-2 text-black tracking-widest font-medium text-sm xl:text-md shadow-md"
+                    class="xl:text-md w-full rounded-md border-none bg-[#E84125] p-2 text-sm font-medium tracking-widest text-black shadow-md duration-200 hover:bg-orange-300"
                     on:click={runMethod}
                 >
                     RUN

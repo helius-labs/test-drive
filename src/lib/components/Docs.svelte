@@ -8,6 +8,19 @@
         height: 1.5rem;
         color: white;
     }
+
+    .dropdown-arrow {
+        position: absolute;
+        top: 50%;
+        right: 0.75rem;
+        transform: translateY(-50%);
+    }
+
+    .dropdown-arrow svg {
+        width: 1rem;
+        height: 1rem;
+        fill: gray;
+    }
 </style>
 
 <script>
@@ -82,10 +95,23 @@
                                 id="parameters-checkbox"
                                 class="collapse-toggle"
                             />
-                            <div class="collapse-title text-xl font-bold">
+                            <div
+                                class="collapse-title relative text-xl font-bold"
+                            >
                                 <label for="parameters-checkbox"
                                     >Parameters</label
                                 >
+                                <div class="dropdown-arrow">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M12 15l-6-6h12l-6 6z"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
+                                </div>
                             </div>
                             <div class="collapse-content">
                                 {#each parameters as { name, description, type }}
@@ -109,8 +135,21 @@
                                 id="result-checkbox"
                                 class="collapse-toggle"
                             />
-                            <div class="collapse-title text-xl font-bold">
+                            <div
+                                class="collapse-title relative text-xl font-bold"
+                            >
                                 <label for="result-checkbox">Result</label>
+                                <div class="dropdown-arrow">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M12 15l-6-6h12l-6 6z"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
+                                </div>
                             </div>
                             <div class="collapse-content">
                                 <div class="flex items-center">
@@ -144,10 +183,21 @@
                             class="collapse-toggle"
                         />
                         <div
-                            class="collapse-title text-xl font-bold text-white"
+                            class="collapse-title relative text-xl font-bold text-white"
                         >
                             <label for="code-sample-checkbox">Code Sample</label
                             >
+                            <div class="dropdown-arrow">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 15l-6-6h12l-6 6z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                            </div>
                         </div>
                         <div class="collapse-content">
                             <div

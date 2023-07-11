@@ -6,7 +6,7 @@
     import Response from "$lib/components/Response.svelte";
 </script>
 
-<div class="h-full overflow-y-hidden bg-black">
+<div class="min-h-screen overflow-x-hidden overflow-y-hidden bg-black">
     <Header />
 
     <div class="grid grid-cols-1 gap-3 md:grid-cols-2">

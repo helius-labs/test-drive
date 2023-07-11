@@ -59,11 +59,13 @@
             transition:fade={{ duration: 2500 }}
         >
             <h1
-                class="mb-10 text-center text-7xl font-extrabold text-orange-400 tracking-wider"
+                class="mb-10 text-center text-7xl font-extrabold tracking-wider text-[#E84125]"
             >
                 go faster
             </h1>
-            <h2 class="-mt-4 tracking-widest">{"Use Test Drive to race your RPCs.".toUpperCase()}</h2>
+            <h2 class="-mt-4 tracking-widest">
+                {"Use Test Drive to race your RPCs.".toUpperCase()}
+            </h2>
             <!-- 
             <div class="flex w-screen justify-center">
                 <video
