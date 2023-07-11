@@ -1,6 +1,6 @@
 <script>
     // @ts-nocheck
-    import { raceMethods } from "$lib/types/raceMethods.js";
+    import { raceMethods } from "$lib/types/race-methods.js";
 
     let isOpen = false;
     let rpcUrl1 = "";
@@ -227,7 +227,7 @@
                             </h4>
                             <progress
                                 class="progress progress-warning w-56"
-                                value={progress1}
+                                value={progress2}
                                 max="100"
                             />
                             <div class="text-white-900 italic">

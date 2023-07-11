@@ -1,9 +1,8 @@
 <script>
     // @ts-nocheck
-    import { currentMethod } from "$lib/stores/currentMethodStore.js";
+    import { currentMethod } from "$lib/stores/current-method.js";
     import { methods } from "$lib/types/doc.js";
     import { fly } from "svelte/transition";
-    import { onMount } from "svelte";
 
     let methodData = null;
     let parameters = [];
@@ -42,42 +41,37 @@
 {#if selectedMethod}
     <div
         class="drop-shadow-1xl flex justify-center"
-        transition:fly={{ y: 200, duration: 2500 }}
+        transition:fly={{ y: 200, duration: 1600 }}
     >
-        <div class="m-3 w-3/4  p-2">
+        <div
+            class="m-3 w-3/4 rounded-xl border-2 border-gray-500 border-opacity-80 p-4"
+        >
             <div class="rounded  shadow-lg">
-                <h1
-                    class="rounded-t bg-[#242934] p-2 text-lg font-semibold text-white"
-                >
-                    {$currentMethod} Documentation:
-                </h1>
-                <div class="flex text-black">
+                <div class="flex text-white">
                     <div class="w-1/2">
                         <div class="m-2">
-                            <h1 class="font-semibold underline">Parameters:</h1>
+                            <h1 class="my-2 text-xl font-bold">Parameters</h1>
                             {#each parameters as { name, description, type }}
-                                <p>
-                                    <strong>{name}</strong>: {description} ({type})
-                                </p>
+                                <ul class="text-gray-300">
+                                    {name}: {description} ({type})
+                                </ul>
                             {/each}
                         </div>
-                        <div class="m-2 ">
-                            <h1 class="font-semibold underline">
-                                Code Sample:
-                            </h1>
-                            <div class="mockup-code m-2 text-white">
+                        <div class="m-2">
+                            <h1 class="my-2 text-xl font-bold">Code Sample</h1>
+                            <div class="mockup-code m-2 text-sm text-white">
                                 <pre><code>{methodData?.codeExample}</code
                                     ></pre>
                             </div>
                         </div>
                     </div>
                     <div class="m-2 ">
-                        <h1 class="font-semibold underline">Result:</h1>
+                        <h1 class="my-2 my-2 text-xl font-bold">Result</h1>
                         <p>{methodData?.result.description}</p>
                         {#each results as { name, description, type }}
-                            <p>
-                                <strong>{name}</strong>: {description} ({type})
-                            </p>
+                            <ul class="text-gray-300">
+                                {name}: {description} ({type})
+                            </ul>
                         {/each}
                     </div>
                 </div>

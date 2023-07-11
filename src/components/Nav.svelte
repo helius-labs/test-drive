@@ -1,22 +1,29 @@
+<style>
+    .nav-new {
+        background-color: rgba(27, 27, 27, 0.26);
+        backdrop-filter: blur(10px);
+    }
+</style>
+
 <script>
-    import RaceModal from "./RaceModal.svelte";
+    // import RaceModal from "./RaceModal.svelte";
 </script>
 
 <nav
-    class="sticky top-0 left-0 flex w-full items-center justify-between bg-[#242934] p-1"
+    class="nav-new sticky top-0 left-0 flex h-16 w-full items-center justify-between p-1"
 >
     <div class="flex items-center">
         <img
-            class="w-100 mx-2 mr-2 h-20"
+            class="w-1/6"
             src="/logo.png"
             alt="Logo"
         />
     </div>
     <div class="flex">
-        <RaceModal />
-        <div class="mx-4 flex items-center justify-center">
+        <!-- <RaceModal /> -->
+        <div class="mx-2 flex items-center justify-center">
             <button
-                class="btn bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-sm"
+                class="btn mx-5 bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-sm"
                 on:click={() =>
                     window.open("https://dev.helius.xyz/dashboard/app")}
             >

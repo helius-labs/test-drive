@@ -1,12 +1,10 @@
 <script>
     // @ts-nocheck
-    import { methods } from "$lib/types/allMethods.js";
-    import {
-        currentMethod,
-        currentRPC,
-    } from "$lib/stores/currentMethodStore.js";
+    import { methods } from "$lib/types/all-methods.js";
+    import { currentMethod, currentRPC } from "$lib/stores/current-method.js";
     import { fly } from "svelte/transition";
     import { onMount } from "svelte";
+    import { responseStore } from "$lib/stores/response-store";
 
     let questions = Object.keys(methods).map((method, index) => {
         return { id: index + 1, text: method };
@@ -15,7 +13,6 @@
     $: {
         rpcUrlValue = answer;
         currentRPC.set(rpcUrlValue);
-        console.log(rpcUrlValue);
     }
 
     export let answer = "";
@@ -31,15 +28,15 @@
 {#if isVisible}
     <div
         class="my-2 flex justify-center"
-        transition:fly={{ y: 200, duration: 2000 }}
+        transition:fly={{ y: 200, duration: 1800 }}
     >
         <form class="flex w-full justify-center">
             <div
                 class="m-3 flex w-3/4 items-center justify-center rounded p-2 hover:shadow-lg "
             >
-                <div class="m-1 w-2/5">
+                <div class="m-1 w-2/6">
                     <select
-                        class="select-error select select-md w-full max-w-lg bg-HeliusGray text-sm text-black"
+                        class="select-bordered select select-md w-full max-w-lg border-gray-500 bg-transparent text-sm text-gray-300"
                         bind:value={$currentMethod}
                     >
                         <option
@@ -59,37 +56,10 @@
                         type="text"
                         bind:value={answer}
                         placeholder="Drop a Solana endpoint here"
-                        class="input-bordered input-error input w-full bg-HeliusGray text-black"
+                        class="input-bordered input input w-full border-gray-500 bg-transparent text-gray-300"
                     />
                 </div>
             </div>
         </form>
-    </div>
-    <div
-        class="alert m-auto h-1/6 w-1/4 justify-center text-center"
-        transition:fly={{ y: 200, duration: 2200 }}
-    >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="h-6 w-6 shrink-0 stroke-info"
-            ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            /></svg
-        >
-        <span class="justify-center text-sm"
-            >Don't have an RPC? Get one for free <a
-                class="underline"
-                href="https://dev.helius.xyz/dashboard/app"
-                target="_blank"
-                rel="noreferrer"
-            >
-                here
-            </a></span
-        >
     </div>
 {/if}

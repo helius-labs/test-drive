@@ -1,17 +1,18 @@
 <script>
     // @ts-nocheck
-    import { methods } from "$lib/types/allMethods.js";
-    import { currentMethod } from "$lib/stores/currentMethodStore.js";
+    import { methods } from "$lib/types/all-methods.js";
+    import { currentMethod } from "$lib/stores/current-method.js";
     import { onMount } from "svelte";
-    import { currentRPC } from "$lib/stores/currentMethodStore.js";
+    import { currentRPC } from "$lib/stores/current-method.js";
     import {
-        responseStatus,
+        isResponse,
         responseStore,
         responseTime,
-    } from "$lib/stores/responseStore.js";
-    import { methodParamMap } from "$lib/types/methodParamMap";
+    } from "$lib/stores/response-store.js";
+    import { methodParamMap } from "$lib/types/method-params.js";
     import { fly } from "svelte/transition";
 
+    let responseStatus;
     let selectedMethod;
     let params = [];
     let rpcError = false;
@@ -128,7 +129,7 @@
         const endTime = performance.now();
         const duration = endTime - startTime;
         console.log(data);
-        responseStatus.set(response.status);
+        isResponse.set("true");
         responseStore.set(JSON.stringify(data, null, 2));
         responseTime.set(duration.toFixed(2));
         return data.result;
@@ -137,53 +138,62 @@
 
 {#if selectedMethod}
     <div
-        class="my-1 min-h-full p-2 text-white"
-        transition:fly={{ y: 200, duration: 2200 }}
+        class="min-h-100 my-1 p-2 text-white"
+        transition:fly={{ y: 200, duration: 1500 }}
     >
-        <div class=" rounded shadow-lg">
-            <h1 class="rounded-t bg-[#242934] p-2 text-lg font-semibold">
-                Parameters for {selectedMethod}
+        <div
+            class="rounded rounded-xl border-2 border-gray-500 border-opacity-80 p-4 shadow-lg"
+        >
+            <h1 class="sp-2 mb-2 rounded-t text-xl font-semibold">
+                Parameters
             </h1>
             <div class="max-h-96 overflow-y-auto">
-                <table class="w-full overflow-y-scroll ">
+                <table class="w-full overflow-y-scroll">
                     <thead>
                         <!-- header row -->
                     </thead>
                     <tbody class="text-black">
                         {#each params as param}
-                            <tr class="">
-                                <td class="p-1">
-                                    <div class="flex flex-col items-center">
-                                        <h1 class="text-base font-semibold">
+                            <tr class="border-gray-500">
+                                <td class="flex flex-row p-1">
+                                    <div class="flex flex-row items-center">
+                                        <h1
+                                            class="mx-2 text-base font-semibold text-white"
+                                        >
                                             {param.name}
                                         </h1>
-                                        <h1
-                                            class="text-xs font-semibold italic text-red-600"
+                                        <div
+                                            class="badge-outline badge badge mx-2 p-2 text-gray-300"
                                         >
                                             {typeof param.value}
-                                        </h1>
+                                        </div>
+
                                         {#if param.isOptional}
-                                            <h1
-                                                class="text-xs font-semibold italic text-black"
+                                            <div
+                                                class="badge-outline badge badge mx-2 p-2 text-gray-300"
                                             >
-                                                Optional
-                                            </h1>
+                                                <h1
+                                                    class="text-xs font-semibold italic text-gray-400"
+                                                >
+                                                    Optional
+                                                </h1>
+                                            </div>
                                         {/if}
                                     </div>
                                 </td>
-                                <td class="p-1">
-                                    <div class="m-1">
+                                <td class="flex w-full flex-row p-1">
+                                    <div class="m-1 w-full">
                                         {#if param.type === "number"}
                                             <input
                                                 type="number"
                                                 bind:value={param.value}
                                                 placeholder="input here"
-                                                class="input-bordered input-error input w-full max-w-md bg-HeliusGray"
+                                                class="input-bordered input w-full max-w-md border-gray-500 bg-transparent text-white"
                                             />
                                         {:else if param.type === "boolean"}
                                             <select
                                                 bind:value={param.value}
-                                                class="bg-RequestInputBG w-full rounded p-2"
+                                                class="input-bordered input w-full rounded border-gray-500 bg-transparent p-2 text-white"
                                             >
                                                 <option value={true}
                                                     >True</option
@@ -197,7 +207,7 @@
                                                 type="text"
                                                 bind:value={param.value}
                                                 placeholder="input here"
-                                                class="input-bordered input-error input w-full max-w-md bg-HeliusGray"
+                                                class="input-bordered input w-full max-w-md border-gray-500 bg-transparent text-white"
                                             />
                                         {/if}
                                     </div>
@@ -210,7 +220,7 @@
             </div>
             <div class="flex justify-end  p-2">
                 <button
-                    class="btn btn w-20 border-none bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-md"
+                    class="btn btn w-full border-none bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-md"
                     on:click={handleRun}
                 >
                     Run
