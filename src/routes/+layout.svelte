@@ -6,7 +6,7 @@
     import Nav from "$lib/components/Nav.svelte";
 </script>
 
-<main class="h-full overflow-hidden">
+<main class="h-full overflow-x-hidden overflow-y-scroll">
     <Nav />
     <slot />
 </main>

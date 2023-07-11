@@ -35,7 +35,7 @@
             >
                 <div class="m-1 w-full md:w-2/6">
                     <select
-                        class="select-bordered select select-md w-full max-w-lg border-gray-500 bg-transparent text-sm text-gray-300"
+                        class="select-bordered select select-md w-full max-w-lg border-zinc-900 bg-zinc-900 text-sm text-gray-300"
                         bind:value={$currentMethod}
                     >
                         <option
@@ -55,7 +55,7 @@
                         type="text"
                         bind:value={answer}
                         placeholder="Drop a Solana endpoint here"
-                        class="input-bordered input input w-full border-gray-500 bg-transparent text-gray-300"
+                        class="input-bordered input input w-full border-zinc-900 bg-transparent text-gray-300"
                     />
                 </div>
             </div>

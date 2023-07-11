@@ -46,7 +46,7 @@
         transition:fly={{ y: 200, duration: 1600 }}
     >
         <div
-            class="rounded rounded-xl border-2 border-gray-500 border-opacity-50 p-4 shadow-lg"
+            class="rounded rounded-xl border-2 border-zinc-900 border-opacity-50 p-4 shadow-lg"
         >
             <h1 class="sp-2 mb-2 rounded-t text-xl font-semibold">
                 Parameters
@@ -58,7 +58,7 @@
                     </thead>
                     <tbody class="text-black">
                         {#each params as param}
-                            <tr class="border-gray-500">
+                            <tr class="border-zinc-900">
                                 <td
                                     class="flex items-center justify-between p-1"
                                 >
@@ -105,12 +105,12 @@
                                                 type="number"
                                                 bind:value={param.value}
                                                 placeholder="input here"
-                                                class="input-bordered input min-w-full max-w-md border-gray-500 bg-transparent text-white"
+                                                class="input-bordered input min-w-full max-w-md border-zinc-900 bg-transparent text-white"
                                             />
                                         {:else if param.type === "boolean"}
                                             <select
                                                 bind:value={param.value}
-                                                class="input-bordered input min-w-full rounded border-gray-500 bg-transparent p-2 text-white"
+                                                class="input-bordered input min-w-full rounded border-zinc-900 bg-transparent p-2 text-white"
                                             >
                                                 <option value={true}
                                                     >True</option
@@ -124,7 +124,7 @@
                                                 type="text"
                                                 bind:value={param.value}
                                                 placeholder="input here"
-                                                class="input-bordered input input-md min-w-full max-w-md border-gray-500 bg-transparent text-white"
+                                                class="input-bordered input input-md min-w-full max-w-md border-zinc-900 bg-transparent text-white"
                                             />
                                         {/if}
                                     </div>
@@ -135,12 +135,12 @@
                 </table>
                 <tfoot><tr /></tfoot>
             </div>
-            <div class="flex justify-end  p-2">
+            <div class="flex justify-end p-2 py-6">
                 <button
-                    class="btn btn w-full border-none bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-md"
+                    class="w-full border-none bg-orange-400 hover:bg-orange-300 duration-200 rounded-md p-2 text-black tracking-widest font-medium text-sm xl:text-md shadow-md"
                     on:click={runMethod}
                 >
-                    Run
+                    RUN
                 </button>
             </div>
         </div>

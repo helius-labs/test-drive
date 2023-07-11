@@ -69,13 +69,13 @@
 {#if selectedMethod}
     <div class="drop-shadow-1xl flex justify-center">
         <div
-            class="m-3 w-full rounded-xl border-2 border-gray-500 border-opacity-50 p-4 md:w-3/4"
+            class="m-3 w-full rounded-xl border border-zinc-800 border-opacity-50 p-4 md:w-3/4"
         >
             <div class="rounded shadow-lg">
                 <div class="flex flex-col text-white md:flex-row">
                     <div class="mx-2 w-full md:w-1/2">
                         <div
-                            class="collapse my-2 rounded-xl border-2 border-gray-500 border-opacity-50 bg-transparent"
+                            class="collapse my-2 rounded-xl border border-zinc-800 border-opacity-50 bg-transparent"
                         >
                             <input
                                 type="checkbox"
@@ -102,7 +102,7 @@
                     </div>
                     <div class="mx-2 w-full md:w-1/2">
                         <div
-                            class="collapse my-2 rounded-xl border-2  border-gray-500 border-opacity-50 bg-transparent"
+                            class="collapse my-2 rounded-xl border  border-zinc-800 border-opacity-50 bg-transparent"
                         >
                             <input
                                 type="checkbox"
@@ -136,7 +136,7 @@
                 </div>
                 <div class="md:2/5 mx-2 w-full">
                     <div
-                        class="collapse my-2 rounded-xl border-2 border-gray-500 border-opacity-50 bg-transparent"
+                        class="collapse my-2 rounded-xl border border-zinc-800 border-opacity-50 bg-transparent"
                     >
                         <input
                             type="checkbox"

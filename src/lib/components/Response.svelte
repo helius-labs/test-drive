@@ -47,7 +47,7 @@
 {#if selectedMethod && responseStatus == "true"}
     <div class="max-h-100 p-2 text-white">
         <div
-            class="max-h-100 rounded-xl border-2 border-gray-500 border-opacity-50 p-4 shadow-lg"
+            class="max-h-100 rounded-xl border border-zinc-900 border-opacity-50 p-4 shadow-lg"
         >
             <div class="flex items-center justify-between">
                 <h1 class="rounded-t p-2 text-xl font-semibold">Response</h1>
@@ -106,7 +106,7 @@
         transition:fly={{ y: 200, duration: 1500 }}
     >
         <div
-            class="min-h-100 rounded-xl border-2 border-gray-500 border-opacity-80 p-4 opacity-50 shadow-lg"
+            class="min-h-100 rounded-xl border border-zinc-900 border-opacity-80 p-4 opacity-50 shadow-lg"
         >
             <div class="flex items-center justify-between">
                 <h1 class="rounded-t p-2 text-xl font-semibold">Response</h1>
