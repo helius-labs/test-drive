@@ -80,7 +80,10 @@
 </script>
 
 {#if selectedMethod}
-    <div class="drop-shadow-1xl flex justify-center">
+    <div
+        class="drop-shadow-1xl flex justify-center"
+        transition:fly={{ y: 200, duration: 1600 }}
+    >
         <div
             class="m-3 w-full rounded-xl border border-zinc-800 border-opacity-50 p-4 md:w-3/4"
         >
@@ -99,7 +102,7 @@
                                 class="collapse-title relative text-xl font-bold"
                             >
                                 <label for="parameters-checkbox"
-                                    >Parameters</label
+                                    >Request Schema</label
                                 >
                                 <div class="dropdown-arrow">
                                     <svg
@@ -113,7 +116,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="collapse-content">
+                            <div class="collapse-content opacity-80">
                                 {#each parameters as { name, description, type }}
                                     <div class="flex items-center">
                                         <div class="h-full w-1 bg-gray-500" />
@@ -138,7 +141,9 @@
                             <div
                                 class="collapse-title relative text-xl font-bold"
                             >
-                                <label for="result-checkbox">Result</label>
+                                <label for="result-checkbox"
+                                    >Response Schema</label
+                                >
                                 <div class="dropdown-arrow">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +156,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="collapse-content">
+                            <div class="collapse-content opacity-80">
                                 <div class="flex items-center">
                                     <div class="h-full w-1 bg-gray-500" />
                                     <p class="pl-2">
@@ -199,9 +204,9 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="collapse-content">
+                        <div class="collapse-content opacity-80">
                             <div
-                                class="mockup-code relative m-2 text-sm text-white"
+                                class="relative m-2 text-sm text-white"
                                 on:mouseenter={() => (isHovered = true)}
                                 on:mouseleave={() => (isHovered = false)}
                             >
@@ -210,36 +215,32 @@
                                     class="clipboard-icon absolute top-1 right-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-800 bg-opacity-20 transition duration-300"
                                     on:click={handleCopy}
                                 >
-                                    {#if isHovered}
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
-                                            <rect
-                                                x="9"
-                                                y="9"
-                                                width="13"
-                                                height="13"
-                                                rx="2"
-                                                ry="2"
-                                            />
-                                            <path d="M5 15V5H9M19 15V5H9" />
-                                        </svg>
-                                    {/if}
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <rect
+                                            x="9"
+                                            y="9"
+                                            width="13"
+                                            height="13"
+                                            rx="2"
+                                            ry="2"
+                                        />
+                                        <path d="M5 15V5H9M19 15V5H9" />
+                                    </svg>
                                 </div>
-                                <pre><code>{methodData?.codeExample}</code
+                                <pre><code class="code bordered text-xs"
+                                        >{methodData?.codeExample}</code
                                     ></pre>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="md:hidden">
-                    <div class="h-100 mt-2 border-t-2 border-gray-500" />
                 </div>
             </div>
         </div>

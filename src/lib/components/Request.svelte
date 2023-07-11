@@ -51,6 +51,9 @@
             <h1 class="sp-2 mb-2 rounded-t text-xl font-semibold">
                 Parameters
             </h1>
+            {#if params.length === 0}
+                <p class="text-gray-400">No custom parameters available.</p>
+            {/if}
             <div class="max-h-96 overflow-y-auto">
                 <table class="w-full overflow-y-scroll">
                     <thead>
@@ -58,7 +61,7 @@
                     </thead>
                     <tbody class="text-black">
                         {#each params as param}
-                            <tr class="border-zinc-900">
+                            <tr class="border-zinc-900 opacity-80">
                                 <td
                                     class="flex items-center justify-between p-1"
                                 >
@@ -137,7 +140,7 @@
             </div>
             <div class="flex justify-end p-2 py-6">
                 <button
-                    class="xl:text-md w-full rounded-md border-none bg-[#E84125] p-2 text-sm font-medium tracking-widest text-black shadow-md duration-200 hover:bg-orange-300"
+                    class="xl:text-md btn-sm btn w-full rounded-md border-none bg-[#E84125] p-2 text-sm font-medium tracking-widest text-black shadow-md duration-200 hover:bg-orange-300"
                     on:click={runMethod}
                 >
                     RUN
@@ -145,20 +148,22 @@
             </div>
         </div>
         {#if rpcError}
-            <div class="alert alert-error my-4 justify-center">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 shrink-0 stroke-current"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    /></svg
-                >
-                <span>Please submit a RPC URL above.</span>
+            <div class="toast-center toast z-50 w-1/4 text-center">
+                <div class="alert alert-error justify-center">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 shrink-0 stroke-current"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        /></svg
+                    >
+                    <span>Please submit a Solana RPC above.</span>
+                </div>
             </div>
         {/if}
     </div>

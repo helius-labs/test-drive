@@ -66,9 +66,11 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@solana/web3.js": "1.77",
         "@sveltejs/kit": "^1.6.0",
         "clipboard": "^2.0.8",
         "highlight.js": "^10.7.2",
+        "json-format-highlight": "^1.0.4",
         "svelte-clipboard": "^1.0.0"
     }
 }

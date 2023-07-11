@@ -11,6 +11,13 @@
     let rpcUrlValue = "";
     $: {
         rpcUrlValue = answer;
+        if (!rpcUrlValue) {
+            currentRPC.set("https://api.mainnet-beta.solana.com");
+        }
+        // Check if the URL starts with "https://"
+        if (!rpcUrlValue.startsWith("https://") && rpcUrlValue !== "") {
+            rpcUrlValue = "https://" + rpcUrlValue;
+        }
         currentRPC.set(rpcUrlValue);
     }
 
@@ -54,7 +61,7 @@
                     <input
                         type="text"
                         bind:value={answer}
-                        placeholder="Drop a Solana endpoint here"
+                        placeholder="Drop a Solana RPC endpoint here"
                         class="input-bordered input input w-full border-zinc-900 bg-transparent text-gray-300"
                     />
                 </div>

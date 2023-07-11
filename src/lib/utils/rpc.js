@@ -22,7 +22,7 @@ export default async function callRPC(requestData, rpcUrl) {
     const endTime = performance.now();
     const duration = endTime - startTime;
     isResponse.set("true");
-    responseStore.set(JSON.stringify(data, null, 2));
+    responseStore.set(data);
     responseTime.set(duration.toFixed(2));
     return data.result;
 }
