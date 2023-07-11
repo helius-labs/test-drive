@@ -242,9 +242,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="md:hidden">
-                    <div class="h-100 mt-2 border-t-2 border-gray-500" />
-                </div>
             </div>
         </div>
     </div>
