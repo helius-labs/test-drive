@@ -3,7 +3,7 @@
 </style>
 
 <script>
-    import Nav from "../components/Nav.svelte";
+    import Nav from "$lib/components/Nav.svelte";
 </script>
 
 <main class="h-full overflow-hidden">

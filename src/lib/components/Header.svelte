@@ -61,7 +61,7 @@
             >
                 go faster
             </h1>
-            <h2>Use Test Drive to test your RPCs.</h2>
+            <h2 class="-mt-4">Use Test Drive to race your RPCs.</h2>
             <!-- 
             <div class="flex w-screen justify-center">
                 <video

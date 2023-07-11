@@ -49,8 +49,8 @@ export const methods = {
         },
         optionalParams: {
             limit: 1000,
-            before: null,
-            after: null,
+            before: "",
+            after: "",
         },
         paramsFormat: "object",
     },

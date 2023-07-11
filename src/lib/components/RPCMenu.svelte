@@ -4,7 +4,6 @@
     import { currentMethod, currentRPC } from "$lib/stores/current-method.js";
     import { fly } from "svelte/transition";
     import { onMount } from "svelte";
-    import { responseStore } from "$lib/stores/response-store";
 
     let questions = Object.keys(methods).map((method, index) => {
         return { id: index + 1, text: method };
