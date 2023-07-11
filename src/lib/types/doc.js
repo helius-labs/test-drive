@@ -287,6 +287,7 @@ export const methods = {
                 },
             },
             description: "Asset Authority Details",
+
             type: "object",
         },
     },
@@ -347,6 +348,7 @@ export const methods = {
 
         result: {
             description: "Asset Owner Details",
+
 
             type: "object",
         },
@@ -1538,6 +1540,7 @@ export const methods = {
 
         result: {
             description: "Asset Creator Details",
+
             assets: {
                 description: "Assets from Authority",
                 type: "object",
@@ -2212,6 +2215,7 @@ export const methods = {
 
         result: {
             description: "Asset Signature Details",
+
             fields: {
                 assets: {
                     description: "Information regarding the asset.",
@@ -2301,6 +2305,7 @@ export const methods = {
 
         result: {
             description: "Asset Group Details",
+
             assets: {
                 description: "Assets from Authority",
                 type: "object",
