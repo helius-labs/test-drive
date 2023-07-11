@@ -21,7 +21,6 @@
     import formatHighlight from "json-format-highlight";
     import { fly } from "svelte/transition";
 
-    let isHovered = false;
 
     function copyToClipboard(text) {
         navigator.clipboard
@@ -46,7 +45,7 @@
         data = $responseStore;
     }
 
-    $: metadataHTML = formatHighlight(JSON.stringify(data || {}, null, 2), {
+    $: metadataHTML = formatHighlight(JSON.stringify(data || {}, null, 2).trimStart(), {
         keyColor: "#a5a3a3",
         numberColor: "#e8a034",
         stringColor: "#24ae67",
@@ -67,8 +66,6 @@
             {#if $responseStore !== ""}
                 <div
                     class="relative mt-2 flex max-h-96 flex-col overflow-y-auto rounded-lg bg-black p-4 text-left text-white"
-                    on:mouseenter={() => (isHovered = true)}
-                    on:mouseleave={() => (isHovered = false)}
                 >
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <div
