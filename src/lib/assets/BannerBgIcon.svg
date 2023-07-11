@@ -1,0 +1,17 @@
+<svg width="560" height="554" viewBox="0 0 560 554" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_f_11_1228)">
+<ellipse cx="280.273" cy="276.809" rx="98.3227" ry="95.8089" fill="#E84125" fill-opacity="0.6"/>
+</g>
+<ellipse cx="280.273" cy="312.44" rx="98.3227" ry="95.8089" fill="#E84125" fill-opacity="0.4"/>
+<ellipse cx="280.68" cy="312.44" rx="85.7276" ry="83.9317" fill="#E84125" fill-opacity="0.5"/>
+<ellipse cx="280.68" cy="312.44" rx="71.1011" ry="69.6792" fill="#E84125" fill-opacity="0.6"/>
+<ellipse cx="280.68" cy="312.44" rx="56.4746" ry="55.4266" fill="#E84125"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M314.319 328.964L294.82 276.809L267.259 350.529L247.69 298.188L232.004 340.145L227.049 327.485L225.266 332.04L207.873 285.519L178.048 365.295L168.057 338.57L150.432 385.712L127.427 324.317L56 514.945H198.855L193.069 499.505H228.225L224.08 488.42H290.032L280.426 463.874H344.598L316.466 529H475.507L458.235 489.014H519.923L433.365 310.857L405.793 367.607L395.986 344.904L390.682 357.184L363.89 285.519L353.494 313.324L348.53 298.188L334.913 339.71L322.854 302.939L314.319 328.964Z" fill="#EFEFEF"/>
+<defs>
+<filter id="filter0_f_11_1228" x="0.950531" y="0" width="558.645" height="553.618" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="90.5" result="effect1_foregroundBlur_11_1228"/>
+</filter>
+</defs>
+</svg>

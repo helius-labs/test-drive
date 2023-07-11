@@ -1,29 +1,29 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "jest": true,
-        "node": true
+    env: {
+        browser: true,
+        es6: true,
+        jest: true,
+        node: true,
     },
 
-    "extends": ["plugin:prettier/recommended", "plugin:svelte/recommended"],
+    extends: ["plugin:prettier/recommended", "plugin:svelte/recommended"],
 
-    "globals": {
-        "APP_NAME": "readonly",
-        "APP_VERSION": "readonly"
+    globals: {
+        APP_NAME: "readonly",
+        APP_VERSION: "readonly",
     },
-    "overrides": [
+    overrides: [
         {
-            "files": ["**/*.svelte"],
-            "processor": "svelte3/svelte3"
+            files: ["**/*.svelte"],
+            processor: "svelte3/svelte3",
         },
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 2019,
-        "sourceType": "module"
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        ecmaVersion: 2019,
+        sourceType: "module",
     },
-    "plugins": [
+    plugins: [
         "svelte3",
         "@typescript-eslint/eslint-plugin",
         "prettier",
@@ -33,10 +33,10 @@ module.exports = {
         "sort-keys-fix",
         "this",
         "no-unsanitized",
-        "simple-import-sort"
+        "simple-import-sort",
     ],
-    "rules": {
-        "indent": ["error", 4],
+    rules: {
+        indent: ["error", 4],
 
         "no-console": "error",
 
@@ -80,14 +80,14 @@ module.exports = {
         "prettier/prettier": [
             "error",
             {
-                "endOfLine": "auto",
+                endOfLine: "auto",
             },
         ],
     },
-    "settings": {
+    settings: {
         "svelte3/typescript": () => require("typescript"), // pass the TypeScript package to the Svelte plugin
         // OR
         "svelte3/typescript": true, // load TypeScript as peer dependency
         // ...
     },
-}
+};
