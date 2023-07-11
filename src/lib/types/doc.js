@@ -349,7 +349,6 @@ export const methods = {
         result: {
             description: "Asset Owner Details",
 
-
             type: "object",
         },
     },

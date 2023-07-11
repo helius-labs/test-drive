@@ -4,7 +4,7 @@
 </script>
 
 <nav
-    class="bg-black border-b border-zinc-900 sticky top-0 left-0 flex h-24 w-full flex-wrap items-center justify-between p-4 md:flex-nowrap"
+    class="sticky top-0 left-0 flex h-24 w-full flex-wrap items-center justify-between border-b border-zinc-900 bg-black p-4 md:flex-nowrap"
 >
     <div class="flex flex-1 items-center">
         <img
@@ -16,17 +16,20 @@
     <div class="ml-auto">
         <div class="mr-2">
             <button
-            class="flex items-center justify-center rounded-lg bg-orange-400 hover:bg-orange-300 duration-200 animate-fade px-4 xl:px-6 h-12 space-x-4"
-            on:click={() =>
+                class="animate-fade flex h-12 items-center justify-center space-x-4 rounded-lg bg-[#E84125] px-4 duration-200 hover:bg-orange-300 xl:px-6"
+                on:click={() =>
                     window.open("https://dev.helius.xyz/dashboard/app")}
             >
-            <img
-                class="w-6"
-                src="/HeliusDarkLogo.svg"
-                alt="Logo"
-            />
-            <span class='text-black tracking-widest font-medium text-sm xl:text-md '>LAUNCH PORTAL</span>
-        </button>
+                <img
+                    class="w-6"
+                    src="/HeliusDarkLogo.svg"
+                    alt="Logo"
+                />
+                <span
+                    class="xl:text-md text-sm font-medium tracking-widest text-black "
+                    >LAUNCH PORTAL</span
+                >
+            </button>
         </div>
     </div>
 </nav>
