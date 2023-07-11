@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { noParams } from "$lib/stores/current-method.js";
 import { methods } from "../types/all-methods.js";
 import { methodParamMap } from "../types/method-params.js";
 import callRPC from "./rpc.js";
@@ -9,6 +10,7 @@ import callRPC from "./rpc.js";
  * @param {any} currentRPC
  */
 export async function handleRun(selectedMethod, params, currentRPC) {
+    noParams.set(false);
     let rpcError = false;
     const rpcUrlValue = currentRPC;
     const methodData = methods[selectedMethod];
@@ -64,6 +66,7 @@ export async function handleRun(selectedMethod, params, currentRPC) {
     } else if (methodData.paramsFormat === "object") {
         requestData.params = requestParams;
     } else if (methodData.paramsFormat === "none") {
+        noParams.set(true);
         delete requestData.params;
     }
 

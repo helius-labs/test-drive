@@ -286,7 +286,7 @@ export const methods = {
                     },
                 },
             },
-            description: "Asset Proof Details",
+            description: "Asset Authority Details",
             type: "object",
         },
     },
@@ -346,30 +346,8 @@ export const methods = {
         },
 
         result: {
-            description: "Asset Proof Details",
+            description: "Asset Owner Details",
 
-            fields: {
-                leaf: {
-                    description: "The leaf of the merkle tree.",
-                    type: "string",
-                },
-                nodeIndex: {
-                    description: "The node index",
-                    type: "integer",
-                },
-                proof: {
-                    description: "The proof of the asset.",
-                    type: "array[string]",
-                },
-                root: {
-                    description: "The root of the merkle tree.",
-                    type: "string",
-                },
-                treeId: {
-                    description: "The ID of the merkle tree.",
-                    type: "string",
-                },
-            },
             type: "object",
         },
     },
@@ -1559,7 +1537,7 @@ export const methods = {
         },
 
         result: {
-            description: "Asset Proof Details",
+            description: "Asset Creator Details",
             assets: {
                 description: "Assets from Authority",
                 type: "object",
@@ -2233,7 +2211,7 @@ export const methods = {
         },
 
         result: {
-            description: "Asset Details",
+            description: "Asset Signature Details",
             fields: {
                 assets: {
                     description: "Information regarding the asset.",
@@ -2322,7 +2300,7 @@ export const methods = {
         },
 
         result: {
-            description: "Asset Proof Details",
+            description: "Asset Group Details",
             assets: {
                 description: "Assets from Authority",
                 type: "object",

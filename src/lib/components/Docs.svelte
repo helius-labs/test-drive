@@ -67,82 +67,125 @@
 </script>
 
 {#if selectedMethod}
-    <div
-        class="drop-shadow-1xl flex justify-center"
-        transition:fly={{ y: 200, duration: 1600 }}
-    >
+    <div class="drop-shadow-1xl flex justify-center">
         <div
-            class="m-3 w-full rounded-xl border-2 border-gray-500 border-opacity-80 p-4 md:w-3/4"
+            class="m-3 w-full rounded-xl border-2 border-gray-500 border-opacity-50 p-4 md:w-3/4"
         >
             <div class="rounded shadow-lg">
                 <div class="flex flex-col text-white md:flex-row">
                     <div class="mx-2 w-full md:w-1/2">
-                        <h1 class="my-2 text-xl font-bold">Parameters</h1>
-                        {#each parameters as { name, description, type }}
-                            <div class="flex items-center">
-                                <div class="h-full w-1 bg-gray-500" />
-                                <li class="text-gray-300">
-                                    <strong>{name}</strong>: {description} ({type})
-                                </li>
+                        <div
+                            class="collapse my-2 rounded-xl border-2 border-gray-500 border-opacity-50 bg-transparent"
+                        >
+                            <input
+                                type="checkbox"
+                                id="parameters-checkbox"
+                                class="collapse-toggle"
+                            />
+                            <div class="collapse-title text-xl font-bold">
+                                <label for="parameters-checkbox"
+                                    >Parameters</label
+                                >
                             </div>
-                        {/each}
+                            <div class="collapse-content">
+                                {#each parameters as { name, description, type }}
+                                    <div class="flex items-center">
+                                        <div class="h-full w-1 bg-gray-500" />
+                                        <li class="text-gray-300">
+                                            <strong>{name}</strong>: {description}
+                                            ({type})
+                                        </li>
+                                    </div>
+                                {/each}
+                            </div>
+                        </div>
                     </div>
                     <div class="mx-2 w-full md:w-1/2">
-                        <h1 class="my-2 text-xl font-bold">Result</h1>
-                        <div class="flex items-center">
-                            <div class="h-full w-1 bg-gray-500" />
-                            <p class="pl-2">{methodData?.result.description}</p>
-                        </div>
-                        {#each results as { name, description, type }}
-                            <div class="flex items-center">
-                                <div class="h-full w-1 bg-gray-500" />
-                                <li class="pl-2 text-gray-300">
-                                    {name}: {description} ({type})
-                                </li>
+                        <div
+                            class="collapse my-2 rounded-xl border-2  border-gray-500 border-opacity-50 bg-transparent"
+                        >
+                            <input
+                                type="checkbox"
+                                id="result-checkbox"
+                                class="collapse-toggle"
+                            />
+                            <div class="collapse-title text-xl font-bold">
+                                <label for="result-checkbox">Result</label>
                             </div>
-                        {/each}
+                            <div class="collapse-content">
+                                <div class="flex items-center">
+                                    <div class="h-full w-1 bg-gray-500" />
+                                    <p class="pl-2">
+                                        {methodData?.result.description}
+                                    </p>
+                                </div>
+                                {#each results as { name, description, type }}
+                                    <div class="flex items-center">
+                                        <div class="h-full w-1 bg-gray-500" />
+                                        <li class="pl-2 text-gray-300">
+                                            {name}: {description} ({type})
+                                        </li>
+                                    </div>
+                                {/each}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-2 h-full border-l-2 border-gray-500" />
                 </div>
-                <div class="relative mx-2 max-w-md">
-                    <h1 class="my-2 text-xl font-bold text-white">
-                        Code Sample
-                    </h1>
+                <div class="md:2/5 mx-2 w-full">
                     <div
-                        class="mockup-code relative m-2 text-sm text-white"
-                        on:mouseenter={() => (isHovered = true)}
-                        on:mouseleave={() => (isHovered = false)}
+                        class="collapse my-2 rounded-xl border-2 border-gray-500 border-opacity-50 bg-transparent"
                     >
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <input
+                            type="checkbox"
+                            id="code-sample-checkbox"
+                            class="collapse-toggle"
+                        />
                         <div
-                            class="clipboard-icon absolute top-1 right-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-800 bg-opacity-20 transition duration-300"
-                            on:click={handleCopy}
+                            class="collapse-title text-xl font-bold text-white"
                         >
-                            {#if isHovered}
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <rect
-                                        x="9"
-                                        y="9"
-                                        width="13"
-                                        height="13"
-                                        rx="2"
-                                        ry="2"
-                                    />
-                                    <path d="M5 15V5H9M19 15V5H9" />
-                                </svg>
-                            {/if}
+                            <label for="code-sample-checkbox">Code Sample</label
+                            >
                         </div>
-                        <pre><code>{methodData?.codeExample}</code></pre>
+                        <div class="collapse-content">
+                            <div
+                                class="mockup-code relative m-2 text-sm text-white"
+                                on:mouseenter={() => (isHovered = true)}
+                                on:mouseleave={() => (isHovered = false)}
+                            >
+                                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                                <div
+                                    class="clipboard-icon absolute top-1 right-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-800 bg-opacity-20 transition duration-300"
+                                    on:click={handleCopy}
+                                >
+                                    {#if isHovered}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <rect
+                                                x="9"
+                                                y="9"
+                                                width="13"
+                                                height="13"
+                                                rx="2"
+                                                ry="2"
+                                            />
+                                            <path d="M5 15V5H9M19 15V5H9" />
+                                        </svg>
+                                    {/if}
+                                </div>
+                                <pre><code>{methodData?.codeExample}</code
+                                    ></pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="md:hidden">

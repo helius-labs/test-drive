@@ -15,10 +15,9 @@
 <script>
     // @ts-nocheck
     import { methods } from "$lib/types/all-methods.js";
-    import { currentMethod } from "$lib/stores/current-method.js";
-    import { currentRPC } from "$lib/stores/current-method.js";
+    import { currentMethod, currentRPC } from "$lib/stores/current-method.js";
     import { fly } from "svelte/transition";
-    import capitalize from "$lib/utils/utils";
+    import capitalize from "$lib/utils/capitalize";
     import { updateParams } from "$lib/utils/params";
     import { handleRun } from "$lib/utils/handle-run";
 
@@ -47,7 +46,7 @@
         transition:fly={{ y: 200, duration: 1600 }}
     >
         <div
-            class="rounded rounded-xl border-2 border-gray-500 border-opacity-80 p-4 shadow-lg"
+            class="rounded rounded-xl border-2 border-gray-500 border-opacity-50 p-4 shadow-lg"
         >
             <h1 class="sp-2 mb-2 rounded-t text-xl font-semibold">
                 Parameters
