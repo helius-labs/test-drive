@@ -17,7 +17,7 @@ Helius RPC Playground is a SvelteKit app that allows users to make RPC calls to 
    git clone https://github.com/your-username/helius-rpc-playground.git
 3. Change to the project directory
     ```bash 
-    cd helius-rpc-playground
+    cd test-drive
 4. Install the project dependencies:
     ```bash
     npm install
