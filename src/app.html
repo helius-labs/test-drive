@@ -72,6 +72,19 @@
         <title>Helius RPC Playground</title>
         %sveltekit.head%
     </head>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-F96PEY6C7C"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-F96PEY6C7C");
+    </script>
     <body data-sveltekit-preload-data="hover">
         <div style="display: contents">%sveltekit.body%</div>
     </body>
