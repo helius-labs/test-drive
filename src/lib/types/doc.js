@@ -691,6 +691,24 @@ export const methods = {
             },
         },
     },
+    getGenesisHash: {
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getGenesisHash"}
+      '`,
+        description: "Returns the genesis hash",
+
+        result: {
+            description: "Asset Owner Details",
+
+            type: "object",
+            fields: {
+                hash: {
+                    description: "a Hash as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+    },
     getBlockCommitment: {
         codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
@@ -1035,7 +1053,7 @@ export const methods = {
         codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
-          "method": "getClusterNodes"
+          "method": "getEpochInfo"
         }
       '`,
         description: "Returns information about the current epoch",
@@ -3329,7 +3347,7 @@ export const methods = {
     },
     getVersion: {
         codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
-        {"jsonrpc":"2.0","id":1, "method":"getTransactionCount"}
+        {"jsonrpc":"2.0","id":1, "method":"getVersion"}
       '
       `,
         description: "Returns the current Solana version running on the node",

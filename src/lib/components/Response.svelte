@@ -46,7 +46,7 @@
     }
 
     $: metadataHTML = formatHighlight(
-        JSON.stringify(data || {}, null, 2).trim(),
+        "\n  " + JSON.stringify(data || {}, null, 2),
         {
             keyColor: "#a5a3a3",
             numberColor: "#e8a034",
@@ -95,13 +95,11 @@
                             <path d="M5 15V5H9M19 15V5H9" />
                         </svg>
                     </div>
-                    <div>
-                        <pre>
-                    <code class="code bordered whitespace-pre-line text-xs">
+                    <pre>
+                    <code class="code bordered whitespace-pre text-xs">
                         {@html metadataHTML}
                     </code>
                 </pre>
-                    </div>
                 </div>
             {/if}
         </div>
