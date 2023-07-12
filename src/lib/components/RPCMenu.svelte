@@ -40,7 +40,7 @@
             <div
                 class="m-3 w-full items-center justify-center rounded p-2 hover:shadow-lg md:flex md:w-3/4"
             >
-                <div class="m-1 w-full md:w-2/6">
+                <div class="m-1 w-full md:w-2/6 ">
                     <select
                         class="select-bordered select select-md w-full max-w-lg border-zinc-900 bg-zinc-900 text-sm text-gray-300"
                         bind:value={$currentMethod}
