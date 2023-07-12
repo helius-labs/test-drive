@@ -698,7 +698,7 @@ export const methods = {
         description: "Returns the genesis hash",
 
         result: {
-            description: "Asset Owner Details",
+            description: "Returns the genesis hash",
 
             type: "object",
             fields: {
