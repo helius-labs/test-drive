@@ -165,6 +165,7 @@
                                 </div>
                             </div>
                             <div class="collapse-content opacity-80 leading-relaxed">
+
                                 <div class="flex items-center">
                                     <div class="h-full w-1 bg-gray-500" />
                                     <p class="pl-2 leading-[2]">
@@ -175,6 +176,7 @@
                                     <div class="flex items-center">
                                         <div class="h-full w-1 bg-gray-500" />
                                         <li class="pl-2 text-gray-300 leading-[2]">
+
                                             <strong class="text-gray-100">
                                                 {name}:</strong
                                             >
