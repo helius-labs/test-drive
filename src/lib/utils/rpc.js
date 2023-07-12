@@ -1,4 +1,5 @@
 import {
+    copyResponse,
     isResponse,
     responseStore,
     responseTime,
@@ -24,6 +25,7 @@ export default async function callRPC(requestData, rpcUrl) {
     isResponse.set("true");
     responseStore.set(data);
     responseTime.set(duration.toFixed(2));
+    copyResponse.set(JSON.stringify(data, null, 2));
     return data.result;
 }
 

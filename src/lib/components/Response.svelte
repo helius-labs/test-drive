@@ -16,6 +16,7 @@
         responseStore,
         isResponse,
         responseTime,
+        copyResponse,
     } from "$lib/stores/response-store.js";
     import { currentMethod } from "$lib/stores/current-method.js";
     import formatHighlight from "json-format-highlight";
@@ -33,7 +34,7 @@
     }
 
     function handleCopy() {
-        copyToClipboard($responseStore);
+        copyToClipboard($copyResponse);
     }
     let responseStatus;
     let selectedMethod;
