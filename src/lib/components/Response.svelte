@@ -111,28 +111,29 @@
         transition:fly={{ y: 200, duration: 1500 }}
     >
         <div
-            class="min-h-100 rounded-xl border border-zinc-900 border-opacity-80 p-4 opacity-50 shadow-lg"
+            class="min-h-100 rounded-xl border border-zinc-900 border-opacity-80 p-4 shadow-lg"
         >
             <div class="flex justify-between">
-                <h1 class="rounded-t p-2 text-xl font-semibold">Output</h1>
-                <div class="badge-outline badge mx-2 flex h-8 flex-row">
-                    No response
+                <h1 class="sp-2 mb-2 rounded-t text-xl font-semibold text-zinc-300 tracking-widest">OUTPUT</h1>
+                    <div class="text-color badge-outline badge badge rounded-md bg-zinc-900 border-zinc-800 text-gray-400 tracking-widest font-medium text-xs mx-2 p-2">
+                    NO RESPONSE
                 </div>
             </div>
-            <div class="alert mt-5 justify-center opacity-100">
+            <div class="alert bg-zinc-900 mt-5 justify-start">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    class="h-6 w-6 shrink-0 stroke-info"
+                    class="h-6 w-6 shrink-0 opacity-80 stroke-info"
                     ><path
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
+                        stroke="currentColor"
                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     /></svg
                 >
-                <span
+                <span class="text-zinc-300"
                     >Pick an RPC method and click Run to get a response.
                 </span>
             </div>
