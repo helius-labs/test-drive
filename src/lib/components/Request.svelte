@@ -10,6 +10,17 @@
     .text-color.blue {
         color: rgb(70, 131, 229);
     }
+    .scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+    
+    .scrollbar::-webkit-scrollbar-thumb {
+    background: #18181b;
+    border-radius: 100vh;
+    scroll-padding: 8px;
+    padding: 8px;
+    }
 </style>
 
 <script>
@@ -50,15 +61,16 @@
         transition:fly={{ y: 200, duration: 1600 }}
     >
         <div
-            class="rounded rounded-xl border-2 border-zinc-900 border-opacity-50 p-4 shadow-lg"
+            class="rounded rounded-xl border-2 border-zinc-900 border-opacity-50 p-4 shadow-lg space-y-6"
         >
-            <h1 class="sp-2 mb-2 rounded-t text-xl font-semibold">
-                Parameters
+            <h1 class="sp-2 mb-2 rounded-t text-xl font-semibold text-zinc-300 tracking-widest">
+                PARAMETERS
             </h1>
+
             {#if params.length === 0}
                 <p class="text-gray-400">No custom parameters available.</p>
             {/if}
-            <div class="max-h-96 overflow-y-auto">
+            <div class="max-h-96 overflow-y-auto scrollbar">
                 <table class="w-full overflow-y-scroll">
                     <thead>
                         <!-- header row -->
@@ -73,7 +85,7 @@
                                         class="mt-2 -mb-1 flex flex-row items-center"
                                     >
                                         <h1
-                                            class="mx-2 text-base font-semibold text-white"
+                                            class="mx-2 text-sm font-medium text-zinc-300 tracking-widest"
                                         >
                                             {param.name}
                                         </h1>
@@ -82,24 +94,19 @@
                                         class="mt-2 -mb-1 flex flex-row items-center"
                                     >
                                         <div
-                                            class="text-color badge-outline badge badge mx-2 p-2"
-                                            class:orange={typeof param.value ===
-                                                "string"}
-                                            class:green={typeof param.value ===
-                                                "number"}
-                                            class:blue={typeof param.value ===
-                                                "boolean"}
+                                            class="text-color badge-outline badge badge rounded-md bg-zinc-900 border-zinc-800 text-gray-400 tracking-widest font-medium text-xs mx-2 p-2"
+
                                         >
-                                            {capitalize(typeof param.value)}
+                                            {(typeof param.value).toUpperCase()}
                                         </div>
                                         {#if param.isOptional}
                                             <div
-                                                class="badge-outline badge badge mx-2 p-2 text-gray-300"
+                                            class="text-color badge-outline badge badge rounded-md bg-zinc-900 border-zinc-800 text-gray-400 tracking-widest font-medium text-xs mx-2 p-2"
                                             >
                                                 <h1
-                                                    class="text-xs font-semibold italic text-gray-500"
+                                                    class=""
                                                 >
-                                                    Optional
+                                                    OPTIONAL
                                                 </h1>
                                             </div>
                                         {/if}
@@ -111,7 +118,7 @@
                                             <input
                                                 type="number"
                                                 bind:value={param.value}
-                                                placeholder="input here"
+                                                placeholder=""
                                                 class="input-bordered input min-w-full max-w-md border-zinc-900 bg-transparent text-white"
                                             />
                                         {:else if param.type === "boolean"}
@@ -130,7 +137,7 @@
                                             <input
                                                 type="text"
                                                 bind:value={param.value}
-                                                placeholder="input here"
+                                                placeholder=""
                                                 class="input-bordered input input-md min-w-full max-w-md border-zinc-900 bg-transparent text-white"
                                             />
                                         {/if}
@@ -142,12 +149,12 @@
                 </table>
                 <tfoot><tr /></tfoot>
             </div>
-            <div class="flex justify-end p-2 py-6">
+            <div class="flex justify-end p-2 py-8">
                 <button
-                    class="xl:text-md btn-sm btn w-full rounded-md border-none bg-[#E84125] p-2 text-sm font-medium tracking-widest text-black shadow-md duration-200 hover:bg-orange-300"
+                    class="xl:text-md btn-sm btn w-full h-10 rounded-md border-none bg-white text-sm font-medium tracking-widest text-black shadow-md duration-200 hover:bg-zinc-200"
                     on:click={runMethod}
                 >
-                    RUN
+                    Run
                 </button>
             </div>
         </div>

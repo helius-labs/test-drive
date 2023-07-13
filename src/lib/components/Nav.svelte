@@ -18,20 +18,20 @@
     <div class="ml-auto">
         <div class="mr-2">
             <button
-                class="animate-fade btn-sm btn flex h-11 items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-400 px-2 duration-200 hover:bg-orange-300 md:space-x-4 md:px-4 xl:px-6"
-                on:click={() =>
-                    window.open("https://dev.helius.xyz/dashboard/app")}
+            class="animate-fade hover:opacity-80 btn-sm btn flex h-11 items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-400 px-2 duration-200 hover:bg-orange-300 md:space-x-4 md:px-4 xl:px-6"
+            on:click={() =>
+                window.open("https://dev.helius.xyz/dashboard/app")}
+        >
+            <img
+                class="w-4 sm:w-6"
+                src="/heliusWhite.svg"
+                alt="Logo"
+            />
+            <span
+                class="xl:text-md text-xs font-medium tracking-widest text-white sm:text-sm "
+                >LAUNCH PORTAL</span
             >
-                <img
-                    class="w-4 sm:w-6"
-                    src="/heliusWhite.svg"
-                    alt="Logo"
-                />
-                <span
-                    class="xl:text-md text-xs font-medium tracking-widest text-white sm:text-sm "
-                    >LAUNCH PORTAL</span
-                >
-            </button>
+        </button>
         </div>
     </div>
 </nav>
