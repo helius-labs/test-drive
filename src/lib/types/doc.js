@@ -1,6 +1,6 @@
 export const methods = {
     getAccountInfo: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -105,7 +105,7 @@ export const methods = {
         },
     },
     getAsset: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
             "jsonrpc": "2.0",
             "id": "string",
@@ -157,7 +157,7 @@ export const methods = {
         },
     },
     getAssetProof: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
             "jsonrpc": "2.0",
             "id": "string",
@@ -208,7 +208,7 @@ export const methods = {
         },
     },
     getAssetsByAuthority: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
             "jsonrpc": "2.0",
             "id": "string",
@@ -460,7 +460,7 @@ export const methods = {
         },
     },
     getAssetsByOwner: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
             "jsonrpc": "2.0",
             "id": "string",
@@ -515,7 +515,7 @@ export const methods = {
         },
 
         result: {
-            description: "Asset Proof Details.",
+            description: "Asset Owner Details.",
 
             fields: {
                 leaf: {
@@ -543,7 +543,7 @@ export const methods = {
         },
     },
     getBalance: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "getBalance",
@@ -592,7 +592,7 @@ export const methods = {
         },
     },
     getBlock: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0","id":1,
           "method":"getBlock",
@@ -882,7 +882,7 @@ export const methods = {
         },
     },
     getBlockCommitment: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "getBlockCommitment",
@@ -926,7 +926,7 @@ export const methods = {
         },
     },
     getBlockHeight: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc":"2.0","id":1,
           "method":"getBlockHeight"
@@ -965,7 +965,7 @@ export const methods = {
         },
     },
     getBlockProduction: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getBlockProduction"}
       '`,
         description:
@@ -1043,7 +1043,7 @@ export const methods = {
         },
     },
     getBlockTime: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc":"2.0", "id":1,
           "method": "getBlockTime",
@@ -1073,7 +1073,7 @@ export const methods = {
         },
     },
     getBlocks: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "getBlocks",
@@ -1122,7 +1122,7 @@ export const methods = {
         },
     },
     getBlocksWithLimit: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id":1,
@@ -1170,7 +1170,7 @@ export const methods = {
         },
     },
     getClusterNodes: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "getClusterNodes"
@@ -1222,10 +1222,10 @@ export const methods = {
         },
     },
     getEpochInfo: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
-          "method": "getClusterNodes"
+          "method": "getEpochInfo"
         }
       '`,
         description: "Returns information about the current epoch.",
@@ -1283,8 +1283,91 @@ export const methods = {
             },
         },
     },
+    getAssetsByCreator: {
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetsByCreator",
+            "params": {
+              "creatorAddress": "string",
+              "page": 1,
+              "limit": 100,
+              "sortBy": {
+                "sortBy": "created",
+                "sortDirection": "asc"
+              },
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This will return a list of assets for the given authority provided. This can define compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the assets.",
+                    type: "string",
+                },
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
+                },
+            },
+            required: {
+                creatorAddress: {
+                    description: "The creator address key to return assets.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Creator Details",
+
+            assets: {
+                description: "Assets from Authority",
+                type: "object",
+                fields: {
+                    total: {
+                        description: "The total number of assets found.",
+                        type: "integer",
+                    },
+                    limit: {
+                        description: "The maximum number of assets requested.",
+                        type: "integer",
+                    },
+                    page: {
+                        description: "The current page of results.",
+                        type: "integer",
+                    },
+                    items: {
+                        description: "An array of assets",
+                        type: "array[object]",
+                    },
+                },
+            },
+            type: "object",
+        },
+    },
     getEpochSchedule: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc":"2.0","id":1,
           "method":"getEpochSchedule"
@@ -1327,7 +1410,7 @@ export const methods = {
         },
     },
     getFeeForMessage: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "id":1,
           "jsonrpc":"2.0",
@@ -1378,8 +1461,26 @@ export const methods = {
             },
         },
     },
+    getGenesisHash: {
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getGenesisHash"}
+      '`,
+        description: "Returns the genesis hash",
+
+        result: {
+            description: "Returns the genesis hash",
+
+            type: "object",
+            fields: {
+                hash: {
+                    description: "a Hash as base-58 encoded string",
+                    type: "string",
+                },
+            },
+        },
+    },
     getFirstAvailableBlock: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc":"2.0","id":1,
           "method":"getFirstAvailableBlock"
@@ -1402,7 +1503,7 @@ export const methods = {
         },
     },
     getHealth: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getHealth"}
       '`,
         description: "Returns the current health of the node.",
@@ -1426,7 +1527,7 @@ export const methods = {
         },
     },
     getHighestSnapshotSlot: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1,"method":"getHighestSnapshotSlot"}
       '`,
         description:
@@ -1452,7 +1553,7 @@ export const methods = {
         },
     },
     getIdentity: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getIdentity"}
       '`,
         description: "Returns the identity pubkey for the current node.",
@@ -1473,7 +1574,7 @@ export const methods = {
         },
     },
     getInflationGovernor: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getInflationGovernor"}
       '`,
         description: "Returns the current inflation governor.",
@@ -1524,7 +1625,7 @@ export const methods = {
         },
     },
     getInflationRate: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getInflationRate"}
       '`,
         description:
@@ -1557,7 +1658,7 @@ export const methods = {
         },
     },
     getInflationReward: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -1633,7 +1734,7 @@ export const methods = {
         },
     },
     getLargestAccounts: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getLargestAccounts"}
       '`,
         description:
@@ -1673,8 +1774,96 @@ export const methods = {
             },
         },
     },
+    getAssetsByGroup: {
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetsByGroup",
+            "params": {
+              "groupKey": "collection",
+              "groupValue": "string",
+              "page": 1,
+              "limit": 100,
+              "sortBy": {
+                "sortBy": "created",
+                "sortDirection": "asc"
+              },
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This will return the asset information for a specific group provided (i.e Collection). This can return compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the assets.",
+                    type: "string",
+                },
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
+                },
+            },
+            required: {
+                groupValue: {
+                    description: "The address value of the group.",
+                    type: "string",
+                },
+                groupKey: {
+                    description: "The group key for the asset search.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            description: "Asset Group Details",
+
+            assets: {
+                description: "Assets from Authority",
+                type: "object",
+                fields: {
+                    total: {
+                        description: "The total number of assets found.",
+                        type: "integer",
+                    },
+                    limit: {
+                        description: "The maximum number of assets requested.",
+                        type: "integer",
+                    },
+                    page: {
+                        description: "The current page of results.",
+                        type: "integer",
+                    },
+                    items: {
+                        description: "An array of assets",
+                        type: "array[object]",
+                    },
+                },
+            },
+            type: "object",
+        },
+    },
     getLatestBlockhash: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "id":1,
           "jsonrpc":"2.0",
@@ -1724,7 +1913,7 @@ export const methods = {
         },
     },
     getLeaderSchedule: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -1780,7 +1969,7 @@ export const methods = {
         },
     },
     getMaxRetransmitSlot: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getMaxRetransmitSlot"}
       '`,
         description: "Get the max slot seen from retransmit stage.",
@@ -1799,7 +1988,7 @@ export const methods = {
         },
     },
     getMaxShredInsertSlot: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getMaxShredInsertSlot"}
       '`,
         description: "Get the max slot seen from after shred insert.",
@@ -1818,7 +2007,7 @@ export const methods = {
         },
     },
     getMinimumBalanceForRentExemption: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "getMinimumBalanceForRentExemption",
@@ -1858,7 +2047,7 @@ export const methods = {
         },
     },
     getMultipleAccounts: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -1968,7 +2157,7 @@ export const methods = {
         },
     },
     getProgramAccounts: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
             "jsonrpc": "2.0",
             "id": 1,
@@ -2099,7 +2288,7 @@ export const methods = {
         },
     },
     getRecentPerformanceSamples: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc":"2.0", "id":1,
           "method": "getRecentPerformanceSamples",
@@ -2147,7 +2336,7 @@ export const methods = {
         },
     },
     getRecentPrioritizationFees: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc":"2.0", "id":1,
           "method": "getRecentPrioritizationFees",
@@ -2185,7 +2374,7 @@ export const methods = {
         },
     },
     getSignaturesForAddress: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -2277,7 +2466,7 @@ export const methods = {
         },
     },
     getSignaturesForAsset: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
             "jsonrpc": "2.0",
             "id": "string",
@@ -2323,7 +2512,8 @@ export const methods = {
         },
 
         result: {
-            description: "Asset Details.",
+            description: "Asset Signature Details.",
+
             fields: {
                 assets: {
                     description: "Information regarding the asset.",
@@ -2352,7 +2542,7 @@ export const methods = {
         },
     },
     getSignaturesStatuses: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -2433,7 +2623,7 @@ export const methods = {
         },
     },
     getSlot: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getSlot"}
       '`,
         description:
@@ -2469,7 +2659,7 @@ export const methods = {
         },
     },
     getSlotLeader: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getSlotLeader"}
       '`,
         description: "Returns the current slot leader.",
@@ -2505,7 +2695,7 @@ export const methods = {
         },
     },
     getSlotLeaders: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc":"2.0", "id": 1,
           "method": "getSlotLeaders",
@@ -2539,7 +2729,7 @@ export const methods = {
         },
     },
     getStakeActivation: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -2605,7 +2795,7 @@ export const methods = {
         },
     },
     getStakeMinimumDelegation: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc":"2.0", "id":1,
           "method": "getStakeMinimumDelegation"
@@ -2639,7 +2829,7 @@ export const methods = {
         },
     },
     getSupply: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0", "id":1, "method":"getSupply"}
       '`,
         description: "Returns information about the current supply.",
@@ -2688,7 +2878,7 @@ export const methods = {
         },
     },
     getTokenAccountsByDelegate: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -2822,7 +3012,7 @@ export const methods = {
         },
     },
     getTokenAccountsByOwner: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -2956,7 +3146,7 @@ export const methods = {
         },
     },
     getTokenBalance: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "getTokenAccountBalance",
@@ -3009,7 +3199,7 @@ export const methods = {
         },
     },
     getTokenLargestAccounts: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "getTokenLargestAccounts",
@@ -3068,7 +3258,7 @@ export const methods = {
         },
     },
     getTokenSupply: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "getTokenSupply",
@@ -3122,7 +3312,7 @@ export const methods = {
         },
     },
     getTransaction: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d'
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -3314,7 +3504,7 @@ export const methods = {
         },
     },
     getTransactionCount: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getTransactionCount"}
       '
       `,
@@ -3353,8 +3543,8 @@ export const methods = {
         },
     },
     getVersion: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
-        {"jsonrpc":"2.0","id":1, "method":"getTransactionCount"}
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getVersion"}
       '
       `,
         description: "Returns the current Solana version running on the node",
@@ -3379,7 +3569,7 @@ export const methods = {
         },
     },
     getVoteAccounts: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -3479,7 +3669,7 @@ export const methods = {
         },
     },
     isBlockhashValid: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "id":45,
           "jsonrpc":"2.0",
@@ -3529,7 +3719,7 @@ export const methods = {
         },
     },
     minimumLedgerSlot: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"minimumLedgerSlot"}
       '`,
         description:
@@ -3550,7 +3740,7 @@ export const methods = {
         },
     },
     requestAirdrop: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0", "id": 1,
           "method": "requestAirdrop",
@@ -3600,7 +3790,7 @@ export const methods = {
         },
     },
     searchAsset: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
             "jsonrpc": "2.0",
             "id": "string",
@@ -3760,7 +3950,7 @@ export const methods = {
         },
     },
     sendTransaction: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,
@@ -3826,7 +4016,7 @@ export const methods = {
         },
     },
     simulateTransaction: {
-        codeExample: `curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {
           "jsonrpc": "2.0",
           "id": 1,

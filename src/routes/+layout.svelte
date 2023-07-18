@@ -3,10 +3,10 @@
 </style>
 
 <script>
-    import Nav from "../components/Nav.svelte";
+    import Nav from "$lib/components/Nav.svelte";
 </script>
 
-<main class="h-full">
+<main class="h-full overflow-x-hidden overflow-y-hidden">
     <Nav />
     <slot />
 </main>
