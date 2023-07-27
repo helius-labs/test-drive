@@ -21,7 +21,10 @@
     import { currentMethod } from "$lib/stores/current-method.js";
     import formatHighlight from "json-format-highlight";
     import { fly } from "svelte/transition";
-
+    import { badgeClicked } from "$lib/stores/current-method";
+    function handleClick() {
+        badgeClicked.set(true);
+    }
     function copyToClipboard(text) {
         navigator.clipboard
             .writeText(text)
@@ -107,7 +110,7 @@
 {/if}
 {#if selectedMethod && responseStatus == "false"}
     <div
-        class="min-h-96 p-2 text-white opacity-90"
+        class="min-h-96 z-1 relative p-2 text-white opacity-90"
         transition:fly={{ y: 200, duration: 1500 }}
     >
         <div
@@ -115,11 +118,15 @@
         >
             <div class="flex justify-between">
                 <h1 class="rounded-t p-2 text-xl font-semibold">Output</h1>
-                <div class="badge-outline badge mx-2 flex h-8 flex-row">
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div
+                    class="badge-outline badge mx-2 flex h-8 flex-row"
+                    on:click={handleClick}
+                >
                     No response
                 </div>
             </div>
-            <div class="alert mt-5 justify-center opacity-100">
+            <div class="alert mt-5 justify-center">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
