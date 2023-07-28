@@ -25,10 +25,13 @@
                     <Response />
                 </div>
             </div>
-            <Docs />
         {/if}
         {#if $isOpen}
             <p class="text-center opacity-20">.</p>
         {/if}
     </div>
+    {#if !$isOpen}
+
+    <Docs />
+    {/if}
 </div>
