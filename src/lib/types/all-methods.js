@@ -1,4 +1,16 @@
 export const methods = {
+    getAccountInfo: {
+        name: "getAccountInfo",
+        defaultParams: {
+            pubkey: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha", 
+        },
+        optionalParams: {
+            commitment: "confirmed",
+            minContextSlot: 0,
+        },
+        paramsFormat: "array",
+        paramsStructure: ["pubkey"],
+    },
     getAsset: {
         name: "getAsset",
         defaultParams: {
