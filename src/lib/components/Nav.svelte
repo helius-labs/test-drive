@@ -1,6 +1,6 @@
 <script>
-    // WILL BE IMPLEMENTED IN THE FUTURE
-    // import RaceModal from "./RaceModal.svelte";
+    import RaceModal from "./RaceModal.svelte";
+    import { badgeClicked } from "$lib/stores/current-method";
 </script>
 
 <nav
@@ -15,7 +15,14 @@
             />
         </div>
     </div>
-    <div class="ml-auto">
+    <div class="ml-auto flex items-center">
+        <!-- Created a new flex container here -->
+        {#if $badgeClicked}
+            <div class="mr-4">
+                <!-- Added some margin to separate from the next button -->
+                <RaceModal />
+            </div>
+        {/if}
         <div class="mr-2">
             <button
             class="animate-fade hover:opacity-80 btn-sm btn flex h-11 items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-400 px-2 duration-200 hover:bg-orange-300 md:space-x-4 md:px-4 xl:px-6"

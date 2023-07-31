@@ -21,7 +21,10 @@
     import { currentMethod } from "$lib/stores/current-method.js";
     import formatHighlight from "json-format-highlight";
     import { fly } from "svelte/transition";
-
+    import { badgeClicked } from "$lib/stores/current-method";
+    function handleClick() {
+        badgeClicked.set(true);
+    }
     function copyToClipboard(text) {
         navigator.clipboard
             .writeText(text)
@@ -107,19 +110,23 @@
 {/if}
 {#if selectedMethod && responseStatus == "false"}
     <div
-        class="min-h-96 p-2 text-white opacity-90"
-        transition:fly={{ y: 200, duration: 1500 }}
+        class="min-h-96 z-1 relative p-2 text-white opacity-90"
+        transition:fly={{ duration: 1500, y: 200 }}
     >
         <div
             class="min-h-100 rounded-xl border border-zinc-900 border-opacity-80 p-4 shadow-lg"
         >
             <div class="flex justify-between">
-                <h1 class="sp-2 mb-2 rounded-t text-xl font-semibold text-zinc-300 tracking-widest">OUTPUT</h1>
-                    <div class="text-color badge-outline badge badge rounded-md bg-zinc-900 border-zinc-800 text-gray-400 tracking-widest font-medium text-xs mx-2 p-2">
-                    NO RESPONSE
+                <h1 class="rounded-t p-2 text-xl font-semibold">Output</h1>
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div
+                    class="badge-outline badge mx-2 flex h-8 flex-row"
+                    on:click={handleClick}
+                >
+                    No response
                 </div>
             </div>
-            <div class="alert bg-zinc-900 mt-5 justify-start">
+            <div class="alert mt-5 justify-center">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

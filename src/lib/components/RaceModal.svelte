@@ -2,8 +2,8 @@
     // @ts-nocheck
     import { raceMethods } from "$lib/types/race-methods.js";
     import { raceRPC } from "$lib/utils/rpc";
+    import { isOpen } from "$lib/stores/current-method";
 
-    let isOpen = false;
     let rpcUrl1 = "";
     let rpcUrl2 = "";
     let result = "";
@@ -22,11 +22,11 @@
     let raceSuccess = false;
 
     function open() {
-        isOpen = true;
+        isOpen.set(true);
     }
 
     function close() {
-        isOpen = false;
+        isOpen.set(false);
     }
 
     async function runSingleTest(rpcUrl, methodToTest, urlIndex) {
@@ -109,16 +109,16 @@
 
 <div class="flex items-center justify-center">
     <button
-        class="btn bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-sm"
+        class="animate-fade btn-sm btn flex h-11 items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-400 px-2 text-white duration-200 hover:bg-orange-300 md:space-x-4 md:px-4 xl:px-6"
         on:click={open}
     >
         Race RPCs
     </button>
 </div>
 
-{#if isOpen}
+{#if $isOpen}
     <div
-        class="fixed inset-0 z-10 overflow-y-auto"
+        class="z-9999 fixed inset-0 overflow-y-auto"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
@@ -127,14 +127,17 @@
             class="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0"
         >
             <div
-                class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                class="z-9999 fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"
                 aria-hidden="true"
+                on:click={close}
             />
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div
-                class="inline-block transform overflow-hidden rounded-lg bg-HeliusGray text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
+                class="inline-block transform overflow-hidden rounded-lg bg-black text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
+                on:click|stopPropagation
             >
                 <div
-                    class="justify-center bg-[#242934] px-4 py-3 text-left sm:flex sm:flex-row-reverse sm:px-6"
+                    class="justify-center bg-black px-4 py-3 text-left sm:flex sm:flex-row-reverse sm:px-6"
                 >
                     <h3
                         class="text-left text-xl font-bold leading-6 text-white"
@@ -143,27 +146,33 @@
                         RPC Speed Test
                     </h3>
                 </div>
-                <div class="bg-[#242934] px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="mt-2">
-                        <h3 class="text-lg font-bold text-white">RPC URL 1</h3>
+                <div class="bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="">
+                        <h3 class="mb-2 text-lg font-bold text-white">
+                            RPC URL 1
+                        </h3>
                         <input
                             type="text"
-                            class="input-bordered input-error input w-full max-w-lg bg-HeliusGray text-black"
+                            class="input-bordered input w-full max-w-lg bg-black text-white"
                             bind:value={rpcUrl1}
                             placeholder="RPC URL 1"
                         />
-                        <h3 class="text-lg font-bold text-white">RPC URL 2</h3>
+                        <h3 class="my-2 text-lg font-bold text-white">
+                            RPC URL 2
+                        </h3>
                         <input
                             type="text"
-                            class="input-bordered input-error input w-full max-w-lg bg-HeliusGray text-black"
+                            class="input-bordered input w-full max-w-lg bg-black text-white"
                             bind:value={rpcUrl2}
                             placeholder="RPC URL 2"
                         />
 
-                        <h3 class="text-lg font-bold text-white">Method</h3>
+                        <h3 class="my-2 text-lg font-bold text-white">
+                            Method
+                        </h3>
 
                         <select
-                            class="select-error select w-full max-w-lg bg-HeliusGray text-black"
+                            class="select-bordered select w-full max-w-lg bg-black text-white"
                             bind:value={methodToTest}
                         >
                             <option
@@ -178,7 +187,7 @@
                     </div>
                     <div class="flex justify-center">
                         <button
-                            class="btn btn my-4 w-20 border-none bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-md"
+                            class="btn btn my-4 w-full border-none bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-md"
                             on:click={runSpeedTest}>Start</button
                         >
                     </div>
@@ -272,16 +281,8 @@
                     {/if}
                 </div>
                 <div
-                    class="bg-[#242934] px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
-                >
-                    <button
-                        type="button"
-                        class="btn btn w-20 border-none bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-md"
-                        on:click={close}
-                    >
-                        Close
-                    </button>
-                </div>
+                    class="bg-black px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+                />
             </div>
         </div>
     </div>
