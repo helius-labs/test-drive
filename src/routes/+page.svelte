@@ -31,13 +31,19 @@
         {/if}
     </div>
     {#if !$isOpen}
-
-    <Docs />
+        <Docs />
     {/if}
-     <div class="fixed bottom-4 right-4 hidden md:block">
-        <a href="https://github.com/helius-labs/test-drive.git" target="_blank" rel="noopener noreferrer">
-          <img src="/github.svg" alt="" class="w-1/3 github-svg-hover-shadow" />
+    <div class="fixed bottom-4 right-4 hidden md:block">
+        <a
+            href="https://github.com/helius-labs/test-drive.git"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <img
+                src="/github.svg"
+                alt=""
+                class="github-svg-hover-shadow w-1/3"
+            />
         </a>
-      </div>
-    
+    </div>
 </div>

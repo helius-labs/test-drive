@@ -42,6 +42,7 @@ export async function handleRun(selectedMethod, params, currentRPC) {
             }
         }
     }
+
     if (methodData.paramsFormat === "array") {
         if (Object.keys(requestParams).length > 0) {
             requestData.params = [requestParams];
@@ -69,7 +70,11 @@ export async function handleRun(selectedMethod, params, currentRPC) {
         noParams.set(true);
         delete requestData.params;
     }
-
+    if (methodData.name === "getAccountInfo") {
+        const pubkey = requestParams["pubkey"];
+        delete requestParams["pubkey"];
+        requestData.params = [pubkey, requestParams];
+    }
     const result = await callRPC(requestData, rpcUrlValue);
 
     return { rpcError, result };
