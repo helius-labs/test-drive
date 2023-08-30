@@ -74,6 +74,19 @@ export async function handleRun(selectedMethod, params, currentRPC) {
         const pubkey = requestParams["pubkey"];
         delete requestParams["pubkey"];
         requestData.params = [pubkey, requestParams];
+    } else if (methodData.name === "getTokenAccountsByOwner") {
+        const owner = requestParams["owner"];
+        const mint = requestParams["programId"]; // Assuming you've fetched mint somewhere
+        const encoding = requestParams["encoding"];
+        delete requestParams["owner"];
+        delete requestParams["programId"];
+        delete requestParams["encoding"];
+
+        requestData.params = [
+            owner,
+            { programId: mint },
+            { encoding: encoding },
+        ];
     }
     const result = await callRPC(requestData, rpcUrlValue);
 

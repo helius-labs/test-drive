@@ -1,15 +1,4 @@
 export const methods = {
-    getAccountInfo: {
-        name: "getAccountInfo",
-        defaultParams: {
-            pubkey: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
-        },
-        optionalParams: {
-            commitment: "confirmed",
-            minContextSlot: 0,
-        },
-        paramsFormat: "array",
-    },
     getAsset: {
         name: "getAsset",
         defaultParams: {
@@ -60,8 +49,8 @@ export const methods = {
         },
         optionalParams: {
             limit: 1000,
-            before: "",
-            after: "",
+            before: null,
+            after: null,
         },
         paramsFormat: "object",
     },
@@ -129,6 +118,20 @@ export const methods = {
         paramsFormat: "array",
         paramsStructure: ["pubkey"], // the order of parameters matters if it's array type
     },
+    getBlock: {
+        name: "getBlock",
+        defaultParams: {
+            slot: 430,
+        },
+        optionalParams: {
+            commitment: "confirmed",
+            encoding: "json",
+            transactionDetails: "full",
+            maxSupportedTransactionVersion: "",
+            rewards: "",
+        },
+        paramsFormat: "array",
+    },
     getBlockHeight: {
         name: "getBlockHeight",
         defaultParams: {},
@@ -160,6 +163,14 @@ export const methods = {
         optionalParams: {
             commitment: "confirmed",
         },
+        paramsFormat: "array",
+    },
+    getBlocksWithLimit: {
+        name: "getBlocksWithLimit",
+        defaultParams: {
+            startSlot: [5, 3],
+        },
+        optionalParams: { commitment: "confirmed" },
         paramsFormat: "array",
     },
     getBlockTime: {
@@ -239,6 +250,22 @@ export const methods = {
         optionalParams: [],
         paramsFormat: "none",
     },
+    getInflationReward: {
+        name: "getInflationReward",
+        defaultParams: {
+            addresses: [
+                "6dmNQ5jwLeLk5REvio1JcMshcbvkYMwy26sJ8pbkvStu",
+                "BGsqMegLpV6n6Ve146sSX2dTjUMj3M92HnU8BbNRMhF2",
+            ],
+            epoch: 2,
+        },
+        optionalParams: {
+            commitment: "confirmed",
+            epoch: 2,
+            minContextSlot: 0,
+        },
+        paramsFormat: "array",
+    },
     getLargestAccounts: {
         name: "getLargestAccounts",
         defaultParams: {},
@@ -260,7 +287,7 @@ export const methods = {
         optionalParams: {
             epoch: 0,
             commitment: "confirmed",
-            identity: "7Gjec4iDbTxLvVYNsRbZrrHdtyLByzdDJ1C5BmcMMBks",
+            identity: "4Qkev8aNZcqFNSRhQzwyLMFSsi94jHqE8WNVTJzTP99F",
         },
         paramsFormat: "array",
     },
@@ -280,6 +307,25 @@ export const methods = {
         name: "getMinimumBalanceForRentExemption",
         defaultParams: { dataSize: [50] },
         optionalParams: { commitment: "confirmed" },
+        paramsFormat: "array",
+    },
+    getMultipleAccounts: {
+        name: "getMultipleAccounts",
+        defaultParams: {
+            pubkeys: [
+                "vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg",
+                "4fYNw3dojWmQ4dXtSGE9epjRGy9pFSx62YypT7avPYvA",
+            ],
+            options: {
+                encoding: "base58",
+            },
+        },
+        optionalParams: {
+            commitment: "confirmed",
+            minContextSlot: 0,
+            dataSlice: 0,
+            encoding: "json",
+        },
         paramsFormat: "array",
     },
     getProgramAccounts: {
@@ -302,6 +348,14 @@ export const methods = {
         defaultParams: {},
         optionalParams: {},
         paramsFormat: "none",
+    },
+    getRecentPrioritizationFees: {
+        name: "getRecentPrioritizationFees",
+        defaultParams: {
+            addresses: "CxELquR1gPP8wHe33gZ4QxqGB3sZ9RSwsJ2KshVewkFY",
+        },
+        optionalParams: {},
+        paramsFormat: "array",
     },
     getSignaturesForAddress: {
         name: "getSignaturesForAddress",
@@ -329,10 +383,19 @@ export const methods = {
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
         paramsFormat: "array",
     },
+    getSlotLeaders: {
+        name: "getSlotLeaders",
+        defaultParams: { startSlot: [100, 10] },
+        optionalParams: {
+            startSlot: 100,
+            limit: 10,
+        },
+        paramsFormat: "array",
+    },
     getStakeActivation: {
         name: "getStakeActivation",
         defaultParams: {
-            stakeAccount: "CAf8jfgqhia5VNrEF4A7Y9VLD3numMq9DVSceq7cPhNY",
+            stakeAccount: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
         },
         optionalParams: {
             commitment: "confirmed",
@@ -364,18 +427,32 @@ export const methods = {
         optionalParams: { commitment: "confirmed" },
         paramsFormat: "array",
     },
-    getTokenAccountsByOwner: {
-        name: "getTokenAccountsByOwner",
+    getTokenAccountsByDelegate: {
+        name: "getTokenAccountsByDelegate",
         defaultParams: {
-            owner: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
+            delegate: "4Nd1mBQtrMJVYVfKf2PJy9NZUZdTAsp7D4xWLs4gDB4T",
+            programId: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            encoding: "json",
         },
         optionalParams: {
-            programId: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
-            mint: "",
             commitment: "confirmed",
             minContextSlot: 0,
             dataSlice: 0,
             encoding: "jsonParsed",
+        },
+        paramsFormat: "array",
+    },
+    getTokenAccountsByOwner: {
+        name: "getTokenAccountsByOwner",
+        defaultParams: {
+            owner: "2k5AXX4guW9XwRQ1AKCpAuUqgWDpQpwFfpVFh3hnm2Ha",
+            encoding: "json",
+        },
+        optionalParams: {
+            commitment: "confirmed",
+            minContextSlot: 0,
+            dataSlice: 0,
+            encoding: "json",
         },
         paramsFormat: "array",
     },
