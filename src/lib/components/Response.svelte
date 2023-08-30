@@ -17,6 +17,7 @@
         isResponse,
         responseTime,
         copyResponse,
+        isLoading,
     } from "$lib/stores/response-store.js";
     import { currentMethod } from "$lib/stores/current-method.js";
     import formatHighlight from "json-format-highlight";
@@ -58,7 +59,14 @@
     );
 </script>
 
-{#if selectedMethod && responseStatus == "true"}
+{#if $isLoading == true}
+    <img
+        class="m-auto w-20 justify-center"
+        src="spinner.svg"
+        alt=""
+    />
+{/if}
+{#if selectedMethod && responseStatus == "true" && $isLoading == false}
     <div class="max-h-100 p-2 text-white opacity-80">
         <div
             class="max-h-100 rounded-xl border border-zinc-900 border-opacity-50 p-4 shadow-lg"

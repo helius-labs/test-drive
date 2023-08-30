@@ -24,6 +24,7 @@
     import capitalize from "$lib/utils/capitalize";
     import { updateParams } from "$lib/utils/params";
     import { handleRun } from "$lib/utils/handle-run";
+    import { isLoading } from "$lib/stores/response-store";
 
     let selectedMethod;
     let rpcError = false;
@@ -35,12 +36,14 @@
     }
 
     async function runMethod() {
+        isLoading.set(true);
         const { rpcError: error, result } = await handleRun(
             selectedMethod,
             params,
             $currentRPC
         );
         rpcError = error;
+        isLoading.set(false);
     }
 </script>
 
