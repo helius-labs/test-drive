@@ -1,5 +1,4 @@
 <script>
-    // @ts-nocheck
     import { methods } from "$lib/types/all-methods.js";
     import { currentMethod, currentRPC } from "$lib/stores/current-method.js";
     import { fly } from "svelte/transition";
@@ -8,21 +7,35 @@
     let questions = Object.keys(methods).map((method, index) => {
         return { id: index + 1, text: method };
     });
-    let rpcUrlValue = "";
+    
+    export let answer = "";
+    
+    if (typeof window !== 'undefined') {
+        // Initialize from localStorage
+        answer = localStorage.getItem('rpcUrl') || "";
+    }
+    
+    let isVisible = false;
+
     $: {
-        rpcUrlValue = answer;
+        if (!answer && typeof window !== 'undefined') {
+            answer = localStorage.getItem('rpcUrl') || "";
+        }
+
+        let rpcUrlValue = answer;
+        
         if (!rpcUrlValue) {
             currentRPC.set("https://api.mainnet-beta.solana.com");
         }
-        // Check if the URL starts with "https://"
         if (!rpcUrlValue.startsWith("https://") && rpcUrlValue !== "") {
             rpcUrlValue = "https://" + rpcUrlValue;
         }
         currentRPC.set(rpcUrlValue);
-    }
 
-    export let answer = "";
-    let isVisible = false;
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('rpcUrl', rpcUrlValue); // Save to localStorage
+        }
+    }
 
     onMount(() => {
         setTimeout(() => {
@@ -62,7 +75,7 @@
                         type="text"
                         bind:value={answer}
                         placeholder="Drop a Solana RPC endpoint here"
-                        class="input-bordered input input w-full border-zinc-900 bg-transparent text-gray-300"
+                        class="input-bordered input w-full border-zinc-900 bg-transparent text-gray-300"
                     />
                 </div>
             </div>
