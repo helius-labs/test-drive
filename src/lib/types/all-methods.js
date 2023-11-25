@@ -6,6 +6,7 @@ export const methods = {
         },
         optionalParams: {
             commitment: "confirmed",
+            encoding: "base58",
             minContextSlot: 0,
         },
         paramsFormat: "array",

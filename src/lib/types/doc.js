@@ -27,19 +27,25 @@ export const methods = {
                             type: "string",
                         },
                         dataSlice: {
-                            description: "Encoding format for Account data",
+                            description:
+                                "Request a slice of the account's data",
                             fields: {
                                 length: {
-                                    description: "number of bytes to return",
+                                    description:
+                                        "The number of bytes to return",
                                     type: "usize",
                                 },
                                 offset: {
                                     description:
-                                        "byte offset from which to start reading",
+                                        "The byte offset from which to start reading",
                                     type: "usize",
                                 },
                             },
                             type: "object",
+                        },
+                        encoding: {
+                            description: "Encoding format for Account data",
+                            type: "string",
                         },
                         minContextSlot: {
                             description:
