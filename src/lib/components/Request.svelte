@@ -50,7 +50,7 @@
 {#if selectedMethod}
     <div
         class="min-h-100 my-1 p-2 text-white"
-        transition:fly={{ y: 200, duration: 1600 }}
+        transition:fly={{ duration: 1600, y: 200 }}
     >
         <div
             class="rounded rounded-xl border-2 border-zinc-900 border-opacity-50 p-4 shadow-lg"

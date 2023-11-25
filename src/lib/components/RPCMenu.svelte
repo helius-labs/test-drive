@@ -47,7 +47,7 @@
 {#if isVisible}
     <div
         class="my-2 flex justify-center"
-        transition:fly={{ y: 200, duration: 1800 }}
+        transition:fly={{ duration: 1800, y: 200 }}
     >
         <form class="flex w-full justify-center">
             <div
