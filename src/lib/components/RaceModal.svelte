@@ -187,7 +187,7 @@
                     </div>
                     <div class="flex justify-center">
                         <button
-                            class="btn btn my-4 w-full border-none bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-md"
+                            class="btn my-4 w-full border-none bg-gradient-to-r from-orange-400 to-orange-600 p-2 text-white shadow-md"
                             on:click={runSpeedTest}>Start</button
                         >
                     </div>

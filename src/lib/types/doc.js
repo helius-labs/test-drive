@@ -27,19 +27,25 @@ export const methods = {
                             type: "string",
                         },
                         dataSlice: {
-                            description: "Encoding format for Account data",
+                            description:
+                                "Request a slice of the account's data",
                             fields: {
                                 length: {
-                                    description: "number of bytes to return",
+                                    description:
+                                        "The number of bytes to return",
                                     type: "usize",
                                 },
                                 offset: {
                                     description:
-                                        "byte offset from which to start reading",
+                                        "The byte offset from which to start reading",
                                     type: "usize",
                                 },
                             },
                             type: "object",
+                        },
+                        encoding: {
+                            description: "Encoding format for Account data",
+                            type: "string",
                         },
                         minContextSlot: {
                             description:
@@ -230,23 +236,23 @@ export const methods = {
             "This will return a list of assets for the given authority provided. This can define compressed or standard NFTs.",
         parameters: {
             optional: {
-                limit: {
-                    description: "The maximum number of assets to return.",
-                    type: "integer",
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
                 },
                 before: {
                     description:
                         "The cursor for paginating backwards through the assets.",
                     type: "string",
                 },
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
                 sortBy: {
                     description:
                         "The criteria by which the retrieved assets will be sorted.",
-                    type: "string",
-                },
-                after: {
-                    description:
-                        "The cursor for paginating forwards through the assets.",
                     type: "string",
                 },
             },
@@ -266,11 +272,10 @@ export const methods = {
         result: {
             assets: {
                 description: "Assets from Authority",
-                type: "object",
                 fields: {
-                    total: {
-                        description: "The total number of assets found.",
-                        type: "integer",
+                    items: {
+                        description: "An array of assets",
+                        type: "array[object]",
                     },
                     limit: {
                         description: "The maximum number of assets requested.",
@@ -280,14 +285,186 @@ export const methods = {
                         description: "The current page of results.",
                         type: "integer",
                     },
+                    total: {
+                        description: "The total number of assets found.",
+                        type: "integer",
+                    },
+                },
+                type: "object",
+            },
+            description: "Asset Authority Details",
+
+            type: "object",
+        },
+    },
+    getAssetsByCreator: {
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetsByCreator",
+            "params": {
+              "creatorAddress": "string",
+              "page": 1,
+              "limit": 100,
+              "sortBy": {
+                "sortBy": "created",
+                "sortDirection": "asc"
+              },
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This will return a list of assets for the given authority provided. This can define compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the assets.",
+                    type: "string",
+                },
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted.",
+                    type: "string",
+                },
+            },
+            required: {
+                creatorAddress: {
+                    description: "The creator address key to return assets.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return",
+                    type: "integer",
+                },
+            },
+        },
+
+        result: {
+            assets: {
+                description: "Assets from Authority",
+                fields: {
                     items: {
                         description: "An array of assets",
                         type: "array[object]",
                     },
+                    limit: {
+                        description: "The maximum number of assets requested.",
+                        type: "integer",
+                    },
+                    page: {
+                        description: "The current page of results.",
+                        type: "integer",
+                    },
+                    total: {
+                        description: "The total number of assets found.",
+                        type: "integer",
+                    },
+                },
+                type: "object",
+            },
+
+            description: "Asset Creator Details",
+            type: "object",
+        },
+    },
+    getAssetsByGroup: {
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+        {
+            "jsonrpc": "2.0",
+            "id": "string",
+            "method": "getAssetsByGroup",
+            "params": {
+              "groupKey": "collection",
+              "groupValue": "string",
+              "page": 1,
+              "limit": 100,
+              "sortBy": {
+                "sortBy": "created",
+                "sortDirection": "asc"
+              },
+              "before": "string",
+              "after": "string"
+            }
+          }
+      '`,
+        description:
+            "This will return the asset information for a specific group provided (i.e Collection). This can return compressed or standard NFTs.",
+        parameters: {
+            optional: {
+                after: {
+                    description:
+                        "The cursor for paginating forwards through the assets.",
+                    type: "string",
+                },
+                before: {
+                    description:
+                        "The cursor for paginating backwards through the assets.",
+                    type: "string",
+                },
+                limit: {
+                    description: "The maximum number of assets to return.",
+                    type: "integer",
+                },
+                sortBy: {
+                    description:
+                        "The criteria by which the retrieved assets will be sorted.",
+                    type: "string",
                 },
             },
-            description: "Asset Authority Details",
+            required: {
+                groupKey: {
+                    description: "The group key for the asset search.",
+                    type: "string",
+                },
+                groupValue: {
+                    description: "The address value of the group.",
+                    type: "string",
+                },
+                page: {
+                    description: "The page of results to return",
+                    type: "integer",
+                },
+            },
+        },
 
+        result: {
+            assets: {
+                description: "Assets from Authority",
+                fields: {
+                    items: {
+                        description: "An array of assets",
+                        type: "array[object]",
+                    },
+                    limit: {
+                        description: "The maximum number of assets requested.",
+                        type: "integer",
+                    },
+                    page: {
+                        description: "The current page of results.",
+                        type: "integer",
+                    },
+                    total: {
+                        description: "The total number of assets found.",
+                        type: "integer",
+                    },
+                },
+                type: "object",
+            },
+
+            description: "Asset Group Details",
             type: "object",
         },
     },
@@ -687,24 +864,6 @@ export const methods = {
                             },
                         },
                     },
-                },
-            },
-        },
-    },
-    getGenesisHash: {
-        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
-        {"jsonrpc":"2.0","id":1, "method":"getGenesisHash"}
-      '`,
-        description: "Returns the genesis hash",
-
-        result: {
-            description: "Returns the genesis hash",
-
-            type: "object",
-            fields: {
-                hash: {
-                    description: "a Hash as base-58 encoded string",
-                    type: "string",
                 },
             },
         },
@@ -1229,6 +1388,24 @@ export const methods = {
             },
         },
     },
+    getGenesisHash: {
+        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+        {"jsonrpc":"2.0","id":1, "method":"getGenesisHash"}
+      '`,
+        description: "Returns the genesis hash",
+
+        result: {
+            description: "Returns the genesis hash",
+
+            fields: {
+                hash: {
+                    description: "a Hash as base-58 encoded string",
+                    type: "string",
+                },
+            },
+            type: "object",
+        },
+    },
     getHealth: {
         codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
         {"jsonrpc":"2.0","id":1, "method":"getHealth"}
@@ -1498,89 +1675,6 @@ export const methods = {
                     type: "u64",
                 },
             },
-        },
-    },
-    getAssetsByCreator: {
-        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
-        {
-            "jsonrpc": "2.0",
-            "id": "string",
-            "method": "getAssetsByCreator",
-            "params": {
-              "creatorAddress": "string",
-              "page": 1,
-              "limit": 100,
-              "sortBy": {
-                "sortBy": "created",
-                "sortDirection": "asc"
-              },
-              "before": "string",
-              "after": "string"
-            }
-          }
-      '`,
-        description:
-            "This will return a list of assets for the given authority provided. This can define compressed or standard NFTs.",
-        parameters: {
-            optional: {
-                limit: {
-                    description: "The maximum number of assets to return.",
-                    type: "integer",
-                },
-                sortBy: {
-                    description:
-                        "The criteria by which the retrieved assets will be sorted.",
-                    type: "string",
-                },
-                before: {
-                    description:
-                        "The cursor for paginating backwards through the assets.",
-                    type: "string",
-                },
-                after: {
-                    description:
-                        "The cursor for paginating forwards through the assets.",
-                    type: "string",
-                },
-            },
-            required: {
-                creatorAddress: {
-                    description: "The creator address key to return assets.",
-                    type: "string",
-                },
-                page: {
-                    description: "The page of results to return",
-                    type: "integer",
-                },
-            },
-        },
-
-        result: {
-            description: "Asset Creator Details",
-
-            assets: {
-                description: "Assets from Authority",
-                type: "object",
-                fields: {
-                    total: {
-                        description: "The total number of assets found.",
-                        type: "integer",
-                    },
-                    limit: {
-                        description: "The maximum number of assets requested.",
-                        type: "integer",
-                    },
-                    page: {
-                        description: "The current page of results.",
-                        type: "integer",
-                    },
-                    items: {
-                        description: "An array of assets",
-                        type: "array[object]",
-                    },
-                },
-            },
-            type: "object",
         },
     },
     getLatestBlockhash: {
@@ -2258,94 +2352,6 @@ export const methods = {
                     type: "object",
                 },
             },
-        },
-    },
-    getAssetsByGroup: {
-        codeExample: `curl https://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
-        {
-            "jsonrpc": "2.0",
-            "id": "string",
-            "method": "getAssetsByGroup",
-            "params": {
-              "groupKey": "collection",
-              "groupValue": "string",
-              "page": 1,
-              "limit": 100,
-              "sortBy": {
-                "sortBy": "created",
-                "sortDirection": "asc"
-              },
-              "before": "string",
-              "after": "string"
-            }
-          }
-      '`,
-        description:
-            "This will return the asset information for a specific group provided (i.e Collection). This can return compressed or standard NFTs.",
-        parameters: {
-            optional: {
-                limit: {
-                    description: "The maximum number of assets to return.",
-                    type: "integer",
-                },
-                sortBy: {
-                    description:
-                        "The criteria by which the retrieved assets will be sorted.",
-                    type: "string",
-                },
-                before: {
-                    description:
-                        "The cursor for paginating backwards through the assets.",
-                    type: "string",
-                },
-                after: {
-                    description:
-                        "The cursor for paginating forwards through the assets.",
-                    type: "string",
-                },
-            },
-            required: {
-                groupValue: {
-                    description: "The address value of the group.",
-                    type: "string",
-                },
-                groupKey: {
-                    description: "The group key for the asset search.",
-                    type: "string",
-                },
-                page: {
-                    description: "The page of results to return",
-                    type: "integer",
-                },
-            },
-        },
-
-        result: {
-            description: "Asset Group Details",
-
-            assets: {
-                description: "Assets from Authority",
-                type: "object",
-                fields: {
-                    total: {
-                        description: "The total number of assets found.",
-                        type: "integer",
-                    },
-                    limit: {
-                        description: "The maximum number of assets requested.",
-                        type: "integer",
-                    },
-                    page: {
-                        description: "The current page of results.",
-                        type: "integer",
-                    },
-                    items: {
-                        description: "An array of assets",
-                        type: "array[object]",
-                    },
-                },
-            },
-            type: "object",
         },
     },
     getSignaturesStatuses: {

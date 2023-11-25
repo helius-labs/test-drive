@@ -119,7 +119,7 @@
 {#if selectedMethod && responseStatus == "false"}
     <div
         class="min-h-96 z-1 relative p-2 text-white opacity-90"
-        transition:fly={{ y: 200, duration: 1500 }}
+        transition:fly={{ duration: 1500, y: 200 }}
     >
         <div
             class="min-h-100 rounded-xl border border-zinc-900 border-opacity-80 p-4 opacity-50 shadow-lg"

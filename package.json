@@ -14,7 +14,7 @@
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "// Lint": "-------------------------------------------------------------",
         "test": "npm run lint",
-        "lint": "eslint .",
+        "lint": "eslint . --fix",
         "format": "prettier --write '{public,src}/**/*.{css,html,js,svelte}'",
         "prepare": "husky install"
     },
@@ -22,7 +22,7 @@
         "*.{js,jsx,ts,tsx}": [
             "npm run lint",
             "npm run format",
-            "git add"
+            "git add ."
         ]
     },
     "devDependencies": {

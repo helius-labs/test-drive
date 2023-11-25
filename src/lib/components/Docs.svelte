@@ -82,7 +82,7 @@
 {#if selectedMethod}
     <div
         class="drop-shadow-1xl flex justify-center"
-        transition:fly={{ y: 200, duration: 1600 }}
+        transition:fly={{ duration: 1600, y: 200 }}
     >
         <div
             class="m-3 w-full rounded-xl border border-zinc-800 border-opacity-50 p-4 md:w-3/4"

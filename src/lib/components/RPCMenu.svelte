@@ -7,23 +7,23 @@
     let questions = Object.keys(methods).map((method, index) => {
         return { id: index + 1, text: method };
     });
-    
+
     export let answer = "";
-    
-    if (typeof window !== 'undefined') {
+
+    if (typeof window !== "undefined") {
         // Initialize from localStorage
-        answer = localStorage.getItem('rpcUrl') || "";
+        answer = localStorage.getItem("rpcUrl") || "";
     }
-    
+
     let isVisible = false;
 
     $: {
-        if (!answer && typeof window !== 'undefined') {
-            answer = localStorage.getItem('rpcUrl') || "";
+        if (!answer && typeof window !== "undefined") {
+            answer = localStorage.getItem("rpcUrl") || "";
         }
 
         let rpcUrlValue = answer;
-        
+
         if (!rpcUrlValue) {
             currentRPC.set("https://api.mainnet-beta.solana.com");
         }
@@ -32,8 +32,8 @@
         }
         currentRPC.set(rpcUrlValue);
 
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('rpcUrl', rpcUrlValue); // Save to localStorage
+        if (typeof window !== "undefined") {
+            localStorage.setItem("rpcUrl", rpcUrlValue); // Save to localStorage
         }
     }
 
@@ -47,7 +47,7 @@
 {#if isVisible}
     <div
         class="my-2 flex justify-center"
-        transition:fly={{ y: 200, duration: 1800 }}
+        transition:fly={{ duration: 1800, y: 200 }}
     >
         <form class="flex w-full justify-center">
             <div

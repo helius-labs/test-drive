@@ -90,5 +90,5 @@ export async function handleRun(selectedMethod, params, currentRPC) {
     }
     const result = await callRPC(requestData, rpcUrlValue);
 
-    return { rpcError, result };
+    return { result, rpcError };
 }
