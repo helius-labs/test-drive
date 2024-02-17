@@ -87,6 +87,10 @@ export async function handleRun(selectedMethod, params, currentRPC) {
             { programId: mint },
             { encoding: encoding },
         ];
+    } else if (methodData.name === "getTransaction") {
+        const signature = requestParams["signature"];
+        delete requestParams["signature"];
+        requestData.params = [signature, requestParams];
     }
     const result = await callRPC(requestData, rpcUrlValue);
 
