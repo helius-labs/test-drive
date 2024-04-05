@@ -27,7 +27,11 @@
         if (!rpcUrlValue) {
             currentRPC.set("https://api.mainnet-beta.solana.com");
         }
-        if (!rpcUrlValue.startsWith("https://") && rpcUrlValue !== "") {
+        if (
+            rpcUrlValue !== "" &&
+            !rpcUrlValue.startsWith("http://") &&
+            !rpcUrlValue.startsWith("https://")
+        ) {
             rpcUrlValue = "https://" + rpcUrlValue;
         }
         currentRPC.set(rpcUrlValue);
