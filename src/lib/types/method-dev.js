@@ -1,3 +1,5 @@
+/** @typedef {import("./all-methods").RpcMethod} RpcMethod */
+/** @type Record<string, RpcMethod> */
 export const methods = {
     getAsset: {
         defaultParams: {
@@ -130,6 +132,7 @@ export const methods = {
         defaultParams: {},
         name: "getBlockHeight",
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
+        paramsFormat: "object",
     },
     getBlockProduction: {
         defaultParams: {},
