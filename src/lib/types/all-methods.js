@@ -128,6 +128,7 @@ export const methods = {
         defaultParams: {},
         name: "getBlockHeight",
         optionalParams: { commitment: "confirmed", minContextSlot: 0 },
+        paramsFormat: "array",
     },
     getBlockProduction: {
         defaultParams: {},
