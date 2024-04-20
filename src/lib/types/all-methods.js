@@ -1,3 +1,14 @@
+/**
+ * @typedef {{
+ *     name: string;
+ *     defaultParams: Record<string, string | number | object>;
+ *     optionalParams?: [] | Record<string, string | number | boolean | null>;
+ *     paramsFormat: "object" | "array" | "none";
+ *     paramsStructure?: string[];
+ * }} RpcMethod
+ */
+
+/** @type Record<string, RpcMethod> */
 export const methods = {
     getAccountInfo: {
         defaultParams: {

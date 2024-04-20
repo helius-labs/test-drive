@@ -1,3 +1,5 @@
+/** @typedef {import("./all-methods").RpcMethod} RpcMethod */
+/** @type Record<string, RpcMethod> */
 export const methods = {
     getAsset: {
         defaultParams: {
