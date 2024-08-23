@@ -49,6 +49,6 @@ This project is open source and available under the MIT License.
 
 ## Related Links
 * [Live Demo](https://www.solanarpc.xyz/)
-* [Helius Dev Portal](https://dev.helius.xyz/dashboard/app)
+* [Helius Dev Portal](https://dashboard.helius.dev/dashboard/)
 
 
