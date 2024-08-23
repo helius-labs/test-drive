@@ -39,7 +39,7 @@
             <span class="justify-center tracking-widest text-sm text-zinc-300">
                 Don't have an RPC? Get one for free, <a
                     class="underline"
-                    href="https://dev.helius.xyz/dashboard/app"
+                    href="https://dashboard.helius.dev/dashboard/"
                     target="_blank"
                     rel="noreferrer">here.</a
                 >
