@@ -20,7 +20,7 @@
             <button
             class="animate-fade hover:opacity-80 btn-sm btn flex h-11 items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-400 px-2 duration-200 hover:bg-orange-300 md:space-x-4 md:px-4 xl:px-6"
             on:click={() =>
-                window.open("https://dev.helius.xyz/dashboard/app")}
+                window.open("https://dashboard.helius.dev/dashboard/")}
         >
             <img
                 class="w-4 sm:w-6"
